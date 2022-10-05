@@ -1,4 +1,4 @@
-Interactive Media Album
+# Interactive Media Album 
 
 A private mixed media album of your photos, videos, and recordings that mimics the TiTok interface. 
 
