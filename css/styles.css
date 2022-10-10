@@ -1,0 +1,90 @@
+/* cover banner */
+header {
+    /* font */
+    font-family: 'cardo', sans-serif;
+    color: black;
+
+    /* layout */
+    justify-content: center;
+    display: inline-block;
+    position: relative;
+    background-color: white;
+    height: 20%;
+    border: 5px black solid;
+}
+
+/* journal title */
+.cover-title {
+    text-transform: uppercase;
+    font-size: 4.5em;
+    font-weight: 900;
+    
+    position: relative;
+    padding: 0.5em;
+    margin: 0.5em;
+    border: 5px black solid;
+}
+
+/* author's name */
+.cover-subtitle {
+    text-transform: capitalize;
+    font-size: 1.75em;
+    font-weight: 500;
+    
+    position: relative;
+    padding: 0.5em;
+    border: 5px black solid;
+}
+
+/* navigation sidebar */
+.nav-common {
+    font-family: 'cardo', sans-serif;
+    color: black;
+    
+    display: inline-block;
+    position: fixed;
+    background-color: whitesmoke;
+    background-size: contain;
+    padding: 1em;
+    border: 5px black solid;
+}
+
+/* navigation button */
+.navbar-toggle {
+    font-size: 1.25em;
+    font-weight: 550;
+    
+    position: relative;
+}
+
+/* dropdown links */
+.nav-links {
+    font-size: 1em;
+    display: none;
+}
+
+/* page main content */
+.cover-media {
+    display: inline-block;
+    background-color: aqua;
+    background-position: center;
+    padding: 15em;
+    border: 5px black solid;
+}
+
+/* site logo */
+  .memoria-logo {
+    font-family: 'tangerine', cursive;
+    font-size: 2.5em;
+    font-weight: 900;
+    color: black;
+    
+    background-color: white;
+    width: 100%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 2em;
+    padding-right: 2em;
+    margin: 0.5em;
+    border: 5px black solid;
+}
