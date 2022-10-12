@@ -10,8 +10,7 @@ header, .nav-common, .cover-media,
 }
 
 /* cover heading */
-header {
-    font-family: 'cardo', sans-serif;
+.cover-header {
     color: black;
 
     display: flex;
@@ -19,7 +18,7 @@ header {
     justify-content: center;
     align-items: center;
     background-color: white;
-    height: 20%;
+    height: 20% vh;
     width: 100%;
 }
 
@@ -39,7 +38,6 @@ header {
 
 /* navigation sidebar */
 .nav-common {
-    font-family: 'cardo', sans-serif;
     color: black;
 
     /* keeps sidebar fixed on the top-left corner of the page */
@@ -53,11 +51,10 @@ header {
 
 /* navigation button */
 .navbar-toggle {
-    font-family: 'cardo', sans-serif;
     color: black;
     font-size: 1em;
     font-weight: 550;
-    
+
     position: relative;
     background-color: rgba(211, 248, 255, 0.9);
     border: none;
@@ -95,6 +92,11 @@ header {
 /* page margins for parent flexbox elements */
 .header, .cover-media, .memoria-logo, .cover-title, .cover-subtitle {
     margin: 0.25em;
+}
+
+/* establishes common font-family */
+.cover-header, .nav-common, .cover-media {
+    font-family: 'cardo', sans-serif; 
 }
 
 /* assign paddings to header child items */
