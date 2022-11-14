@@ -1,3 +1,5 @@
+import NavMenu from './NavMenu';
+
 import './App.css';
 
 function App() {
@@ -6,6 +8,7 @@ function App() {
       <header className="App-header">
         <h1>Memoria</h1>
       </header>
+      <NavMenu />
     </div>
   );
 }
