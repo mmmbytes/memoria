@@ -15,7 +15,7 @@
   cursor: pointer;
 }
 
-.menu-nav {
+.nav-menu {
   bottom: 5%;
   left: 0%;
   visibility: hidden;
@@ -24,7 +24,7 @@
   background: goldenrod;
 }
 
-.menu-nav.show-menu {
+.nav-menu.show-menu {
   position: fixed;
   visibility: visible;
   width: 100%;

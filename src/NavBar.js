@@ -11,7 +11,7 @@ const NavBar = () => {
     return (
     <nav className="nav-bar">
       <button onClick={handleToggle}>{navbarOpen ? "Close" : "Open"}</button>
-      <ul className={`menu-nav ${navbarOpen ? "show-menu " : ""}`}>
+      <ul className={`nav-menu ${navbarOpen ? "show-menu " : ""}`}>
         <div className="nav-links">
           <li>Contents</li>
           <li>Discover</li>
