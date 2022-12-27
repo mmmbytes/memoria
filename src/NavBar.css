@@ -1,0 +1,43 @@
+.nav-bar {
+  position: fixed;
+  bottom: 0%;
+  left: 0%;
+  flex-direction: column-reverse;
+  display: flexbox;
+  width: 100%;
+  height: 7.5%;
+  font-family: "Besley", serif;
+}
+
+.nav-bar button {
+  bottom: 5%;
+  left: 0%;
+  cursor: pointer;
+}
+
+.nav-menu {
+  bottom: 5%;
+  left: 0%;
+  visibility: hidden;
+  overflow: hidden;
+  list-style: none;
+  background: goldenrod;
+}
+
+.nav-menu.show-menu {
+  position: fixed;
+  visibility: visible;
+  width: 100%;
+  height: 95%;
+  padding: 0%;
+  text-align: center;
+}
+
+.nav-links {
+  padding: 7%;
+  font-size: 1.5em;
+}
+
+.nav-links li {
+  padding: 2.5%;
+}

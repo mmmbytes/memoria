@@ -1,4 +1,4 @@
-import NavMenu from './NavMenu';
+import NavBar from './NavBar';
 
 import './App.css';
 
@@ -8,7 +8,7 @@ function App() {
       <header className="App-header">
         <h1>Memoria</h1>
       </header>
-      <NavMenu />
+      <NavBar />
     </div>
   );
 }
