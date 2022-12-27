@@ -1,9 +1,9 @@
 .nav-bar {
-  display: flexbox;
   position: fixed;
+  flex-direction: column-reverse;
   left: 0;
   bottom: 0;
-  flex-direction: column-reverse;
+  display: flexbox;
   font-family: "Besley", serif;
 }
 
@@ -17,10 +17,10 @@
 .menu-nav {
   left: 0%;
   bottom: 5%;
+  visibility: hidden;
+  overflow: hidden;
   list-style: none;
   background: goldenrod;
-  overflow: hidden;
-  visibility: hidden;
 }
 
 .menu-nav.show-menu {
