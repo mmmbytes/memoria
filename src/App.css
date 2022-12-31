@@ -1,21 +1,15 @@
 * {
+  margin: 0;
   box-sizing: border-box;
-}
-
-.App {
-  text-align: center;
+  padding: 0;
 }
 
 .App-header {
-  flex-direction: row;
-  align-items: bottom;
-  justify-content: center;
-  display: flexbox;
   width: 100%;
-  height: 20%;
   background-color: white;
   font-size: 2.5em;
-  font-weight: 900;
-  color: black;
   font-family: 'tangerine', cursive;
+  font-weight: 900;
+  text-align: center;
+  color: silver;
 }
