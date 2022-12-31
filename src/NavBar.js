@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {VscClose } from "react-icons/vsc";
+import { VscClose } from "react-icons/vsc";
 import { VscMenu } from "react-icons/vsc";
 import './NavBar.css'
 
