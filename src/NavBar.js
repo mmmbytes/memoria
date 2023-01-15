@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { VscClose } from "react-icons/vsc";
 import { VscMenu } from "react-icons/vsc";
-import './NavBar.css'
+import './NavBar.css';
 
 const NavBar = () => {
     const [navbarOpen, setbarOpen] = useState(false);
