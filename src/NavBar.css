@@ -5,6 +5,7 @@
   left: 0%;
   width: 100%;
   height: 10%;
+  border: 1px solid rgb(191, 191, 191);
 }
 
 .nav-flex-container {
@@ -15,10 +16,8 @@
 
 button {
   border: none;
-  background-color: white;
   cursor: pointer;
   font-size: 2.5em;
-  color: black;
   font-weight: 900;
 }
 
@@ -41,6 +40,11 @@ button {
   list-style: none; 
   width: 0%;
   height: 0%;
+  background-color: rgb(255, 255, 255);
+}
+
+.nav-menu, .nav-links, .nav-links li {
+  background-color: rgb(245, 245, 245);
 }
 
 .nav-menu.show-menu {
@@ -49,16 +53,14 @@ button {
   width: 100%;
   height: 90%;
   text-align: center;
-  background: whitesmoke;
 }
 
 .nav-links {
   padding: 7%;
-  font-size: 1.5em;
-  font-family: 'Besley', serif;
+  font-size: 2em;
 }
 
 .nav-links li {
   padding: 2.5%;
-  font-weight: 900;
+  font-weight: 500;
 }
