@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const NoteSchema = new mongoose.Schema({
     title: String,
     text: String,
-    images: String,
+    images: [String],
     date: { type: Date, default: Date.now },
     tags: [String],
     author: {

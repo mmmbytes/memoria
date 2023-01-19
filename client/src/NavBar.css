@@ -47,6 +47,11 @@ button {
   background-color: rgb(245, 245, 245);
 }
 
+.nav-menu, .nav-links, .nav-links li {
+  background-color: rgb(245, 245, 245);
+  font-family: 'Cardo', serif;
+}
+
 .nav-menu.show-menu {
   bottom: 10%;
   visibility: visible;
