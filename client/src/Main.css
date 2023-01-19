@@ -11,7 +11,10 @@
     flex-direction: column;
     width: 60%;
     height: 100%;
+<<<<<<< HEAD:client/src/Main.css
     font-family: 'Cardo', serif;
+=======
+>>>>>>> main:src/Main.css
 }
 
 #note-title, #note-body {
