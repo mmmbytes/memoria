@@ -40,11 +40,11 @@ button {
   list-style: none; 
   width: 0%;
   height: 0%;
-  background-color: rgb(255, 255, 255);
 }
 
 .nav-menu, .nav-links, .nav-links li {
   background-color: rgb(245, 245, 245);
+  font-family: 'Cardo', serif;
 }
 
 .nav-menu.show-menu {
