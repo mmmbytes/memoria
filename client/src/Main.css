@@ -11,13 +11,13 @@
     flex-direction: column;
     width: 60%;
     height: 100%;
-    font-family: 'Cardo', serif;
 }
 
 #note-title, #note-body {
     margin: 2%;
     border: none;
     padding: 1%;
+    font-family: 'Cardo', serif;
 }
 
 #note-title:focus, #note-body:focus {
