@@ -6,8 +6,6 @@ router.get('/', () => {
     res.json({ message: 'GET all notes' });
 });
 
-module.exports = router;
-
 // GET a single note
 router.get('/:id', (req, res) => {
     res.json({ message: 'GET a single note' });
