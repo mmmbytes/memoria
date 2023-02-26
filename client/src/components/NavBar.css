@@ -14,22 +14,33 @@
   height: 100%;
 }
 
+/*Menu Button */
 button {
   border: none;
   cursor: pointer;
-  font-size: 2.5em;
-  font-weight: 900;
+  background-color: white;
 }
 
 .menu-icon {
   position: fixed;
   width: 7.5%;
   height: 10%;
+  font-size: 2.5em;
+  font-weight: 900;
 }
 
+/* Home Button */
 .home-icon {
   width: 100%;
+  text-align: center;
+}
+
+.home-icon a {
+  font-size: 2.5em;
   font-family: 'tangerine', cursive;
+  font-weight: 900;
+  text-decoration: none;
+  color: black
 }
 
 /* Navigation Menu */

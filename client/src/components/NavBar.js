@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import { VscClose } from "react-icons/vsc";
 import { VscMenu } from "react-icons/vsc";
@@ -22,7 +23,9 @@ const NavBar = () => {
               <li>Discover</li>
             </div>
           </ul>
-          <button className="home-icon">Memoria</button>
+          <div className="home-icon">
+            <Link to="/"><h1>Memoria</h1></Link>
+          </div>
         </div>
       </nav>
     );
