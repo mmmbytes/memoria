@@ -6,11 +6,11 @@ const Note = require('./../models/Note');
 
 // POST a new note
 const createNote = async(req, res) => {
-    const {title, text} = req.body;
+    const {title, textbody} = req.body;
 
     // add doc to db
     try {
-        const newNote = await Note.create({title, text});
+        const newNote = await Note.create({title, textbody});
         res.status(200).json(newNote);
     } catch (error) {
         res.status(400).json({error: error.message});

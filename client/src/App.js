@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Main from './pages/Main';
+import Notes from './pages/Notes';
 import NavBar from './components/NavBar';
 import './App.css';
 
@@ -12,7 +12,7 @@ function App() {
         <Routes>
             <Route 
               path="/"
-              element={<Main />}
+              element={<Notes />}
             />
         </Routes>
       </Router>
