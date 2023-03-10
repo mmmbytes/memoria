@@ -11,7 +11,7 @@ const createNote = async(req, res) => {
     // add doc to db
     try {
         const newNote = await Note.create({title, textbody});
-        res.status(200).json(newNote);
+        res.status(200).json(newNote._id);
     } catch (error) {
         res.status(400).json({error: error.message});
     }

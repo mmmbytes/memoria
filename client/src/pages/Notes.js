@@ -22,12 +22,13 @@ function Notes() {
         console.log("Error saving note.", error);
     } if(response.ok) {
         setError(null);
-        console.log("New note saved.", json);
+        console.log("New note saved:", json);
     }
 
     }
+
     useEffect(() => {
-        saveNote(note);
+        saveNote();
     }, [note]);
 
     function handleTextChange(e) {
