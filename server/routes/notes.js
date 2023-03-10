@@ -1,15 +1,15 @@
 const express = require('express');
 const {
+    getNotes,
     createNote,
+    updateNote
 } = require('./../controllers/note.ctrl');
 
 
 const router = express.Router();
 
 // GET all notes
-router.get('/', (req, res) => {
-    res.json({ message: 'GET all notes' });
-});
+router.get('/', getNotes);
 
 // GET a single note
 router.get('/:id', (req, res) => {
@@ -25,8 +25,6 @@ router.delete('/:id', (req, res) => {
 });
 
 // UPDATE a note
-router.patch('/:id', (req, res) => {
-    res.json({ message: 'UPDATE a note' });
-});
+router.patch('/:id', updateNote);
 
 module.exports = router;
