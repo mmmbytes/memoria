@@ -3,7 +3,7 @@ const {
     getNotes,
     createNote,
     updateNote
-} = require('./../controllers/note.ctrl');
+} = require('../controllers/note');
 
 
 const router = express.Router();
