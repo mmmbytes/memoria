@@ -1,35 +1,23 @@
 import { useState, useEffect } from 'react';
-import './Notes.css';
+import './ActiveNote.css';
 
-function Notes() {
+const { fetchLatestNote } = require('../api/activeNoteApi');
+
+
+function ActiveNote() {
     const [note, setNote] = useState({title: '', textbody: ''});
-    const [error, setError] = useState(null);
-
-    const saveNote = async () => {
-
-        const response = await fetch('/api/notes', {
-            method: 'POST',
-            body: JSON.stringify(note),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-
-    const json = await response.json();
-
-    if(!response.ok) {
-        setError(json.error);
-        console.log("Error saving note.", error);
-    } if(response.ok) {
-        setError(null);
-        console.log("New note saved:", json);
-    }
-
-    }
 
     useEffect(() => {
-        saveNote();
-    }, [note]);
+        const fetchNote = async () => {
+            const activeNote = await fetchLatestNote();
+            if (activeNote) {
+                setNote(activeNote);
+            } else {
+                console.error('Error loading note.');
+            }
+        }
+        fetchNote();
+    }, []);
 
     function handleTextChange(e) {
         const {name, value} = e.target;
@@ -37,7 +25,7 @@ function Notes() {
     }
 
     return (
-        <div className="notes-main">
+        <div className="note-main">
             <div className="note-edit">
                 <input 
                     type="text" id="note-title" name="title" placeholder="Title" autoFocus 
@@ -54,4 +42,4 @@ function Notes() {
     ); 
 }
 
-export default Notes; 
+export default ActiveNote; 

@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Notes from './pages/Notes';
+import ActiveNote from './pages/ActiveNote';
 import NavBar from './components/NavBar';
 import './App.css';
 
@@ -12,7 +12,7 @@ function App() {
         <Routes>
             <Route 
               path="/"
-              element={<Notes />}
+              element={<ActiveNote />}
             />
         </Routes>
       </Router>
