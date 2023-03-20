@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Note = require("../models/Note");
-const { title, textbody } = req.body;
 
 const getNotes = async (req, res) => {
 	const notes = await Note.find({});
@@ -22,6 +21,7 @@ const createNote = async (req, res) => {
 
 const updateNote = async (req, res) => {
 	const { id } = req.params;
+	const { title, textbody } = req.body;
 
 	if (!mongoose.Types.ObjectId.isValid(id)) {
 		return res.status(404).json({ error: `This note does not exist.` });
