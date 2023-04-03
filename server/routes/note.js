@@ -1,7 +1,14 @@
 const express = require("express");
-const { getNotes, createNote, updateNote } = require("../controllers/note");
+const {
+	getLatestNote,
+	getNotes,
+	createNote,
+	updateNote,
+} = require("../controllers/note");
 
 const router = express.Router();
+
+router.get("/latest", getLatestNote);
 
 // GET all notes
 router.get("/", getNotes);
@@ -14,12 +21,12 @@ router.get("/:id", (req, res) => {
 // POST a new note
 router.post("/", createNote);
 
+// UPDATE a note
+router.put("/:id", updateNote);
+
 // DELETE a note
 router.delete("/:id", (req, res) => {
 	res.json({ message: "DELETE a note" });
 });
-
-// UPDATE a note
-router.patch("/:id", updateNote);
 
 module.exports = router;

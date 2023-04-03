@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./ActiveNote.css";
 
-const { fetchLatestNote } = require("../api/activeNoteApi");
+const { fetchLatestNote, updateNote } = require("../api/activeNoteApi");
 
 function ActiveNote() {
 	const [note, setNote] = useState({ title: "", textbody: "" });
@@ -18,9 +18,16 @@ function ActiveNote() {
 		fetchNote();
 	}, []);
 
-	function handleTextChange(e) {
+	async function handleTextChange(e) {
 		const { name, value } = e.target;
-		setNote({ ...note, [name]: value });
+		const editedNote = { ...note, [name]: value };
+		setNote(editedNote);
+		const updatedNote = await updateNote(note._id, editedNote);
+		if (updatedNote) {
+			console.log(`Note ${updatedNote._id} updated.`);
+		} else {
+			console.error("Error saving note.");
+		}
 	}
 
 	return (

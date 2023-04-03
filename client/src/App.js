@@ -4,16 +4,16 @@ import ActiveNote from "./pages/ActiveNote";
 import "./App.css";
 
 function App() {
-	return (
-		<div className='App'>
-			<Router>
-				<NavBar />
-				<Routes>
-					<Route path='/' element={<ActiveNote />} />
-				</Routes>
-			</Router>
-		</div>
-	);
+  return (
+	  <div className='App'>
+		  <Router>
+			  <NavBar />
+			  <Routes>
+				  <Route path='/' element={<ActiveNote />} />
+			  </Routes>
+		  </Router>
+	  </div>
+  );
 }
 
 export default App;
