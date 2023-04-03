@@ -1,22 +1,23 @@
+require("dotenv").config();
+
 const express = require("express");
 const mongoose = require("mongoose");
-require("dotenv").config();
-const activeNoteRoutes = require("./routes/active-note");
 const noteRoutes = require("./routes/note");
 
 const app = express();
 
+// Middleware
 app.use(express.json());
 
-// Log the request path and method
 app.use((req, res, next) => {
 	console.log(req.path, req.method);
 	next();
 });
 
-app.use("/api/", activeNoteRoutes);
+// Routes
 app.use("/api/notes", noteRoutes);
 
+// Connect to MongoDB
 mongoose
 	.connect(process.env.MONGO_URI)
 	.then(() => {
