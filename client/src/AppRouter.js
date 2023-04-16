@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import NotesMain from "./views/NotesWorkspace";
+import NotesWorkspace from "./views/NotesWorkspace";
 import NavBar from "./components/NavBar";
 
 function AppRouter() {
 	return (
 		<Router>
 			<Routes>
-				<Route path='/' element={<NotesMain />} />
+				<Route path='/' element={<NotesWorkspace />} />
 			</Routes>
 			<NavBar />
 		</Router>
