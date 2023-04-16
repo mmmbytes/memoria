@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import NoteDetails from "./NoteDetails";
+import NoteContent from "./NoteContent";
 
 const { fetchLatestNote, updateNote } = require("../api/activeNoteApi");
 
@@ -30,7 +30,7 @@ function NoteManager() {
 		}
 	}
 
-	return <NoteDetails note={note} handleTextChange={handleTextChange} />;
+	return <NoteContent note={note} handleTextChange={handleTextChange} />;
 }
 
 export default NoteManager;

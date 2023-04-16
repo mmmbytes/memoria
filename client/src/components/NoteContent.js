@@ -1,6 +1,6 @@
-import "./NoteDetails.css";
+import "./NoteContent.css";
 
-function NoteDetails({ note, handleTextChange }) {
+function NoteContent({ note, handleTextChange }) {
 	return (
 		<div className='note-main'>
 			<div className='note-edit'>
@@ -25,4 +25,4 @@ function NoteDetails({ note, handleTextChange }) {
 	);
 }
 
-export default NoteDetails;
+export default NoteContent;
