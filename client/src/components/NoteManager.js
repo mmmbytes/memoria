@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import "./ActiveNote.css";
+import NoteContent from "./NoteContent";
 
 const { fetchLatestNote, updateNote } = require("../api/activeNoteApi");
 
-function ActiveNote() {
+function NoteManager() {
 	const [note, setNote] = useState({ title: "", textbody: "" });
 
 	useEffect(() => {
@@ -30,28 +30,7 @@ function ActiveNote() {
 		}
 	}
 
-	return (
-		<div className='note-main'>
-			<div className='note-edit'>
-				<input
-					type='text'
-					id='note-title'
-					name='title'
-					placeholder='Title'
-					autoFocus
-					onChange={handleTextChange}
-					value={note.title}
-				/>
-				<textarea
-					id='note-body'
-					name='textbody'
-					placeholder='Begin your writing journey here...'
-					onChange={handleTextChange}
-					value={note.textbody}
-				></textarea>
-			</div>
-		</div>
-	);
+	return <NoteContent note={note} handleTextChange={handleTextChange} />;
 }
 
-export default ActiveNote;
+export default NoteManager;
