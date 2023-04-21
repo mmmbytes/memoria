@@ -27,7 +27,21 @@ const updateNote = async (noteId, updatedNote) => {
 	}
 };
 
+const deleteNote = async (noteId) => {
+	try {
+		const response = await fetch(`/api/notes/${noteId}`, {
+			method: "DELETE",
+		});
+		const responseData = await response.json();
+		return responseData;
+	} catch (error) {
+		console.error("Error deleting note.");
+		return null;
+	}
+};
+
 module.exports = {
 	fetchLatestNote,
 	updateNote,
+	deleteNote,
 };
