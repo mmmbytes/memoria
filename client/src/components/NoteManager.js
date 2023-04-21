@@ -1,8 +1,14 @@
 import { useState, useEffect } from "react";
 import NoteContent from "./NoteContent";
 import DeleteButton from "./DeleteButton";
+import NewNoteButton from "./NewNoteButton";
 
-const { fetchLatestNote, updateNote, deleteNote } = require("../api/NoteApi");
+const {
+	fetchLatestNote,
+	updateNote,
+	deleteNote,
+	createNote,
+} = require("../api/NoteApi");
 
 function NoteManager() {
 	const [note, setNote] = useState({ title: "", textbody: "" });
@@ -11,9 +17,10 @@ function NoteManager() {
 		const activeNote = await fetchLatestNote();
 		if (activeNote) {
 			setNote(activeNote);
-		} else {
-			console.error("Error loading note.");
+		} else if (activeNote === null) {
+			handleNewNote();
 		}
+		console.error("Error loading note.");
 	};
 
 	useEffect(() => {
@@ -27,25 +34,34 @@ function NoteManager() {
 		const updatedNote = await updateNote(note._id, editedNote);
 		if (updatedNote) {
 			console.log(`Note ${updatedNote._id} updated.`);
-		} else {
-			console.error("Error saving note.");
 		}
+		console.error("Error saving note.");
 	}
 
 	async function handleDeleteNote() {
 		const deletedNote = await deleteNote(note._id);
 		if (deletedNote) {
-			console.log(`Note ${deletedNote._id} deleted.`);
+			console.log(`Note ${deletedNote.noteId} deleted.`);
 			fetchNote();
-		} else {
-			console.error("Error deleting note.");
 		}
+		console.error("Error deleting note.");
+	}
+
+	async function handleNewNote() {
+		const newNote = await createNote();
+		if (newNote) {
+			console.log(`Note ${newNote._id} created.`);
+			fetchNote();
+		}
+		console.error("Error creating note.");
 	}
 
 	return (
 		<div>
 			<NoteContent note={note} handleTextChange={handleTextChange} />
 			<DeleteButton handleDeleteNote={handleDeleteNote} />
+			<NewNoteButton handleNewNote={handleNewNote} />
+
 		</div>
 	);
 }
