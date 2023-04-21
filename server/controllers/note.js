@@ -5,7 +5,7 @@ const getLatestNote = async (req, res) => {
 	const latestNote = await Note.findOne().sort({ updatedAt: -1 });
 
 	if (!latestNote) {
-		return res.status(404).json({ error: `No notes found.` });
+		return res.status(204).json({ error: `No notes found.` });
 	}
 
 	return res.status(200).json(latestNote);
@@ -18,10 +18,13 @@ const getNotes = async (req, res) => {
 };
 
 const createNote = async (req, res) => {
-	const { title, textbody } = req.body;
+	const blankNote = {
+		title: "",
+		textbody: "",
+	};
 
 	try {
-		const newNote = await Note.create({ title, textbody });
+		const newNote = await Note.create(blankNote);
 		res.status(200).json(newNote);
 	} catch (error) {
 		res.status(400).json({ error: error.message });
@@ -62,8 +65,8 @@ const deleteNote = async (req, res) => {
 		if (!note) {
 			return res.status(404).json({ error: `Note not found.` });
 		}
+		res.status(200).json({ noteId: id });
 
-		res.status(200).json({ message: `Note deleted.` });
 	} catch (error) {
 		res.status(500).json({ error: error.message });
 	}

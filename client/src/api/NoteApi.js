@@ -1,47 +1,64 @@
-const fetchLatestNote = async () => {
+const apiRequest = async (url, options = {}) => {
 	try {
-		const response = await fetch("/api/notes/latest");
-		const latestNote = await response.json();
+		const response = await fetch(url, options);
 
-		return latestNote;
+		if (response.status === 204) {
+			console.error("Resource not found.");
+			return null;
+		}
+
+		const responseData = await response.json();
+		return responseData;
 	} catch (error) {
-		console.error("Error loading note.");
-		return null;
+		console.error("Error in API request.");
+		return { error: error.message };
 	}
+};
+
+const fetchLatestNote = async () => {
+	const options = {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+		},
+	};
+	return apiRequest("/api/notes/latest", options);
 };
 
 const updateNote = async (noteId, updatedNote) => {
-	try {
-		const response = await fetch(`/api/notes/${noteId}`, {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(updatedNote),
-		});
-		const responseData = await response.json();
-		return responseData;
-	} catch (error) {
-		console.error("Error saving note.");
-		return null;
-	}
+	const options = {
+		method: "PUT",
+		headers: {
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify(updatedNote),
+	};
+	return apiRequest(`/api/notes/${noteId}`, options);
 };
 
 const deleteNote = async (noteId) => {
-	try {
-		const response = await fetch(`/api/notes/${noteId}`, {
-			method: "DELETE",
-		});
-		const responseData = await response.json();
-		return responseData;
-	} catch (error) {
-		console.error("Error deleting note.");
-		return null;
-	}
+	const options = {
+		method: "DELETE",
+		headers: {
+			"Content-Type": "application/json",
+		},
+	};
+	return apiRequest(`/api/notes/${noteId}`, options);
+};
+
+const createNote = async () => {
+	const options = {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+	};
+	return apiRequest("/api/notes", options);
 };
 
 module.exports = {
 	fetchLatestNote,
 	updateNote,
 	deleteNote,
+	createNote,
 };
