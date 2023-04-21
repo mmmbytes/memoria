@@ -61,6 +61,7 @@ function NoteManager() {
 			<NoteContent note={note} handleTextChange={handleTextChange} />
 			<DeleteButton handleDeleteNote={handleDeleteNote} />
 			<NewNoteButton handleNewNote={handleNewNote} />
+
 		</div>
 	);
 }
