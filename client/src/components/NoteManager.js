@@ -1,8 +1,14 @@
 import { useState, useEffect } from "react";
 import NoteContent from "./NoteContent";
 import DeleteButton from "./DeleteButton";
+import NewNoteButton from "./NewNoteButton";
 
-const { fetchLatestNote, updateNote, deleteNote } = require("../api/NoteApi");
+const {
+	fetchLatestNote,
+	updateNote,
+	deleteNote,
+	createNote,
+} = require("../api/NoteApi");
 
 function NoteManager() {
 	const [note, setNote] = useState({ title: "", textbody: "" });
@@ -11,6 +17,8 @@ function NoteManager() {
 		const activeNote = await fetchLatestNote();
 		if (activeNote) {
 			setNote(activeNote);
+		} else if (activeNote === null) {
+			handleNewNote();
 		} else {
 			console.error("Error loading note.");
 		}
@@ -35,10 +43,20 @@ function NoteManager() {
 	async function handleDeleteNote() {
 		const deletedNote = await deleteNote(note._id);
 		if (deletedNote) {
-			console.log(`Note ${deletedNote._id} deleted.`);
+			console.log(`Note ${deletedNote.noteId} deleted.`);
 			fetchNote();
 		} else {
 			console.error("Error deleting note.");
+		}
+	}
+
+	async function handleNewNote() {
+		const newNote = await createNote();
+		if (newNote) {
+			console.log(`Note ${newNote._id} created.`);
+			fetchNote();
+		} else {
+			console.error("Error creating note.");
 		}
 	}
 
@@ -46,6 +64,7 @@ function NoteManager() {
 		<div>
 			<NoteContent note={note} handleTextChange={handleTextChange} />
 			<DeleteButton handleDeleteNote={handleDeleteNote} />
+			<NewNoteButton handleNewNote={handleNewNote} />
 		</div>
 	);
 }
