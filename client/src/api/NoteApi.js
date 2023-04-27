@@ -56,6 +56,22 @@ const createNote = async () => {
 	return apiRequest("/api/notes", options);
 };
 
+const createNote = async () => {
+	try {
+		const response = await fetch("/api/notes", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+		const responseData = await response.json();
+		return responseData;
+	} catch (error) {
+		console.error("Error creating note.");
+		return null;
+	}
+};
+
 module.exports = {
 	fetchLatestNote,
 	updateNote,

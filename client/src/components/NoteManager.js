@@ -57,6 +57,16 @@ function NoteManager() {
 		console.error("Error creating note.");
 	}
 
+	async function handleNewNote() {
+		const newNote = await createNote();
+		if (newNote) {
+			console.log(`Note ${newNote._id} created.`);
+			fetchNote();
+		} else {
+			console.error("Error creating note.");
+		}
+	}
+
 	return (
 		<div className='workspace'>
 			<NoteContent note={note} handleTextChange={handleTextChange} />
