@@ -4,3 +4,8 @@
   width: 100vw;
   height: 93vh;
 }
+
+.workspace__btns {
+  display: flex;
+  align-items: flex-end;
+}
