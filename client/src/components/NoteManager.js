@@ -4,6 +4,7 @@ import DeleteButton from "./DeleteButton";
 import NewNoteButton from "./NewNoteButton";
 import "./NoteManager.css";
 
+
 const {
 	fetchLatestNote,
 	updateNote,
