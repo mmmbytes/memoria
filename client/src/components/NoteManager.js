@@ -4,7 +4,6 @@ import DeleteButton from "./DeleteButton";
 import NewNoteButton from "./NewNoteButton";
 import "./NoteManager.css";
 
-
 const {
 	fetchLatestNote,
 	updateNote,
@@ -21,8 +20,9 @@ function NoteManager() {
 			setNote(activeNote);
 		} else if (activeNote === null) {
 			handleNewNote();
+		} else {
+			console.error("Error loading note.");
 		}
-		console.error("Error loading note.");
 	};
 
 	useEffect(() => {
@@ -36,8 +36,9 @@ function NoteManager() {
 		const updatedNote = await updateNote(note._id, editedNote);
 		if (updatedNote) {
 			console.log(`Note ${updatedNote._id} updated.`);
+		} else {
+			console.error("Error saving note.");
 		}
-		console.error("Error saving note.");
 	}
 
 	async function handleDeleteNote() {
@@ -45,8 +46,9 @@ function NoteManager() {
 		if (deletedNote) {
 			console.log(`Note ${deletedNote.noteId} deleted.`);
 			fetchNote();
+		} else {
+			console.error("Error deleting note.");
 		}
-		console.error("Error deleting note.");
 	}
 
 	async function handleNewNote() {
@@ -54,15 +56,18 @@ function NoteManager() {
 		if (newNote) {
 			console.log(`Note ${newNote._id} created.`);
 			fetchNote();
+		} else {
+			console.error("Error creating note.");
 		}
-		console.error("Error creating note.");
 	}
 
 	return (
 		<div className='workspace'>
 			<NoteContent note={note} handleTextChange={handleTextChange} />
-			<DeleteButton handleDeleteNote={handleDeleteNote} />
-			<NewNoteButton handleNewNote={handleNewNote} />
+			<div className='workspace__btns'>
+				<DeleteButton handleDeleteNote={handleDeleteNote} />
+				<NewNoteButton handleNewNote={handleNewNote} />
+			</div>
 		</div>
 	);
 }
