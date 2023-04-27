@@ -1,36 +1,37 @@
-.note-main {
+/* ----------------------------------------------------------------------------
+ * Note 
+ * ------------------------------------------------------------------------- */
+ .note {
     display: flex;
-    align-items: center;
     justify-content: center;
-    width: 100vw;
-    height: 90vh;
-}
-
-.note-edit {
-    display: flex;
     flex-direction: column;
     width: 60%;
-    height: 100%;
-}
+  }
 
-#note-title, #note-body {
+  /* ----------------------------------------------------------------------------
+   * Note Title & Note Body
+   * ------------------------------------------------------------------------- */
+  .note__title,
+  .note__body {
     margin: 2%;
     border: none;
     padding: 1%;
     font-family: 'Cardo', serif;
-}
-
-#note-title:focus, #note-body:focus {
-    box-shadow: 0 0 10px rgb(195, 195, 195);
+  }
+  
+  .note__title:focus,
+  .note__body:focus {
+    box-shadow: 0 0 10px #84888a;
     outline: none;
-}
-
-#note-title {
+  }
+  
+  .note__title {
     font-size: 4em;
-}
-
-#note-body {
+  }
+  
+  .note__body {
     resize: none;
-    height: 75%;
+    height: 80%;
     font-size: 1em;
-}
+  }
+  
