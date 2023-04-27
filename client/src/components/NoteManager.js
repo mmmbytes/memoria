@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import NoteContent from "./NoteContent";
 import DeleteButton from "./DeleteButton";
 import NewNoteButton from "./NewNoteButton";
+import "./NoteManager.css";
 
 const {
 	fetchLatestNote,
@@ -57,7 +58,7 @@ function NoteManager() {
 	}
 
 	return (
-		<div>
+		<div className='workspace'>
 			<NoteContent note={note} handleTextChange={handleTextChange} />
 			<DeleteButton handleDeleteNote={handleDeleteNote} />
 			<NewNoteButton handleNewNote={handleNewNote} />
