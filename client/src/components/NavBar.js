@@ -11,15 +11,18 @@ const NavBar = () => {
 	};
 
 	return (
-		<nav className='nav-bar'>
-			<div className='nav-flex-container'>
-				<button className='menu-icon' onClick={handleToggle}>
+		<nav className='navbar'>
+			<div className='navbar__container'>
+				<button className='navbar__icon' onClick={handleToggle}>
 					{navbarOpen ? <VscClose /> : <VscMenu />}
 				</button>
-				<ul className={`nav-menu ${navbarOpen ? "show-menu " : ""}`}>
-					<div className='nav-links'>
-						<li>Contents</li>
+				<ul
+					className={`navbar__menu ${navbarOpen ? "navbar__menu--show" : ""}`}
+				>
+					<div className='navbar__links'>
+						<li>Notes Collection</li>
 						<li>Discover</li>
+						<li>Account</li>
 					</div>
 				</ul>
 				<div className='home-icon'>
