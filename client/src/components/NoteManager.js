@@ -64,7 +64,7 @@ function NoteManager() {
 	return (
 		<div className='workspace'>
 			<NoteContent note={note} handleTextChange={handleTextChange} />
-			<div className='workspace-btns'>
+			<div className='workspace__btns'>
 				<DeleteButton handleDeleteNote={handleDeleteNote} />
 				<NewNoteButton handleNewNote={handleNewNote} />
 			</div>

@@ -5,7 +5,7 @@
   height: 93vh;
 }
 
-.workspace-btns {
+.workspace__btns {
   display: flex;
   align-items: flex-end;
 }
