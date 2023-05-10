@@ -12,10 +12,11 @@ const { mockReqRes } = require("./utils/testHelpers");
 
 describe("getLatestNote", () => {
 	it("retrieves the latest note successfully", async () => {
+		const latestNoteData = { title: "Test Note 3", textbody: "Test content 3" };
 		const notesData = [
 			{ title: "Test Note 1", textbody: "Test content 1" },
 			{ title: "Test Note 2", textbody: "Test content 2" },
-			{ title: "Test Note 3", textbody: "Test content 3" },
+			latestNoteData,
 		];
 		for (const noteData of notesData) {
 			await Note.create(noteData);
@@ -26,10 +27,7 @@ describe("getLatestNote", () => {
 
 		expect(res.status).toHaveBeenCalledWith(200);
 		expect(res.json).toHaveBeenCalledWith(
-			expect.objectContaining({
-				title: "Test Note 3",
-				textbody: "Test content 3",
-			})
+			expect.objectContaining(latestNoteData)
 		);
 	});
 
