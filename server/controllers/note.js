@@ -12,7 +12,7 @@ const getLatestNote = async (req, res) => {
 	return res.status(200).json(latestNote);
 };
 
-const getNotes = async (req, res) => {
+const getAllNotes = async (req, res) => {
 	const notes = await Note.find({});
 
 	if (notes.length === 0) {
@@ -27,7 +27,6 @@ const createNote = async (req, res) => {
 		title: "",
 		textbody: "",
 	};
-
 	try {
 		const newNote = await Note.create(blankNote);
 		res.status(200).json(newNote);
@@ -78,7 +77,7 @@ const deleteNote = async (req, res) => {
 
 module.exports = {
 	getLatestNote,
-	getNotes,
+	getAllNotes,
 	createNote,
 	updateNote,
 	deleteNote,

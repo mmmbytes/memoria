@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const {
 	getLatestNote,
-	getNotes,
+	getAllNotes,
 	createNote,
 	updateNote,
 	deleteNote,
@@ -17,15 +17,20 @@ describe("getLatestNote", () => {
 			{ title: "Test Note 2", textbody: "Test content 2" },
 			{ title: "Test Note 3", textbody: "Test content 3" },
 		];
-		await Note.insertMany(notesData);
+		for (const noteData of notesData) {
+			await Note.create(noteData);
+		}
 
 		const { req, res } = mockReqRes();
 		await getLatestNote(req, res);
 
-		const latestNote = await Note.findOne().sort({ updatedAt: -1 });
-
 		expect(res.status).toHaveBeenCalledWith(200);
-		expect(res.json).toHaveBeenCalledWith(latestNote);
+		expect(res.json).toHaveBeenCalledWith(
+			expect.objectContaining({
+				title: "Test Note 3",
+				textbody: "Test content 3",
+			})
+		);
 	});
 
 	it("returns a 204 status when there are no notes in the database", async () => {
@@ -37,27 +42,33 @@ describe("getLatestNote", () => {
 	});
 });
 
-describe("getNotes", () => {
+describe("getAllNotes", () => {
 	it("retrieves all notes successfully", async () => {
 		const notesData = [
 			{ title: "Test Note 1", textbody: "Test content 1" },
 			{ title: "Test Note 2", textbody: "Test content 2" },
 			{ title: "Test Note 3", textbody: "Test content 3" },
 		];
-		await Note.insertMany(notesData);
+		for (const noteData of notesData) {
+			await Note.create(noteData);
+		}
+		let notes = await Note.find({});
 
 		const { req, res } = mockReqRes();
-		await getNotes(req, res);
-
-		const notes = await Note.find({});
+		await getAllNotes(req, res);
+		const returnedNotes = res.json.mock.calls[0][0];
 
 		expect(res.status).toHaveBeenCalledWith(200);
+		for (const noteData of notesData) {
+			expect(returnedNotes).toContainEqual(expect.objectContaining(noteData));
+		}
+		expect(returnedNotes.length).toEqual(notesData.length);
 		expect(res.json).toHaveBeenCalledWith(notes);
 	});
 
 	it("returns a 204 status when there are no notes in the database", async () => {
 		const { req, res } = mockReqRes();
-		await getNotes(req, res);
+		await getAllNotes(req, res);
 
 		expect(res.status).toHaveBeenCalledWith(204);
 		expect(res.json).toHaveBeenCalledWith({ error: "No notes found." });
@@ -122,13 +133,13 @@ describe("updateNote", () => {
 		const updatedNote = await Note.findById(existingNote._id);
 
 		expect(res.status).toHaveBeenCalledWith(200);
-		expect(res.json).toHaveBeenCalledWith(updatedNote);
 		expect(res.json).toHaveBeenCalledWith(
 			expect.objectContaining({
 				title: "Updated Test Note 1",
 				textbody: "Updated Test content 1",
 			})
 		);
+		expect(res.json).toHaveBeenCalledWith(updatedNote);
 	});
 
 	it("returns a 404 status when the note is not found", async () => {
