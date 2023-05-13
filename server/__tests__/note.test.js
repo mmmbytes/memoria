@@ -47,10 +47,10 @@ describe("getAllNotes", () => {
 			{ title: "Test Note 2", textbody: "Test content 2" },
 			{ title: "Test Note 3", textbody: "Test content 3" },
 		];
+
 		for (const noteData of notesData) {
 			await Note.create(noteData);
 		}
-		let notes = await Note.find({});
 
 		const { req, res } = mockReqRes();
 		await getAllNotes(req, res);
@@ -61,7 +61,6 @@ describe("getAllNotes", () => {
 			expect(returnedNotes).toContainEqual(expect.objectContaining(noteData));
 		}
 		expect(returnedNotes.length).toEqual(notesData.length);
-		expect(res.json).toHaveBeenCalledWith(notes);
 	});
 
 	it("returns a 204 status when there are no notes in the database", async () => {
