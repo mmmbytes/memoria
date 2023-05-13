@@ -1,20 +1,25 @@
 const mongoose = require("mongoose");
+
 const Note = require("../models/Note");
 
 const getLatestNote = async (req, res) => {
 	const latestNote = await Note.findOne().sort({ updatedAt: -1 });
 
 	if (!latestNote) {
-		return res.status(204).json({ error: `No notes found.` });
+		return res.status(204).json({ error: "No notes found." });
 	}
 
 	return res.status(200).json(latestNote);
 };
 
-const getNotes = async (req, res) => {
+const getAllNotes = async (req, res) => {
 	const notes = await Note.find({});
 
-	res.status(200).json(notes);
+	if (notes.length === 0) {
+		return res.status(204).json({ error: "No notes found." });
+	}
+
+	return res.status(200).json(notes);
 };
 
 const createNote = async (req, res) => {
@@ -22,12 +27,11 @@ const createNote = async (req, res) => {
 		title: "",
 		textbody: "",
 	};
-
 	try {
 		const newNote = await Note.create(blankNote);
 		res.status(200).json(newNote);
 	} catch (error) {
-		res.status(400).json({ error: error.message });
+		res.status(500).json({ error: error.message });
 	}
 };
 
@@ -36,7 +40,7 @@ const updateNote = async (req, res) => {
 	const { title, textbody } = req.body;
 
 	if (!mongoose.Types.ObjectId.isValid(id)) {
-		return res.status(404).json({ error: `This note does not exist.` });
+		return res.status(400).json({ error: "Invalid note id." });
 	}
 
 	const note = await Note.findOneAndUpdate(
@@ -46,7 +50,7 @@ const updateNote = async (req, res) => {
 	);
 
 	if (!note) {
-		return res.status(400).json({ error: `Note not found.` });
+		return res.status(404).json({ error: "Note not found." });
 	}
 
 	res.status(200).json(note);
@@ -56,14 +60,14 @@ const deleteNote = async (req, res) => {
 	const { id } = req.params;
 
 	if (!mongoose.Types.ObjectId.isValid(id)) {
-		return res.status(400).json({ error: `This note ID is not valid.` });
+		return res.status(400).json({ error: "Invalid note id." });
 	}
 
 	try {
 		const note = await Note.findByIdAndDelete(id);
 
 		if (!note) {
-			return res.status(404).json({ error: `Note not found.` });
+			return res.status(404).json({ error: "Note not found." });
 		}
 		res.status(200).json({ noteId: id });
 	} catch (error) {
@@ -73,7 +77,7 @@ const deleteNote = async (req, res) => {
 
 module.exports = {
 	getLatestNote,
-	getNotes,
+	getAllNotes,
 	createNote,
 	updateNote,
 	deleteNote,

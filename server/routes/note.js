@@ -1,7 +1,7 @@
 const express = require("express");
 const {
 	getLatestNote,
-	getNotes,
+	getAllNotes,
 	createNote,
 	updateNote,
 	deleteNote,
@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.get("/latest", getLatestNote);
 
-router.get("/", getNotes);
+router.get("/", getAllNotes);
 
 // GET a single note
 router.get("/:id", (req, res) => {
