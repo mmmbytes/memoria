@@ -25,6 +25,16 @@ const fetchLatestNote = async () => {
 	return apiRequest("/api/notes/latest", options);
 };
 
+const getAllNotes = async () => {
+	const options = {
+		method: "GET",
+		headers: {
+			"Content-Type": "application/json",
+		},
+	};
+	return apiRequest("/api/notes", options);
+};
+
 const updateNote = async (noteId, updatedNote) => {
 	const options = {
 		method: "PUT",
@@ -58,6 +68,7 @@ const createNote = async () => {
 
 module.exports = {
 	fetchLatestNote,
+	getAllNotes,
 	updateNote,
 	deleteNote,
 	createNote,
