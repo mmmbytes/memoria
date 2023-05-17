@@ -28,7 +28,9 @@
   }
   
   .note__title {
+    display: flex;
     font-size: 4em;
+    flex-wrap: wrap;
   }
   
   .note__body {
