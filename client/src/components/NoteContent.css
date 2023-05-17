@@ -7,6 +7,7 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
+    padding: .5rem;
   }
 
   /* ----------------------------------------------------------------------------
@@ -15,9 +16,9 @@
 
   .note__title,
   .note__body {
-    margin: 2%;
+    margin: 0.5rem;
     border: none;
-    padding: 2%;
+    padding: 1rem;
     font-family: 'Cardo', serif;
   }
   
@@ -28,14 +29,15 @@
   }
   
   .note__title {
-    display: flex;
-    font-size: 4em;
-    flex-wrap: wrap;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 3.33em;
   }
   
   .note__body {
-    resize: none;
     height: 80%;
     font-size: 1em;
+    resize: none;
   }
   
