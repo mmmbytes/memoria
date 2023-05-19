@@ -21,7 +21,7 @@ const NavBar = () => {
 				>
 					<div className='navbar__links'>
 						<li>
-							<Link to='/'>Notes Workspace</Link>
+							<Link to='/'>Note Workspace</Link>
 						</li>
 						<li>
 							<Link to='/notes-collection'>Notes Collection</Link>

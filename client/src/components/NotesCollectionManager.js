@@ -27,7 +27,7 @@ function NotesCollectionManager() {
 		<div className='notes-collection'>
 			<div className='notes-collection__notecards'>
 				{notesCollection.map((note) => (
-					<NotePreview note={note} />
+					<NotePreview key={note.id} note={note} />
 				))}
 			</div>
 		</div>
