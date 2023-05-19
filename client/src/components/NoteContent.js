@@ -8,7 +8,6 @@ function NoteContent({ note, handleTextChange }) {
 				className='note__title'
 				name='title'
 				placeholder='Title'
-				autoFocus
 				onChange={handleTextChange}
 				value={note.title}
 			/>

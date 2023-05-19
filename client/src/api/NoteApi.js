@@ -1,6 +1,13 @@
+const defaultOptions = {
+	method: "GET",
+	headers: { "Content-Type": "application/json" },
+};
+
 const apiRequest = async (url, options = {}) => {
+	const mergedOptions = { ...defaultOptions, ...options };
+
 	try {
-		const response = await fetch(url, options);
+		const response = await fetch(url, mergedOptions);
 
 		if (response.status === 204) {
 			console.error("Resource not found.");
@@ -16,21 +23,16 @@ const apiRequest = async (url, options = {}) => {
 };
 
 const fetchLatestNote = async () => {
-	const options = {
-		method: "GET",
-		headers: {
-			"Content-Type": "application/json",
-		},
-	};
-	return apiRequest("/api/notes/latest", options);
+	return apiRequest("/api/notes/latest");
+};
+
+const getAllNotes = async () => {
+	return apiRequest("/api/notes");
 };
 
 const updateNote = async (noteId, updatedNote) => {
 	const options = {
 		method: "PUT",
-		headers: {
-			"Content-Type": "application/json",
-		},
 		body: JSON.stringify(updatedNote),
 	};
 	return apiRequest(`/api/notes/${noteId}`, options);
@@ -39,9 +41,6 @@ const updateNote = async (noteId, updatedNote) => {
 const deleteNote = async (noteId) => {
 	const options = {
 		method: "DELETE",
-		headers: {
-			"Content-Type": "application/json",
-		},
 	};
 	return apiRequest(`/api/notes/${noteId}`, options);
 };
@@ -49,15 +48,13 @@ const deleteNote = async (noteId) => {
 const createNote = async () => {
 	const options = {
 		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
 	};
 	return apiRequest("/api/notes", options);
 };
 
 module.exports = {
 	fetchLatestNote,
+	getAllNotes,
 	updateNote,
 	deleteNote,
 	createNote,
