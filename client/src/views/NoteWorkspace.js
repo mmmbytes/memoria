@@ -1,7 +1,7 @@
 import NoteManager from "../components/NoteManager";
 
-function NotesWorkspace() {
+function NoteWorkspace() {
 	return <NoteManager />;
 }
 
-export default NotesWorkspace;
+export default NoteWorkspace;

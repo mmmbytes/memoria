@@ -20,7 +20,12 @@ const NavBar = () => {
 					className={`navbar__menu ${navbarOpen ? "navbar__menu--show" : ""}`}
 				>
 					<div className='navbar__links'>
-						<li>Notes Collection</li>
+						<li>
+							<Link to='/'>Note Workspace</Link>
+						</li>
+						<li>
+							<Link to='/notes-collection'>Notes Collection</Link>
+						</li>
 						<li>Discover</li>
 						<li>Account</li>
 					</div>

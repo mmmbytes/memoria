@@ -8,6 +8,7 @@
   border: 1px solid #e4e6e6;
   width: 100%;
   height: 7%;
+  background-color: #ffffff;
 }
 
 /* ----------------------------------------------------------------------------
@@ -37,8 +38,8 @@
   visibility: hidden;
   overflow: hidden;
   list-style: none;
-  transition: all 0.5s ease-out;
   transform: translateX(-100%);
+  transition: all 0.5s ease-out;
   height: 93%;
 }
 
@@ -50,10 +51,10 @@
   transform: translateX(0);
   box-shadow: 0 0 20px 0 #d9dee3;
   width: 15%;
+  min-width: 150px;
   height: 93%;
   background-color: #f8f8f8;
   text-align: center;
-  
 }
 
 /* ----------------------------------------------------------------------------
@@ -65,15 +66,15 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin: 10% 0 10% 0;
+  margin: 17%;
   width: 100%;
-  font: 1.3em 'Lora', serif;
+  font: 1.2em 'Lora', serif;
   color: var(--link-text-color);
 }
 
 .navbar__links li {
-  margin: 7% 0 7% 0;
-  padding: 1%;
+  margin: 8% 0 8% 0;
+  padding: 3%;
 }
 
 /* ----------------------------------------------------------------------------
@@ -85,5 +86,5 @@
   text-align: center;
   margin: 1%;
   width: 100%;
-  font: 900 1.5em 'tangerine', cursive;
+  font: 900 1.5rem 'tangerine', cursive;
 }
