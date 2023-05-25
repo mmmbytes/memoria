@@ -10,6 +10,4 @@ function mockReqRes(params = {}, body = {}) {
 	return { req, res };
 }
 
-module.exports = {
-	mockReqRes,
-};
+export { mockReqRes };

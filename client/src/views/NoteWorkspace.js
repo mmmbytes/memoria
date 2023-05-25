@@ -1,4 +1,4 @@
-import NoteManager from "../components/NoteManager";
+import NoteManager from '../components/NoteManager';
 
 function NoteWorkspace() {
 	return <NoteManager />;

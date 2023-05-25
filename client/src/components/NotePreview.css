@@ -3,23 +3,23 @@
  * ------------------------------------------------------------------------- */
 
 .note-preview {
-  display: flex;
-  flex-direction: column;
-  transition: all 0.3s ease-in-out;
-  margin: 10px;
-  box-shadow: 0 2px 4px rgba(21, 17, 57, 0.352);
-  border-radius: 8px;
-  width: 250px;
-  height: 275px;
-  padding: 15px;
-  background-color: #ffffff;
-  font-family: 'Cardo', serif;
+	display: flex;
+	flex-direction: column;
+	transition: all 0.3s ease-in-out;
+	margin: 10px;
+	box-shadow: 0 2px 4px rgba(21, 17, 57, 0.352);
+	border-radius: 8px;
+	width: 250px;
+	height: 275px;
+	padding: 15px;
+	background-color: #ffffff;
+	font-family: 'Cardo', serif;
 }
- 
+
 .note-preview:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0.5rem 1.5rem rgba(120, 121, 122, 0.531);
-  cursor: pointer;
+	transform: scale(1.03);
+	box-shadow: 0 0.5rem 1.5rem rgba(120, 121, 122, 0.531);
+	cursor: pointer;
 }
 
 /* ----------------------------------------------------------------------------
@@ -27,25 +27,29 @@
  * ------------------------------------------------------------------------- */
 
 .note-preview__title {
-  margin-bottom: 5px;
-  padding-bottom: 10px;
-  font-size: 1.5em;
+	margin-bottom: 5px;
+	padding-bottom: 10px;
+	font-size: 1.5em;
 }
 
 .note-preview__textbody {
-  position: relative;
-  overflow: hidden;
-  height: 100%;
-  font-size: .75em;
+	position: relative;
+	overflow: hidden;
+	height: 100%;
+	font-size: 0.75em;
 }
 
 .note-preview__textbody::after {
-  content: "";  
-  display: block;
-  position: absolute;  
-  bottom: 0;  
-  left: 0;
-  width: 100%;  
-  height: 2rem; 
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1)); 
+	content: '';
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 2rem;
+	background: linear-gradient(
+		to bottom,
+		rgba(255, 255, 255, 0),
+		rgba(255, 255, 255, 1)
+	);
 }
