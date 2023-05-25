@@ -1,4 +1,4 @@
-import { VscNewFile } from "react-icons/vsc";
+import { VscNewFile } from 'react-icons/vsc';
 
 function NewNoteButton({ handleNewNote }) {
 	return (

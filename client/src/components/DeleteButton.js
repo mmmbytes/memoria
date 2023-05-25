@@ -1,4 +1,4 @@
-import { RiDeleteBin2Line } from "react-icons/ri";
+import { RiDeleteBin2Line } from 'react-icons/ri';
 
 function DeleteButton({ handleDeleteNote }) {
 	return (
