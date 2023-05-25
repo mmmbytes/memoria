@@ -1,21 +1,21 @@
-import { useState, useEffect } from "react";
-import NotePreview from "./NotePreview";
+import { useState, useEffect } from 'react';
 
-import "./NotesCollectionManager.css";
+import { fetchAllNotes } from '../api/NoteApi';
+import NotePreview from './NotePreview';
 
-const { getAllNotes } = require("../api/NoteApi");
+import './NotesCollectionManager.css';
 
 function NotesCollectionManager() {
 	const [notesCollection, setNotesCollection] = useState([]);
 
 	const fetchNotes = async () => {
-		const notesData = await getAllNotes();
+		const notesData = await fetchAllNotes();
 		if (notesData) {
 			setNotesCollection(notesData);
 		} else if (notesData === null) {
-			console.log("No notes found.");
+			console.log('No notes found.');
 		} else {
-			console.error("Error loading note.");
+			console.error('Error loading note.');
 		}
 	};
 
@@ -24,10 +24,10 @@ function NotesCollectionManager() {
 	}, []);
 
 	return (
-		<div className='notes-collection'>
-			<div className='notes-collection__notecards'>
+		<div className="notes-collection">
+			<div className="notes-collection__notecards">
 				{notesCollection.map((note) => (
-					<NotePreview key={note.id} note={note} />
+					<NotePreview key={note._id} note={note} />
 				))}
 			</div>
 		</div>

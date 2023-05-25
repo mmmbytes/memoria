@@ -1,43 +1,56 @@
-import { useState, useEffect } from "react";
-import NoteContent from "./NoteContent";
-import DeleteButton from "./DeleteButton";
-import NewNoteButton from "./NewNoteButton";
-import "./NoteManager.css";
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
-const {
+import DeleteButton from './DeleteButton';
+import NewNoteButton from './NewNoteButton';
+import NoteContent from './NoteContent';
+import {
 	fetchLatestNote,
+	fetchSpecificNote,
 	updateNote,
 	deleteNote,
 	createNote,
-} = require("../api/NoteApi");
+} from '../api/NoteApi';
+
+import './NoteManager.css';
 
 function NoteManager() {
-	const [note, setNote] = useState({ title: "", textbody: "" });
+	const { noteId } = useParams();
 
-	const fetchNote = async () => {
-		const activeNote = await fetchLatestNote();
+	const [note, setNote] = useState({ title: '', textbody: '' });
+
+	const fetchNote = async (noteId) => {
+		let activeNote;
+
+		if (noteId) {
+			activeNote = await fetchSpecificNote(noteId);
+		} else {
+			activeNote = await fetchLatestNote();
+		}
+
 		if (activeNote) {
 			setNote(activeNote);
 		} else if (activeNote === null) {
 			handleNewNote();
 		} else {
-			console.error("Error loading note.");
+			console.error('Error loading note.');
 		}
 	};
 
 	useEffect(() => {
-		fetchNote();
+		fetchNote(noteId);
 	}, []);
 
 	async function handleTextChange(e) {
 		const { name, value } = e.target;
 		const editedNote = { ...note, [name]: value };
 		setNote(editedNote);
+
 		const updatedNote = await updateNote(note._id, editedNote);
 		if (updatedNote) {
 			console.log(`Note ${updatedNote._id} updated.`);
 		} else {
-			console.error("Error saving note.");
+			console.error('Error saving note.');
 		}
 	}
 
@@ -47,7 +60,7 @@ function NoteManager() {
 			console.log(`Note ${deletedNote.noteId} deleted.`);
 			fetchNote();
 		} else {
-			console.error("Error deleting note.");
+			console.error('Error deleting note.');
 		}
 	}
 
@@ -57,16 +70,16 @@ function NoteManager() {
 			console.log(`Note ${newNote._id} created.`);
 			fetchNote();
 		} else {
-			console.error("Error creating note.");
+			console.error('Error creating note.');
 		}
 	}
 
 	return (
-		<div className='workspace'>
-			<div className='workspace__active-note'>
+		<div className="workspace">
+			<div className="workspace__active-note">
 				<NoteContent note={note} handleTextChange={handleTextChange} />
 			</div>
-			<div className='workspace__btns'>
+			<div className="workspace__btns">
 				<DeleteButton handleDeleteNote={handleDeleteNote} />
 				<NewNoteButton handleNewNote={handleNewNote} />
 			</div>
