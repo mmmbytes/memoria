@@ -16,7 +16,6 @@ import './NoteManager.css';
 
 function NoteManager() {
 	const { noteId } = useParams();
-
 	const [note, setNote] = useState({ title: '', textbody: '' });
 
 	const fetchNote = async (noteId) => {
@@ -45,7 +44,6 @@ function NoteManager() {
 		const { name, value } = e.target;
 		const editedNote = { ...note, [name]: value };
 		setNote(editedNote);
-
 		const updatedNote = await updateNote(note._id, editedNote);
 		if (updatedNote) {
 			console.log(`Note ${updatedNote._id} updated.`);

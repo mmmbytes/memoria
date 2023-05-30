@@ -27,7 +27,9 @@ const NavBar = () => {
 						<li>
 							<Link to="/notes-collection">Notes Collection</Link>
 						</li>
-						<li>Account</li>
+						<li>
+							<Link to="/login">Account</Link>
+						</li>
 					</div>
 				</ul>
 				<div className="home-icon">
