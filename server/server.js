@@ -4,13 +4,11 @@ if (process.env.NODE_ENV !== 'UAT') {
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
-const cors = require('cors');
 
 const noteRoutes = require('./routes/note');
 
 const app = express();
 
-app.use(cors());
 app.use(express.json());
 app.use((req, res, next) => {
 	console.log(req.path, req.method);
@@ -22,7 +20,7 @@ console.log(1);
 app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 console.log(2);
 
-app.get('*', (req, res) => {
+app.get('/auth/callback', (req, res) => {
 	console.log('Heading to index.html');
 	res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
 });
