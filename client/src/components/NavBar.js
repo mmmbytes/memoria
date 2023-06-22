@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { VscClose, VscMenu } from 'react-icons/vsc';
-
 import './NavBar.css';
 
 const NavBar = () => {

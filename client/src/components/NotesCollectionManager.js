@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
-
 import { fetchAllNotes } from '../api/NoteApi';
 import NotePreview from './NotePreview';
-
 import './NotesCollectionManager.css';
 
 function NotesCollectionManager() {
