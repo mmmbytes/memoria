@@ -3,10 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import AuthContext from './AuthContext';
 
 const AuthCallback: FC = () => {
+	console.log(1);
 	const { setAuthStatus } = useContext(AuthContext);
 	const navigate = useNavigate();
 
 	useEffect(() => {
+		console.log(2);
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
 		const authCode = urlParams.get('code');
@@ -18,7 +20,7 @@ const AuthCallback: FC = () => {
 			navigate('/');
 		} else {
 			setAuthStatus(false);
-			console.log('no authCode');
+			console.log('no authCode received.');
 			window.location.href = process.env.REACT_APP_LOGIN_URL;
 		}
 	}, []);
