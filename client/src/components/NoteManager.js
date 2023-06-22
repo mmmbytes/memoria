@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-
 import DeleteButton from './DeleteButton';
 import NewNoteButton from './NewNoteButton';
 import NoteContent from './NoteContent';
@@ -11,7 +10,6 @@ import {
 	deleteNote,
 	createNote,
 } from '../api/NoteApi';
-
 import './NoteManager.css';
 
 function NoteManager() {
