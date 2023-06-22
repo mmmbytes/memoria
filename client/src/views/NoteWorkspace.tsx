@@ -7,8 +7,7 @@ const NoteWorkspace: FC = () => {
 
 	useEffect(() => {
 		if (!isAuthenticated) {
-			window.location.href =
-				'https://login.memoria.page/login?response_type=code&client_id=301le3fr01j0bcaraeqde4puml&redirect_uri=https://memoria.page/';
+			window.location.href = process.env.REACT_APP_LOGIN_URL;
 		}
 	}, [isAuthenticated]);
 

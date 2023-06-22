@@ -11,15 +11,15 @@ const AuthCallback: FC = () => {
 		const urlParams = new URLSearchParams(queryString);
 		const authCode = urlParams.get('code');
 
+		//TODO: Delete console.log() statements. They are for debugging only.
 		if (authCode) {
-			console.log('authCode:', authCode);
+			console.log('authCode received.');
 			setAuthStatus(true);
 			navigate('/');
 		} else {
 			setAuthStatus(false);
 			console.log('no authCode');
-			window.location.href =
-				'https://login.memoria.page/login?response_type=code&client_id=301le3fr01j0bcaraeqde4puml&redirect_uri=https://memoria.page/';
+			window.location.href = process.env.REACT_APP_LOGIN_URL;
 		}
 	}, []);
 
