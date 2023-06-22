@@ -4,6 +4,7 @@ import AuthContext from './AuthContext';
 
 const AuthCallback: FC = () => {
 	console.log(1);
+	console.log('test');
 	const { setAuthStatus } = useContext(AuthContext);
 	const navigate = useNavigate();
 
