@@ -18,7 +18,7 @@ const AuthCallback: FC = () => {
 			navigate('/');
 		} else {
 			setAuthStatus(false);
-			console.log('no authCode');
+			console.log('no authCode received.');
 			window.location.href = process.env.REACT_APP_LOGIN_URL;
 		}
 	}, []);

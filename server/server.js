@@ -9,15 +9,19 @@ const noteRoutes = require('./routes/note');
 
 const app = express();
 
-app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 
+app.use(express.json());
 app.use((req, res, next) => {
 	console.log(req.path, req.method);
 	next();
 });
 
 app.use('/api/notes', noteRoutes);
+
+app.get('*', (req, res) => {
+	res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
+});
 
 mongoose
 	.connect(process.env.MONGO_URI)
