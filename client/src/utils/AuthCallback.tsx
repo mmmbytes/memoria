@@ -3,13 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import AuthContext from './AuthContext';
 
 const AuthCallback: FC = () => {
-	console.log(1);
-	console.log('test');
 	const { setAuthStatus } = useContext(AuthContext);
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		console.log(2);
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
 		const authCode = urlParams.get('code');
