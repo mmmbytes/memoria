@@ -10,7 +10,6 @@ const noteRoutes = require('./routes/note');
 const app = express();
 
 app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
-console.log(1);
 
 app.use(express.json());
 app.use((req, res, next) => {
@@ -19,7 +18,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/notes', noteRoutes);
-console.log(2);
 
 app.get('*', (req, res) => {
 	console.log('Heading to index.html');
