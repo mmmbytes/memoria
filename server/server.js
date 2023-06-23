@@ -21,7 +21,7 @@ app.use((req, res, next) => {
 app.use('/api/notes', noteRoutes);
 console.log(2);
 
-app.get('/auth/callback', (req, res) => {
+app.get('*', (req, res) => {
 	console.log('Heading to index.html');
 	res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
 });
