@@ -20,7 +20,6 @@ app.use((req, res, next) => {
 app.use('/api/notes', noteRoutes);
 
 app.get('*', (req, res) => {
-	console.log('Heading to index.html');
 	res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
 });
 
