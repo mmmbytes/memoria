@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/notes', noteRoutes);
-app.post('api/auth', authRoutes);
+app.post('/api/auth', authRoutes);
 
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
