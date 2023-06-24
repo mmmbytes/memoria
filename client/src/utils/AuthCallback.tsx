@@ -23,7 +23,6 @@ const AuthCallback: FC = () => {
 				},
 				body: JSON.stringify({ authCode }),
 			})
-				//TODO: Do something with the response.
 				.then((response) => response.json())
 				.then((data) => console.log(data))
 				.catch((error) => console.log(error));
