@@ -15,6 +15,19 @@ const AuthCallback: FC = () => {
 		if (authCode) {
 			console.log('authCode received.');
 			setAuthStatus(true);
+
+			fetch('/api/auth/exchange', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ authCode }),
+			})
+				//TODO: Do something with the response.
+				.then((response) => response.json())
+				.then((data) => console.log(data))
+				.catch((error) => console.log(error));
+
 			navigate('/');
 		} else {
 			setAuthStatus(false);

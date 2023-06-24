@@ -6,6 +6,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 
 const noteRoutes = require('./routes/note');
+const authRoutes = require('./routes/auth');
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/notes', noteRoutes);
+app.post('api/auth', authRoutes);
 
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
