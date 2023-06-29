@@ -1,5 +1,4 @@
 module.exports = {
-	testEnvironment: "node",
-	setupFilesAfterEnv: ["./jest.setup.js"],
-	testPathIgnorePatterns: ["/node_modules/", "/utils/"],
+	testEnvironment: 'node',
+	testPathIgnorePatterns: ['/node_modules/', '/utils/'],
 };

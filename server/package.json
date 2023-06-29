@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "server.js",
 	"scripts": {
-		"test": "jest",
+		"test": "jest --verbose",
 		"start": "node server.js",
 		"dev": "nodemon server.js"
 	},
@@ -22,8 +22,9 @@
 		"eslint": "^8.41.0",
 		"eslint-config-prettier": "^8.8.0",
 		"eslint-plugin-react": "^7.32.2",
-		"jest": "^29.5.0",
 		"mongodb-memory-server": "^8.12.2",
-		"prettier": "^2.8.8"
+		"nock": "^13.3.1",
+		"prettier": "^2.8.8",
+		"supertest": "^6.3.3"
 	}
 }
