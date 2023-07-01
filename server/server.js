@@ -1,11 +1,14 @@
-if (process.env.NODE_ENV !== 'UAT') {
-	require('dotenv').config();
-}
+const dotenv = require('dotenv');
 const express = require('express');
-const path = require('path');
 const mongoose = require('mongoose');
+const path = require('path');
 
+const authRoutes = require('./routes/auth');
 const noteRoutes = require('./routes/note');
+
+if (process.env.NODE_ENV !== 'UAT') {
+	dotenv.config();
+}
 
 const app = express();
 
@@ -18,6 +21,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/notes', noteRoutes);
+app.use('/api/auth', authRoutes);
 
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));

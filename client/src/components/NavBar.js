@@ -1,7 +1,8 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { VscClose, VscMenu } from 'react-icons/vsc';
 import './NavBar.css';
+
+import { useState } from 'react';
+import { VscClose, VscMenu } from 'react-icons/vsc';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
 	const [navbarOpen, setbarOpen] = useState(false);
