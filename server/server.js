@@ -1,12 +1,14 @@
-if (process.env.NODE_ENV !== 'UAT') {
-	require('dotenv').config();
-}
+const dotenv = require('dotenv');
 const express = require('express');
-const path = require('path');
 const mongoose = require('mongoose');
+const path = require('path');
 
-const noteRoutes = require('./routes/note');
 const authRoutes = require('./routes/auth');
+const noteRoutes = require('./routes/note');
+
+if (process.env.NODE_ENV !== 'UAT') {
+	dotenv.config();
+}
 
 const app = express();
 

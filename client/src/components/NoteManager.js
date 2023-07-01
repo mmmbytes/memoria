@@ -1,16 +1,18 @@
-import { useState, useEffect } from 'react';
+import './NoteManager.css';
+
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import DeleteButton from './DeleteButton';
-import NewNoteButton from './NewNoteButton';
-import NoteContent from './NoteContent';
+
 import {
+	createNote,
+	deleteNote,
 	fetchLatestNote,
 	fetchSpecificNote,
 	updateNote,
-	deleteNote,
-	createNote,
 } from '../api/NoteApi';
-import './NoteManager.css';
+import DeleteButton from './DeleteButton';
+import NewNoteButton from './NewNoteButton';
+import NoteContent from './NoteContent';
 
 function NoteManager() {
 	const { noteId } = useParams();

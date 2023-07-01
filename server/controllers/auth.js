@@ -1,6 +1,7 @@
 const https = require('https');
-const qs = require('querystring');
-const isJson = require('../utils/isJson');
+const { stringify } = require('querystring');
+
+const isJson = require('../utils/isJson.js');
 
 const makeRequest = (options, postData, successCallback, errorCallback) => {
 	const request = https.request(options, (response) => {
@@ -36,7 +37,7 @@ const makeRequest = (options, postData, successCallback, errorCallback) => {
 const exchangeAuthCode = (req, res) => {
 	const { authCode } = req.body;
 
-	const postData = qs.stringify({
+	const postData = stringify({
 		grant_type: 'authorization_code',
 		client_id: process.env.CLIENT_ID,
 		code: authCode,
@@ -58,7 +59,7 @@ const exchangeAuthCode = (req, res) => {
 
 	const errorCallback = (statusCode, details) => {
 		res.status(statusCode).json({
-			error: 'Server returned status code ${statusCode}',
+			error: `Server returned status code ${statusCode}`,
 			details: details,
 		});
 	};
@@ -66,6 +67,4 @@ const exchangeAuthCode = (req, res) => {
 	makeRequest(options, postData, successCallback, errorCallback);
 };
 
-module.exports = {
-	exchangeAuthCode,
-};
+module.exports = { exchangeAuthCode };

@@ -1,5 +1,6 @@
-import { useNavigate } from 'react-router-dom';
 import './NotePreview.css';
+
+import { useNavigate } from 'react-router-dom';
 
 function NotePreview({ note }) {
 	const navigate = useNavigate();

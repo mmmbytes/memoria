@@ -1,13 +1,14 @@
-const mongoose = require('mongoose');
 const { MongoMemoryServer } = require('mongodb-memory-server');
+const mongoose = require('mongoose');
+
 const {
-	getLatestNote,
-	getAllNotes,
 	createNote,
-	updateNote,
 	deleteNote,
+	getAllNotes,
+	getLatestNote,
+	updateNote,
 } = require('../controllers/note');
-const Note = require('../models/Note.js');
+const Note = require('../models/Note');
 const { mockReqRes } = require('./utils/testHelpers');
 
 let mongoServer;

@@ -1,26 +1,29 @@
-const request = require('supertest');
-const nock = require('nock');
 const express = require('express');
+const nock = require('nock');
+const request = require('supertest');
+
 require('dotenv').config();
-const authController = require('../controllers/auth');
+
+const { exchangeAuthCode } = require('../controllers/auth');
 
 const app = express();
-app.use(express.json());
-app.post('/api/auth/exchange', authController.exchangeAuthCode);
 
-const mockAuthCode = 'mockAuthCode';
-const mockTokens = {
-	access_token: 'mockAccessToken',
-	refresh_token: 'mockRefreshToken',
-	id_token: 'mockIdToken',
-	token_type: 'Bearer',
-	expires_in: 3600,
-};
+app.use(express.json());
+app.post('/api/auth/exchange', exchangeAuthCode);
+
+beforeEach(() => {
+	nock.cleanAll();
+});
 
 describe('exchange', () => {
-	afterEach(() => {
-		nock.cleanAll();
-	});
+	const mockAuthCode = 'mockAuthCode';
+	const mockTokens = {
+		access_token: 'mockAccessToken',
+		refresh_token: 'mockRefreshToken',
+		id_token: 'mockIdToken',
+		token_type: 'Bearer',
+		expires_in: 3600,
+	};
 
 	it('should exchange auth code for tokens successfully', async () => {
 		nock('https://' + process.env.COGNITO_DOMAIN)

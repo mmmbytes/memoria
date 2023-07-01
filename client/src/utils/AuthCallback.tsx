@@ -1,5 +1,6 @@
-import { useEffect, useContext, FC } from 'react';
+import { FC, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import AuthContext from './AuthContext';
 
 const AuthCallback: FC = () => {

@@ -87,10 +87,10 @@ const deleteNote = async (req, res) => {
 };
 
 module.exports = {
+	createNote,
+	deleteNote,
+	getAllNotes,
 	getLatestNote,
 	getNote,
-	getAllNotes,
-	createNote,
 	updateNote,
-	deleteNote,
 };

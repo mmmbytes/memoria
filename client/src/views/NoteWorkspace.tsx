@@ -1,6 +1,7 @@
-import { useContext, useEffect, FC } from 'react';
-import AuthContext from '../utils/AuthContext';
+import { FC, useContext, useEffect } from 'react';
+
 import NoteManager from '../components/NoteManager';
+import AuthContext from '../utils/AuthContext';
 
 const NoteWorkspace: FC = () => {
 	const { isAuthenticated } = useContext(AuthContext);

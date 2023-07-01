@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
+import './NotesCollectionManager.css';
+
+import { useEffect, useState } from 'react';
+
 import { fetchAllNotes } from '../api/NoteApi';
 import NotePreview from './NotePreview';
-import './NotesCollectionManager.css';
 
 function NotesCollectionManager() {
 	const [notesCollection, setNotesCollection] = useState([]);
