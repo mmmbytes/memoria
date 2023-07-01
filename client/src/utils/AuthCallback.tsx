@@ -1,5 +1,6 @@
-import { useEffect, useContext, FC } from 'react';
+import { FC, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import AuthContext from './AuthContext';
 
 const AuthCallback: FC = () => {
@@ -15,6 +16,18 @@ const AuthCallback: FC = () => {
 		if (authCode) {
 			console.log('authCode received.');
 			setAuthStatus(true);
+
+			fetch('/api/auth/exchange', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ authCode }),
+			})
+				.then((response) => response.json())
+				.then((data) => console.log(data))
+				.catch((error) => console.log(error));
+
 			navigate('/');
 		} else {
 			setAuthStatus(false);

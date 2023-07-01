@@ -1,10 +1,11 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { FC } from 'react';
-import NoteWorkspace from './views/NoteWorkspace';
-import NotesCollection from './views/NotesCollection';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 import NavBar from './components/NavBar';
 import UserLogin from './components/UserLogin';
 import AuthCallback from './utils/AuthCallback';
+import NotesCollection from './views/NotesCollection';
+import NoteWorkspace from './views/NoteWorkspace';
 
 const AppRouter: FC = () => {
 	return (

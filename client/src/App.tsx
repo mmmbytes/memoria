@@ -1,7 +1,9 @@
-import { useState, FC } from 'react';
-import AuthContext from './utils/AuthContext';
-import AppRouter from './AppRouter';
 import './App.css';
+
+import { FC, useState } from 'react';
+
+import AppRouter from './AppRouter';
+import AuthContext from './utils/AuthContext';
 
 const App: FC = () => {
 	const [isAuthenticated, setAuthStatus] = useState<boolean>(false);
