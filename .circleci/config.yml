@@ -1,0 +1,18 @@
+version: 2.1
+jobs:
+  build-and-test-server:
+    docker:
+      - image: "cimg/node:16.17.0"
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: cd server && npm install
+      - run:
+          name: Run Tests
+          command: cd server && npm test
+workflows:
+  version: 2
+  build-test:
+    jobs:
+      - build-and-test-server
