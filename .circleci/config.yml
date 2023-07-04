@@ -6,8 +6,11 @@ jobs:
     steps:
       - checkout
       - run:
+          name: cd server
+          command: cd server
+      - run:
           name: Install Dependencies
-          command: cd server && npm install
+          command: npm install
       - run:
           name: Run Tests
           command: npm test
