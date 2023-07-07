@@ -13,10 +13,12 @@ const makeRequest = (options, postData, successCallback, errorCallback) => {
 			try {
 				if (response.statusCode >= 400) {
 					const details = isJson(data) ? JSON.parse(data) : {};
+					console.log('error1');
 					return errorCallback(response.statusCode, details);
 				}
 
 				const parsedData = JSON.parse(data);
+				console.log('success1');
 				successCallback(parsedData);
 			} catch (error) {
 				console.error(error);
@@ -37,9 +39,9 @@ const makeRequest = (options, postData, successCallback, errorCallback) => {
 const exchangeAuthCode = (req, res) => {
 	const { authCode } = req.body;
 
-	// if (Buffer.byteLength(authCode, 'utf8') > 256) {
-	// return res.status(400).json({ error: 'Invalid auth code' });
-	// }
+	if (Buffer.byteLength(authCode, 'utf8') > 256) {
+		return res.status(400).json({ error: 'Invalid auth code' });
+	}
 
 	const postData = stringify({
 		grant_type: 'authorization_code',
