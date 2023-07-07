@@ -4,6 +4,7 @@ const { stringify } = require('querystring');
 const isJson = require('../utils/isJson.js');
 
 const makeRequest = (options, postData, successCallback, errorCallback) => {
+	console.log('making request1');
 	const request = https.request(options, (response) => {
 		let data = '';
 		response.on('data', (chunk) => {
@@ -42,6 +43,8 @@ const exchangeAuthCode = (req, res) => {
 	if (Buffer.byteLength(authCode, 'utf8') > 256) {
 		return res.status(400).json({ error: 'Invalid auth code' });
 	}
+
+	console.log('authCode sanitized');
 
 	const postData = stringify({
 		grant_type: 'authorization_code',
@@ -84,6 +87,7 @@ const exchangeAuthCode = (req, res) => {
 		});
 	};
 
+	console.log('making request');
 	makeRequest(options, postData, successCallback, errorCallback);
 };
 
