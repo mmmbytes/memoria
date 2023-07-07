@@ -24,14 +24,13 @@ const AuthCallback: FC = () => {
 			})
 				.then((response) => {
 					if (response.ok) {
+						navigate('/');
 						return response.json();
 					} else {
 						throw new Error('Failed to exchange auth code.');
 					}
 				})
 				.catch((error) => console.log(error));
-
-			navigate('/');
 		} else {
 			setAuthStatus(false);
 			console.log('no authCode received.');

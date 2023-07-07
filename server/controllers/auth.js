@@ -37,9 +37,9 @@ const makeRequest = (options, postData, successCallback, errorCallback) => {
 const exchangeAuthCode = (req, res) => {
 	const { authCode } = req.body;
 
-	if (Buffer.byteLength(authCode, 'utf8') > 256) {
-		return res.status(400).json({ error: 'Invalid auth code' });
-	}
+	// if (Buffer.byteLength(authCode, 'utf8') > 256) {
+	// return res.status(400).json({ error: 'Invalid auth code' });
+	// }
 
 	const postData = stringify({
 		grant_type: 'authorization_code',
@@ -58,6 +58,7 @@ const exchangeAuthCode = (req, res) => {
 	};
 
 	const successCallback = (parsedData) => {
+		console.log('success!');
 		res.cookie('idToken', parsedData.id_token, {
 			httpOnly: true,
 			sameSite: 'lax',
