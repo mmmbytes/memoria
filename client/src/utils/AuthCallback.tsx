@@ -21,6 +21,7 @@ const AuthCallback: FC = () => {
 					'Content-Type': 'application/json',
 				},
 				body: JSON.stringify({ authCode }),
+				credentials: 'include',
 			})
 				.then((response) => {
 					if (response.ok) {
