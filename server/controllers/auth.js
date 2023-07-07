@@ -19,6 +19,7 @@ const makeRequest = (options, postData, successCallback, errorCallback) => {
 				}
 
 				const parsedData = JSON.parse(data);
+				console.log('Status: ', response.statusCode);
 				console.log('success1');
 				successCallback(parsedData);
 			} catch (error) {
