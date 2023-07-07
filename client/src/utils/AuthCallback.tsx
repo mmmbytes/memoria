@@ -12,9 +12,7 @@ const AuthCallback: FC = () => {
 		const urlParams = new URLSearchParams(queryString);
 		const authCode = urlParams.get('code');
 
-		//TODO: Delete console.log() statements. They are for debugging only.
 		if (authCode) {
-			console.log('authCode received.');
 			setAuthStatus(true);
 
 			fetch('/api/auth/exchange', {
@@ -24,8 +22,13 @@ const AuthCallback: FC = () => {
 				},
 				body: JSON.stringify({ authCode }),
 			})
-				.then((response) => response.json())
-				.then((data) => console.log(data))
+				.then((response) => {
+					if (response.ok) {
+						return response.json();
+					} else {
+						throw new Error('Failed to exchange auth code.');
+					}
+				})
 				.catch((error) => console.log(error));
 
 			navigate('/');
