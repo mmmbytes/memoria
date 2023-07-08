@@ -64,21 +64,21 @@ const exchangeAuthCode = (req, res) => {
 	};
 
 	const successCallback = (parsedData) => {
-		console.log('Setting idToken cookie');
-		res.cookie('idToken', parsedData.id_token, {
-			// httpOnly: true,
-			sameSite: 'lax',
-		});
+		// console.log('Setting idToken cookie');
+		// res.cookie('idToken', parsedData.id_token, {
+		// 	httpOnly: true,
+		// 	sameSite: 'lax',
+		// });
 		console.log('Setting accessToken cookie');
 		res.cookie('accessToken', parsedData.access_token, {
-			// httpOnly: true,
+			httpOnly: true,
 			sameSite: 'lax',
 		});
-		console.log('Setting refreshToken cookie');
-		res.cookie('refreshToken', parsedData.refresh_token, {
-			// httpOnly: true,
-			sameSite: 'lax',
-		});
+		// console.log('Setting refreshToken cookie');
+		// res.cookie('refreshToken', parsedData.refresh_token, {
+		// 	httpOnly: true,
+		// 	sameSite: 'lax',
+		// });
 
 		console.log('Sending success response');
 		res.json({ success: true });
