@@ -28,13 +28,13 @@ const AuthCallback: FC = () => {
 						navigate('/');
 						return response.json();
 					} else {
-						throw new Error('Failed to exchange auth code.');
+						throw new Error('Failed to exchange auth code');
 					}
 				})
 				.catch((error) => console.log(error));
 		} else {
 			setAuthStatus(false);
-			console.log('no authCode received.');
+			console.error('Authentication failed');
 			window.location.href = process.env.REACT_APP_LOGIN_URL;
 		}
 	}, []);

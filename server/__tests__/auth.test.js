@@ -35,7 +35,10 @@ describe('exchange', () => {
 			.send({ authCode: mockAuthCode });
 
 		expect(response.status).toBe(200);
-		expect(response.body).toEqual({ tokens: mockTokens });
+		expect(response.body).toEqual({
+			status: 'success',
+			message: 'User successfully logged in',
+		});
 	});
 
 	it('should handle non-200 response from token endpoint', async () => {
