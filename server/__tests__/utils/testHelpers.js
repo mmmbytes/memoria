@@ -10,4 +10,10 @@ function mockReqRes(params = {}, body = {}) {
 	return { req, res };
 }
 
-module.exports = { mockReqRes };
+function validateCookie(cookies, cookieName) {
+	const cookie = cookies.find((cookie) => cookie.startsWith(`${cookieName}=`));
+	expect(cookie).toBeDefined();
+	expect(cookie).toContain('HttpOnly');
+}
+
+module.exports = { mockReqRes, validateCookie };
