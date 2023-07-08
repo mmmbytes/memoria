@@ -5,6 +5,7 @@ const request = require('supertest');
 require('dotenv').config();
 
 const { exchangeAuthCode } = require('../controllers/auth');
+const { validateCookie } = require('./utils/testHelpers');
 
 const app = express();
 
@@ -25,7 +26,7 @@ describe('exchange', () => {
 		expires_in: 3600,
 	};
 
-	it('should exchange auth code for tokens successfully', async () => {
+	it('should exchange auth code for tokens successfully and set them in HttpOnly cookies', async () => {
 		nock('https://' + process.env.COGNITO_DOMAIN)
 			.post('/oauth2/token')
 			.reply(200, mockTokens);
@@ -34,8 +35,17 @@ describe('exchange', () => {
 			.post('/api/auth/exchange')
 			.send({ authCode: mockAuthCode });
 
+		const cookies = response.headers['set-cookie'];
+
 		expect(response.status).toBe(200);
-		expect(response.body).toEqual({ tokens: mockTokens });
+		expect(response.body).toEqual({
+			status: 'success',
+			message: 'User logged in successfully',
+		});
+		expect(cookies).toHaveLength(3);
+		validateCookie(cookies, 'idToken', mockTokens.id_token);
+		validateCookie(cookies, 'accessToken', mockTokens.access_token);
+		validateCookie(cookies, 'refreshToken', mockTokens.refresh_token);
 	});
 
 	it('should handle non-200 response from token endpoint', async () => {
