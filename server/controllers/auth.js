@@ -35,7 +35,7 @@ const makeRequest = (options, postData, successCallback, errorCallback) => {
 const exchangeAuthCode = (req, res) => {
 	const { authCode } = req.body;
 
-	if (Buffer.byteLength(authCode, 'utf8') > 256) {
+	if (!authCode || Buffer.byteLength(authCode, 'utf8') > 256) {
 		return res.status(400).json({ error: 'Invalid auth code' });
 	}
 

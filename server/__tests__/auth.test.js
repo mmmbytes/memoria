@@ -37,7 +37,7 @@ describe('exchange', () => {
 		expect(response.status).toBe(200);
 		expect(response.body).toEqual({
 			status: 'success',
-			message: 'User successfully logged in',
+			message: 'User logged in successfully',
 		});
 	});
 
