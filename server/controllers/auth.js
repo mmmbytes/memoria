@@ -64,6 +64,7 @@ const exchangeAuthCode = (req, res) => {
 	};
 
 	const successCallback = (parsedData) => {
+		console.log('parsedData: ', parsedData);
 		console.log('Setting idToken cookie');
 		res.cookie('idToken', parsedData.id_token, {
 			httpOnly: true,
