@@ -42,9 +42,10 @@ describe('exchange', () => {
 			status: 'success',
 			message: 'User logged in successfully',
 		});
-		validateCookie(cookies, 'idToken');
-		validateCookie(cookies, 'accessToken');
-		validateCookie(cookies, 'refreshToken');
+		expect(cookies).toHaveLength(3);
+		validateCookie(cookies, 'idToken', mockTokens.id_token);
+		validateCookie(cookies, 'accessToken', mockTokens.access_token);
+		validateCookie(cookies, 'refreshToken', mockTokens.refresh_token);
 	});
 
 	it('should handle non-200 response from token endpoint', async () => {
