@@ -8,6 +8,7 @@ const poolData = {
 const userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
 
 function jwtVerify(req, res, next) {
+	console.log(poolData);
 	const accessToken = req.cookies.accessToken;
 	const idToken = req.cookies.idToken;
 	const refreshToken = req.cookies.refreshToken;
