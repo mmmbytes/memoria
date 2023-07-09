@@ -13,8 +13,6 @@ const AuthCallback: FC = () => {
 		const authCode = urlParams.get('code');
 
 		if (authCode) {
-			setAuthStatus(true);
-
 			fetch('/api/auth/exchange', {
 				method: 'POST',
 				headers: {
@@ -25,6 +23,7 @@ const AuthCallback: FC = () => {
 			})
 				.then((response) => {
 					if (response.ok) {
+						setAuthStatus(true);
 						navigate('/');
 						return response.json();
 					} else {
