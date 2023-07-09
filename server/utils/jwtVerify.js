@@ -25,7 +25,16 @@ function jwtVerify(req, res, next) {
 		Pool: userPool,
 	};
 
+	console.log(
+		'Verifying ' + username + ' in user Pool ' + userPool + ' is authenticated'
+	);
+
 	const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+	console.log('cognitoUser: ' + cognitoUser);
+
+	const cognitoUser2 = userPool.getCurrentUser();
+	console.log('cognitoUser2: ' + cognitoUser2);
+
 	cognitoUser.getSession((err, session) => {
 		if (err || !session.isValid()) {
 			res.status(401).send('Unauthorized request. Invalid session');
