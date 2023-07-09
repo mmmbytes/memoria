@@ -29,6 +29,8 @@ function jwtVerify(req, res, next) {
 	console.log(
 		'Verifying ' + username + ' in user Pool ' + userPool + ' is authenticated'
 	);
+	console.log(userPool);
+	console.log(JSON.stringify(userPool));
 
 	const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
 	console.log('cognitoUser: ' + cognitoUser);
