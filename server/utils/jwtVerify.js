@@ -36,7 +36,9 @@ function jwtVerify(req, res, next) {
 	console.log('cognitoUser: ' + cognitoUser);
 
 	const cognitoUser2 = userPool.getCurrentUser();
-	console.log('cognitoUser2: ' + cognitoUser2);
+	console.log('cognitoUser2: ');
+	console.log(cognitoUser2);
+	console.log(JSON.stringify(cognitoUser2));
 
 	cognitoUser.getSession((err, session) => {
 		if (err || !session.isValid()) {
