@@ -13,7 +13,7 @@ function jwtVerify(req, res, next) {
 	const refreshToken = req.cookies.refreshToken;
 
 	if (!accessToken || !idToken || !refreshToken) {
-		res.status(401).send('Unauthorized request');
+		res.status(401).send('Unauthorized request. Invalid tokens');
 		return;
 	}
 
@@ -28,9 +28,10 @@ function jwtVerify(req, res, next) {
 	const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
 	cognitoUser.getSession((err, session) => {
 		if (err || !session.isValid()) {
-			res.status(401).send('Unauthorized request');
+			res.status(401).send('Unauthorized request. Invalid session');
 			return;
 		}
+		console.log(username + ' is authenticated');
 		next();
 	});
 }
