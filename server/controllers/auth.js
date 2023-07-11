@@ -33,6 +33,7 @@ const makeRequest = (options, postData, successCallback, errorCallback) => {
 };
 
 const exchangeAuthCode = (req, res) => {
+	console.log('exchangeAuthCode');
 	const { authCode } = req.body;
 
 	if (!authCode || Buffer.byteLength(authCode, 'utf8') > 256) {
