@@ -56,6 +56,7 @@ const exchangeAuthCode = (req, res) => {
 	};
 
 	const successCallback = (parsedData) => {
+		console.log(parsedData.access_token);
 		res.cookie('idToken', parsedData.id_token, {
 			httpOnly: true,
 			sameSite: 'lax',
