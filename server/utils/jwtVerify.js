@@ -21,8 +21,8 @@ async function jwtVerify(req, res, next) {
 		const payload = await verifier.verify(accessToken);
 		console.log('Token is valid. Payload:', payload);
 		next();
-	} catch {
-		console.log('Token not valid!');
+	} catch (err) {
+		console.log('Token not valid!', err);
 		res.status(401).send('Unauthorized request. Invalid tokens');
 		return;
 	}
