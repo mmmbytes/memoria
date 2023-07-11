@@ -24,8 +24,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/auth', authRoutes);
-app.use(jwtVerify);
-app.use('/api/notes', noteRoutes);
+app.use('/api/notes', jwtVerify, noteRoutes);
 
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
