@@ -8,6 +8,9 @@ async function jwtVerify(req, res, next) {
 		return;
 	}
 
+	console.log('Verifying token: ');
+	console.log(accessToken);
+
 	const verifier = CognitoJwtVerifier.create({
 		userPoolId: process.env.USER_POOL_ID,
 		tokenUse: 'access',
