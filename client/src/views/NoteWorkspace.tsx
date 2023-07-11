@@ -10,7 +10,6 @@ const NoteWorkspace: FC = () => {
 		if (!isAuthenticated) {
 			window.location.href = process.env.REACT_APP_LOGIN_URL;
 		}
-		console.log('User is authenticated');
 	}, [isAuthenticated]);
 
 	return isAuthenticated ? <NoteManager /> : null;

@@ -1,9 +1,7 @@
 const { CognitoJwtVerifier } = require('aws-jwt-verify');
 
 async function jwtVerify(req, res, next) {
-	console.log('begin jwtVerify');
 	const accessToken = req.cookies.accessToken;
-	console.log('accessToken:', accessToken);
 
 	if (!accessToken) {
 		res.status(401).send('Unauthorized request. Invalid tokens');
