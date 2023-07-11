@@ -1,8 +1,7 @@
-// const { CognitoJwtVerifier } = require('aws-jwt-verify');
+const { CognitoJwtVerifier } = require('aws-jwt-verify');
 
-function jwtVerify(req, res, next) {
+async function jwtVerify(req, res, next) {
 	const accessToken = req.cookies.accessToken;
-	console.log(accessToken);
 
 	if (!accessToken) {
 		res.status(401).send('Unauthorized request. Invalid tokens');
@@ -12,23 +11,21 @@ function jwtVerify(req, res, next) {
 	console.log('Verifying token: ');
 	console.log(accessToken);
 
-	next();
+	const verifier = CognitoJwtVerifier.create({
+		userPoolId: process.env.USER_POOL_ID,
+		tokenUse: 'access',
+		clientId: process.env.CLIENT_ID,
+	});
 
-	// const verifier = CognitoJwtVerifier.create({
-	// 	userPoolId: process.env.USER_POOL_ID,
-	// 	tokenUse: 'access',
-	// 	clientId: process.env.CLIENT_ID,
-	// });
-
-	// try {
-	// 	const payload = await verifier.verify(accessToken);
-	// 	console.log('Token is valid. Payload:', payload);
-	// 	next();
-	// } catch (err) {
-	// 	console.log('Token not valid!', err);
-	// 	res.status(401).send('Unauthorized request. Invalid tokens');
-	// 	return;
-	// }
+	try {
+		const payload = await verifier.verify(accessToken);
+		console.log('Token is valid. Payload:', payload);
+		next();
+	} catch (err) {
+		console.log('Token not valid!', err);
+		res.status(401).send('Unauthorized request. Invalid tokens');
+		return;
+	}
 }
 
 module.exports = jwtVerify;
