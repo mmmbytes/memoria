@@ -2,15 +2,15 @@
 
 function jwtVerify(req, res, next) {
 	const accessToken = req.cookies.accessToken;
-	console.log(accessToken);
+	// console.log(accessToken);
 
 	if (!accessToken) {
 		res.status(401).send('Unauthorized request. Invalid tokens');
 		return;
 	}
 
-	console.log('Verifying token: ');
-	console.log(accessToken);
+	// console.log('Verifying token: ');
+	// console.log(accessToken);
 
 	next();
 

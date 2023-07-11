@@ -16,6 +16,8 @@ const makeRequest = (options, postData, successCallback, errorCallback) => {
 					return errorCallback(response.statusCode, details);
 				}
 				const parsedData = JSON.parse(data);
+				console.log('Parsed data0: ');
+				console.log(parsedData);
 				successCallback(parsedData);
 			} catch (error) {
 				errorCallback(500, { error: 'Error parsing response from server' });
@@ -33,6 +35,7 @@ const makeRequest = (options, postData, successCallback, errorCallback) => {
 };
 
 const exchangeAuthCode = (req, res) => {
+	console.log('Exchange auth code');
 	const { authCode } = req.body;
 
 	if (!authCode || Buffer.byteLength(authCode, 'utf8') > 256) {
@@ -56,10 +59,11 @@ const exchangeAuthCode = (req, res) => {
 	};
 
 	const successCallback = (parsedData) => {
-		console.log('Parsed data: ');
+		console.log('Parsed data1: ');
 		console.log(parsedData);
 		console.log('Access token: ');
 		console.log(parsedData.access_token);
+
 		res.cookie('idToken', parsedData.id_token, {
 			httpOnly: true,
 			sameSite: 'lax',
