@@ -4,7 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 
-const jwtVerify = require('./utils/jwtVerify');
+// const jwtVerify = require('./utils/jwtVerify');
 const authRoutes = require('./routes/auth');
 const noteRoutes = require('./routes/note');
 
@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(jwtVerify);
+// app.use(jwtVerify);
 app.use((req, res, next) => {
 	console.log(req.path, req.method);
 	next();
