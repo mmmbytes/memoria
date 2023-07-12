@@ -12,7 +12,7 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"amazon-cognito-identity-js": "^6.3.1",
+		"aws-amplify": "^5.3.3",
 		"aws-jwt-verify": "^4.0.0",
 		"cookie-parser": "^1.4.6",
 		"cors": "^2.8.5",
