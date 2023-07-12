@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const Note = require('../models/Note');
 
 const getLatestNote = async (req, res) => {
-	console.log('getLatestNote');
 	const latestNote = await Note.findOne().sort({ updatedAt: -1 });
 
 	if (!latestNote) {
