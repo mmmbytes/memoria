@@ -88,14 +88,14 @@ const exchangeAuthCode = (req, res) => {
 };
 
 const checkAuth = (req, res) => {
-	console.log('Begin checkAuth');
 	const idToken = req.cookies.idToken;
+	const accessToken = req.cookies.accessToken;
 	console.log('Token: ', idToken);
+	console.log('Access: ', accessToken);
 
-	if (idToken) {
+	if (idToken && accessToken) {
 		res.json({ isAuthenticated: true });
 	} else {
-		console.log('No token found');
 		res.json({ isAuthenticated: false });
 	}
 };

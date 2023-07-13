@@ -4,17 +4,15 @@ import NoteManager from '../components/NoteManager';
 import AuthContext from '../utils/AuthContext';
 
 const NoteWorkspace: FC = () => {
-	const { isAuthenticated } = useContext(AuthContext);
+	const { user } = useContext(AuthContext);
 
 	useEffect(() => {
-		console.log('Checking auth status2...');
-		console.log(isAuthenticated);
-		if (!isAuthenticated) {
+		if (user === null) {
 			window.location.href = process.env.REACT_APP_LOGIN_URL;
 		}
-	}, [isAuthenticated]);
+	}, [user]);
 
-	return isAuthenticated ? <NoteManager /> : null;
+	return user ? <NoteManager /> : null;
 };
 
 export default NoteWorkspace;

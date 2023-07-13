@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import AuthContext from './AuthContext';
 
 const AuthCallback: FC = () => {
-	const { setAuthStatus } = useContext(AuthContext);
+	const { setUser } = useContext(AuthContext);
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -23,7 +23,7 @@ const AuthCallback: FC = () => {
 			})
 				.then((response) => {
 					if (response.ok) {
-						setAuthStatus(true);
+						setUser({ accessToken: true, idToken: true });
 						navigate('/');
 						return response.json();
 					} else {
@@ -32,7 +32,7 @@ const AuthCallback: FC = () => {
 				})
 				.catch((error) => console.log(error));
 		} else {
-			setAuthStatus(false);
+			setUser(null);
 			console.error('Authentication failed');
 			window.location.href = process.env.REACT_APP_LOGIN_URL;
 		}
