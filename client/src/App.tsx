@@ -26,6 +26,8 @@ const App: FC = () => {
 			.catch((err) => console.error(err));
 	}, []);
 
+	console.log(isAuthenticated);
+
 	return (
 		<AuthContext.Provider value={{ isAuthenticated, setAuthStatus }}>
 			<div className="App">
