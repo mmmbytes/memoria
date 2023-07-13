@@ -7,6 +7,7 @@ import AuthContext from './utils/AuthContext';
 
 const App: FC = () => {
 	const [isAuthenticated, setAuthStatus] = useState<boolean>(false);
+	const [isLoading, setLoading] = useState<boolean>(true);
 
 	useEffect(() => {
 		console.log('Checking auth status...');
@@ -21,9 +22,13 @@ const App: FC = () => {
 					console.log(data.isAuthenticated);
 					setAuthStatus(true);
 				}
+				setLoading(false);
 				console.log(data.isAuthenticated);
 			})
-			.catch((err) => console.error(err));
+			.catch((err) => {
+				console.error(err);
+				setLoading(false);
+			});
 	}, []);
 
 	console.log(isAuthenticated);
