@@ -9,6 +9,7 @@ const NoteWorkspace: FC = () => {
 	useEffect(() => {
 		console.log('Checking auth status2...');
 		console.log(isAuthenticated);
+		debugger;
 		if (!isAuthenticated) {
 			window.location.href = process.env.REACT_APP_LOGIN_URL;
 		}
