@@ -33,7 +33,9 @@ const App: FC = () => {
 
 	console.log(isAuthenticated);
 
-	return (
+	return isLoading ? (
+		<div>Loading...</div>
+	) : (
 		<AuthContext.Provider value={{ isAuthenticated, setAuthStatus }}>
 			<div className="App">
 				<AppRouter />
