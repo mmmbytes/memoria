@@ -87,4 +87,14 @@ const exchangeAuthCode = (req, res) => {
 	makeRequest(options, postData, successCallback, errorCallback);
 };
 
-module.exports = { exchangeAuthCode };
+const checkAuth = (req, res) => {
+	const { idToken } = req.cookies.idToken;
+
+	if (idToken) {
+		res.json({ isAuthenticated: true });
+	} else {
+		res.json({ isAuthenticated: false });
+	}
+};
+
+module.exports = { exchangeAuthCode, checkAuth };
