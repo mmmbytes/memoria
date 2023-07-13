@@ -9,6 +9,7 @@ const App: FC = () => {
 	const [isAuthenticated, setAuthStatus] = useState<boolean>(false);
 
 	useEffect(() => {
+		console.log('Checking auth status...');
 		fetch('/api/auth/check', {
 			method: 'GET',
 			credentials: 'include',
@@ -16,8 +17,11 @@ const App: FC = () => {
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.isAuthenticated) {
+					console.log('User is authenticated.');
+					console.log(data.isAuthenticated);
 					setAuthStatus(true);
 				}
+				console.log(data.isAuthenticated);
 			})
 			.catch((err) => console.error(err));
 	}, []);

@@ -88,7 +88,9 @@ const exchangeAuthCode = (req, res) => {
 };
 
 const checkAuth = (req, res) => {
+	console.log('Begin checkAuth');
 	const { idToken } = req.cookies.idToken;
+	console.log(idToken);
 
 	if (idToken) {
 		res.json({ isAuthenticated: true });
