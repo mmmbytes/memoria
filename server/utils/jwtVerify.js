@@ -4,7 +4,7 @@ async function jwtVerify(req, res, next) {
 	const accessToken = req.cookies.accessToken;
 
 	if (!accessToken) {
-		res.status(401).send('Unauthorized request. Invalid tokens');
+		res.status(401).send('Unauthorized request. Missing tokens');
 		return;
 	}
 
@@ -15,12 +15,11 @@ async function jwtVerify(req, res, next) {
 	});
 
 	try {
-		const payload = await verifier.verify(accessToken);
-		console.log('Token is valid. Payload:', payload);
+		await verifier.verify(accessToken);
 		next();
 	} catch (err) {
-		console.log(err);
-		res.status(401).send('Unauthorized request. Invalid tokens');
+		console.error('Error verifying token: ', err);
+		res.status(401).send('Unauthorized request. Invalid token');
 		return;
 	}
 }
