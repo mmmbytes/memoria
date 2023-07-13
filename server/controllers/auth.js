@@ -90,11 +90,12 @@ const exchangeAuthCode = (req, res) => {
 const checkAuth = (req, res) => {
 	console.log('Begin checkAuth');
 	const { idToken } = req.cookies.idToken;
-	console.log(idToken);
+	console.log('Token: ', idToken);
 
 	if (idToken) {
 		res.json({ isAuthenticated: true });
 	} else {
+		console.log('No token found');
 		res.json({ isAuthenticated: false });
 	}
 };
