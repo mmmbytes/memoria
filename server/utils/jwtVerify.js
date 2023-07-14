@@ -5,23 +5,7 @@ const makeRequest = require('./httpsRequest.js');
 const setCookies = require('./setCookies.js');
 
 async function jwtVerify(req, res, next) {
-	const accessToken = req.cookies.accessToken;
-	const refreshToken = req.cookies.refreshToken;
-
-	var postData = stringify({
-		grant_type: 'refresh_token',
-		client_id: process.env.CLIENT_ID,
-		refresh_token: refreshToken,
-	});
-
-	var options = {
-		hostname: process.env.COGNITO_DOMAIN,
-		path: '/oauth2/token',
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/x-www-form-urlencoded',
-		},
-	};
+	const { accessToken, refreshToken } = req.cookies;
 
 	if (!accessToken) {
 		res.status(401).send('Unauthorized request. Missing tokens');
@@ -39,6 +23,21 @@ async function jwtVerify(req, res, next) {
 		next();
 	} catch (err) {
 		if (err.name === 'TokenExpiredError') {
+			const postData = stringify({
+				grant_type: 'refresh_token',
+				client_id: process.env.CLIENT_ID,
+				refresh_token: refreshToken,
+			});
+
+			const options = {
+				hostname: process.env.COGNITO_DOMAIN,
+				path: '/oauth2/token',
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded',
+				},
+			};
+
 			try {
 				const parsedData = await makeRequest(options, postData);
 				setCookies(res, {
@@ -52,11 +51,10 @@ async function jwtVerify(req, res, next) {
 					details: details,
 				});
 			}
-			return;
+		} else {
+			console.error('Error verifying token: ', err);
+			res.status(401).send('Unauthorized request. Invalid token');
 		}
-		console.error('Error verifying token: ', err);
-		res.status(401).send('Unauthorized request. Invalid token');
-		return;
 	}
 }
 
