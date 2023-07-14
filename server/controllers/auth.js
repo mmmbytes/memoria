@@ -1,6 +1,6 @@
 const { stringify } = require('querystring');
 
-const makeRequest = require('../utils/httpsRequest.js');
+const httpsRequest = require('../utils/httpsRequest.js');
 const setCookies = require('../utils/setCookies.js');
 
 const exchangeAuthCode = async (req, res) => {
@@ -27,7 +27,7 @@ const exchangeAuthCode = async (req, res) => {
 	};
 
 	try {
-		const parsedData = await makeRequest(options, postData);
+		const parsedData = await httpsRequest(options, postData);
 		setCookies(res, {
 			idToken: parsedData.id_token,
 			accessToken: parsedData.access_token,

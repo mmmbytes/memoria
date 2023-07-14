@@ -2,8 +2,39 @@ const { CognitoJwtVerifier } = require('aws-jwt-verify');
 const jwt = require('jsonwebtoken');
 const { stringify } = require('querystring');
 
-const makeRequest = require('./httpsRequest.js');
+const httpsRequest = require('./httpsRequest.js');
 const setCookies = require('./setCookies.js');
+
+const refreshTokens = async (refreshToken, res) => {
+	const postData = stringify({
+		grant_type: 'refresh_token',
+		client_id: process.env.CLIENT_ID,
+		refresh_token: refreshToken,
+	});
+
+	const options = {
+		hostname: process.env.COGNITO_DOMAIN,
+		path: '/oauth2/token',
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded',
+		},
+	};
+
+	try {
+		const parsedData = await httpsRequest(options, postData);
+		setCookies(res, {
+			accessToken: parsedData.access_token,
+			idToken: parsedData.id_token,
+		});
+		return parsedData.access_token;
+	} catch ({ statusCode, details }) {
+		res.status(statusCode).json({
+			error: `Server returned status code ${statusCode}`,
+			details: details,
+		});
+	}
+};
 
 async function jwtVerify(req, res, next) {
 	let { accessToken, refreshToken } = req.cookies;
@@ -15,34 +46,7 @@ async function jwtVerify(req, res, next) {
 	}
 
 	if (jwt.decode(accessToken).exp < currentTimestamp) {
-		const postData = stringify({
-			grant_type: 'refresh_token',
-			client_id: process.env.CLIENT_ID,
-			refresh_token: refreshToken,
-		});
-
-		const options = {
-			hostname: process.env.COGNITO_DOMAIN,
-			path: '/oauth2/token',
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded',
-			},
-		};
-
-		try {
-			const parsedData = await makeRequest(options, postData);
-			accessToken = parsedData.access_token;
-			setCookies(res, {
-				accessToken: parsedData.access_token,
-				idToken: parsedData.id_token,
-			});
-		} catch ({ statusCode, details }) {
-			res.status(statusCode).json({
-				error: `Server returned status code ${statusCode}`,
-				details: details,
-			});
-		}
+		accessToken = await refreshTokens(refreshToken, res);
 	}
 
 	const verifier = CognitoJwtVerifier.create({

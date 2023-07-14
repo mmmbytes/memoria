@@ -1,7 +1,7 @@
 const https = require('https');
 const isJson = require('./isJson.js');
 
-const makeRequest = async (options, postData) => {
+const httpsRequest = async (options, postData) => {
 	return new Promise((resolve, reject) => {
 		const request = https.request(options, (response) => {
 			let data = '';
@@ -38,4 +38,4 @@ const makeRequest = async (options, postData) => {
 	});
 };
 
-module.exports = makeRequest;
+module.exports = httpsRequest;

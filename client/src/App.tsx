@@ -9,6 +9,7 @@ const App: FC = () => {
 	const [user, setUser] = useState<User>(null);
 	const [isLoading, setLoading] = useState<boolean>(true);
 
+	// Check if user's access and id cookies are set
 	useEffect(() => {
 		fetch('/api/auth/check', {
 			method: 'GET',
@@ -27,6 +28,7 @@ const App: FC = () => {
 			});
 	}, []);
 
+	// Show loading screen while checking authentication status
 	return isLoading ? (
 		<div>Loading...</div>
 	) : (
