@@ -6,7 +6,7 @@ const makeRequest = require('./httpsRequest.js');
 const setCookies = require('./setCookies.js');
 
 async function jwtVerify(req, res, next) {
-	const { accessToken, refreshToken } = req.cookies;
+	let { accessToken, refreshToken } = req.cookies;
 	const currentTimestamp = Math.floor(Date.now() / 1000);
 
 	if (!accessToken) {
@@ -32,6 +32,7 @@ async function jwtVerify(req, res, next) {
 
 		try {
 			const parsedData = await makeRequest(options, postData);
+			accessToken = parsedData.access_token;
 			setCookies(res, {
 				accessToken: parsedData.access_token,
 				idToken: parsedData.id_token,
