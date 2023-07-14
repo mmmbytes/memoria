@@ -1,38 +1,9 @@
-const https = require('https');
 const { stringify } = require('querystring');
 
-const isJson = require('../utils/isJson.js');
+const makeRequest = require('../utils/httpsRequest.js');
+const setCookies = require('../utils/setCookies.js');
 
-const makeRequest = (options, postData, successCallback, errorCallback) => {
-	const request = https.request(options, (response) => {
-		let data = '';
-		response.on('data', (chunk) => {
-			data += chunk;
-		});
-		response.on('end', () => {
-			try {
-				if (response.statusCode >= 400) {
-					const details = isJson(data) ? JSON.parse(data) : {};
-					return errorCallback(response.statusCode, details);
-				}
-				const parsedData = JSON.parse(data);
-				successCallback(parsedData);
-			} catch (error) {
-				errorCallback(500, { error: 'Error parsing response from server' });
-			}
-		});
-	});
-
-	request.on('error', (error) => {
-		console.error(error);
-		errorCallback(500, { error: 'Error making HTTPS request' });
-	});
-
-	request.write(postData);
-	request.end();
-};
-
-const exchangeAuthCode = (req, res) => {
+const exchangeAuthCode = async (req, res) => {
 	const { authCode } = req.body;
 
 	if (!authCode || Buffer.byteLength(authCode, 'utf8') > 256) {
@@ -55,36 +26,24 @@ const exchangeAuthCode = (req, res) => {
 		},
 	};
 
-	const successCallback = (parsedData) => {
-		res.cookie('idToken', parsedData.id_token, {
-			httpOnly: true,
-			sameSite: 'lax',
-		});
-
-		res.cookie('accessToken', parsedData.access_token, {
-			httpOnly: true,
-			sameSite: 'lax',
-		});
-
-		res.cookie('refreshToken', parsedData.refresh_token, {
-			httpOnly: true,
-			sameSite: 'lax',
+	try {
+		const parsedData = await makeRequest(options, postData);
+		setCookies(res, {
+			idToken: parsedData.id_token,
+			accessToken: parsedData.access_token,
+			refreshToken: parsedData.refresh_token,
 		});
 
 		res.status(200).json({
 			status: 'success',
 			message: 'User logged in successfully',
 		});
-	};
-
-	const errorCallback = (statusCode, details) => {
+	} catch ({ statusCode, details }) {
 		res.status(statusCode).json({
 			error: `Server returned status code ${statusCode}`,
 			details: details,
 		});
-	};
-
-	makeRequest(options, postData, successCallback, errorCallback);
+	}
 };
 
 const checkAuth = (req, res) => {
