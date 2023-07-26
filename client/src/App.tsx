@@ -1,6 +1,6 @@
 import './App.css';
 
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 
 import AppRouter from './AppRouter';
@@ -36,16 +36,19 @@ const App: FC = () => {
 	// 	<AuthContext.Provider value={{ user, setUser }}>
 
 	const [cookies] = useCookies(['isAuthenticated']);
+	const [isLoading, setLoading] = useState<boolean>(true);
+
+	useEffect(() => {
+		if (!cookies.isAuthenticated) {
+			window.location.href = process.env.REACT_APP_LOGIN_URL;
+		}
+		setLoading(false);
+	}, [cookies.isAuthenticated]);
 
 	return (
 		<div className="App">
-			{cookies.isAuthenticated ? (
-				<AppRouter />
-			) : (
-				(window.location.href = process.env.REACT_APP_LOGIN_URL)
-			)}
+			{isLoading ? <div>Loading...</div> : <AppRouter />}
 		</div>
 	);
-	// </AuthContext.Provider>
 };
 export default App;
