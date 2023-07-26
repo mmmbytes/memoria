@@ -51,9 +51,10 @@ async function jwtVerify(req, res, next) {
 	console.log('accessToken', accessToken);
 	console.log('idToken', idToken);
 	console.log('refreshToken', refreshToken);
+	console.log('isAuthenticated', isAuthenticated);
 	const currentTimestamp = Math.floor(Date.now() / 1000);
 
-	if (jwt.decode(isAuthenticated).exp < currentTimestamp) {
+	if (!isAuthenticated) {
 		handleAuthError(res, 'Session expired.');
 		return;
 	}
