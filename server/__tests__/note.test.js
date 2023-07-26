@@ -61,7 +61,7 @@ describe('getLatestNote', () => {
 		await getLatestNote(req, res);
 
 		expect(res.status).toHaveBeenCalledWith(204);
-		expect(res.json).toHaveBeenCalledWith({ error: 'No notes found.' });
+		expect(res.end).toHaveBeenCalled();
 	});
 });
 
@@ -93,7 +93,7 @@ describe('getAllNotes', () => {
 		await getAllNotes(req, res);
 
 		expect(res.status).toHaveBeenCalledWith(204);
-		expect(res.json).toHaveBeenCalledWith({ error: 'No notes found.' });
+		expect(res.end).toHaveBeenCalled();
 	});
 });
 
@@ -120,14 +120,15 @@ describe('createNote', () => {
 		const { req, res } = mockReqRes();
 
 		jest.spyOn(Note, 'create').mockImplementationOnce(() => {
-			throw new Error('Error creating a new note.');
+			throw new Error('Error creating a new note');
 		});
 
 		await createNote(req, res);
 
 		expect(res.status).toHaveBeenCalledWith(500);
 		expect(res.json).toHaveBeenCalledWith({
-			error: 'Error creating a new note.',
+			statusCode: 500,
+			message: 'Error creating a new note',
 		});
 
 		jest.restoreAllMocks();
@@ -175,7 +176,10 @@ describe('updateNote', () => {
 		await updateNote(req, res);
 
 		expect(res.status).toHaveBeenCalledWith(404);
-		expect(res.json).toHaveBeenCalledWith({ error: 'Note not found.' });
+		expect(res.json).toHaveBeenCalledWith({
+			statusCode: 404,
+			message: 'Error saving note. Note not found.',
+		});
 	});
 
 	it('returns a 400 status when the note id is invalid', async () => {
@@ -186,7 +190,10 @@ describe('updateNote', () => {
 		await updateNote(req, res);
 
 		expect(res.status).toHaveBeenCalledWith(400);
-		expect(res.json).toHaveBeenCalledWith({ error: 'Invalid note id.' });
+		expect(res.json).toHaveBeenCalledWith({
+			statusCode: 400,
+			message: 'Error saving note. Invalid note id.',
+		});
 	});
 });
 
@@ -222,7 +229,10 @@ describe('deleteNote', () => {
 		await deleteNote(req, res);
 
 		expect(res.status).toHaveBeenCalledWith(404);
-		expect(res.json).toHaveBeenCalledWith({ error: 'Note not found.' });
+		expect(res.json).toHaveBeenCalledWith({
+			statusCode: 404,
+			message: 'Note not found',
+		});
 	});
 
 	it('returns a 400 status when the note id is invalid', async () => {
@@ -230,20 +240,26 @@ describe('deleteNote', () => {
 		await deleteNote(req, res);
 
 		expect(res.status).toHaveBeenCalledWith(400);
-		expect(res.json).toHaveBeenCalledWith({ error: 'Invalid note id.' });
+		expect(res.json).toHaveBeenCalledWith({
+			statusCode: 400,
+			message: 'Invalid note id',
+		});
 	});
 
 	it("returns a 500 status when there's a database error", async () => {
 		const { req, res } = mockReqRes({ id: existingNote._id });
 
 		jest.spyOn(Note, 'findByIdAndDelete').mockImplementationOnce(() => {
-			throw new Error('Error deleting note.');
+			throw new Error('Error deleting note');
 		});
 
 		await deleteNote(req, res);
 
 		expect(res.status).toHaveBeenCalledWith(500);
-		expect(res.json).toHaveBeenCalledWith({ error: 'Error deleting note.' });
+		expect(res.json).toHaveBeenCalledWith({
+			statusCode: 500,
+			message: 'Error deleting note',
+		});
 
 		jest.restoreAllMocks();
 	});

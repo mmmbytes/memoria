@@ -6,6 +6,7 @@ function mockReqRes(params = {}, body = {}) {
 	const res = {
 		status: jest.fn().mockReturnThis(),
 		json: jest.fn(),
+		end: jest.fn(),
 	};
 	return { req, res };
 }
