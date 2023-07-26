@@ -1,6 +1,27 @@
 const defaultOptions = {
 	method: 'GET',
+	credentials: 'include',
 	headers: { 'Content-Type': 'application/json' },
+};
+
+const handleResponse = async (response) => {
+	switch (response.status) {
+		case 204:
+			console.log('No notes in database. Creating new note.');
+			return null;
+		case 401:
+			// TODO: Send json message to login page to display why user is being redirected
+			window.location.href = process.env.REACT_APP_LOGIN_URL;
+			return;
+		default:
+			if (response.ok) {
+				return response.json();
+			} else {
+				const errorData = await response.json();
+				let errorMessage = `${response.status}: ${errorData.message}`;
+				throw new Error(errorMessage);
+			}
+	}
 };
 
 const apiRequest = async (url, options = {}) => {
@@ -8,32 +29,26 @@ const apiRequest = async (url, options = {}) => {
 
 	try {
 		const response = await fetch(url, mergedOptions);
-		if (response.status === 204) {
-			console.log('No notes in database. Creating new note.');
-			return null;
-		}
-
-		const responseData = await response.json();
-		return responseData;
+		return handleResponse(response);
 	} catch (error) {
-		console.error('Error in API request.');
-		return { error: error.message };
+		console.error(error);
+		throw new Error(error.message);
 	}
 };
 
-export const fetchLatestNote = async () => {
+export const fetchLatestNote = () => {
 	return apiRequest('/api/notes/latest');
 };
 
-export const fetchSpecificNote = async (noteId) => {
+export const fetchSpecificNote = (noteId) => {
 	return apiRequest(`/api/notes/${noteId}`);
 };
 
-export const fetchAllNotes = async () => {
+export const fetchAllNotes = () => {
 	return apiRequest('/api/notes');
 };
 
-export const updateNote = async (noteId, updatedNote) => {
+export const updateNote = (noteId, updatedNote) => {
 	const options = {
 		method: 'PUT',
 		body: JSON.stringify(updatedNote),
@@ -41,14 +56,14 @@ export const updateNote = async (noteId, updatedNote) => {
 	return apiRequest(`/api/notes/${noteId}`, options);
 };
 
-export const deleteNote = async (noteId) => {
+export const deleteNote = (noteId) => {
 	const options = {
 		method: 'DELETE',
 	};
 	return apiRequest(`/api/notes/${noteId}`, options);
 };
 
-export const createNote = async () => {
+export const createNote = () => {
 	const options = {
 		method: 'POST',
 	};
