@@ -39,10 +39,10 @@ describe('exchange', () => {
 
 		expect(response.status).toBe(200);
 		expect(response.body).toEqual({
-			status: 'success',
+			statusCode: 200,
 			message: 'User logged in successfully',
 		});
-		expect(cookies).toHaveLength(3);
+		expect(cookies).toHaveLength(4);
 		validateCookie(cookies, 'idToken', mockTokens.id_token);
 		validateCookie(cookies, 'accessToken', mockTokens.access_token);
 		validateCookie(cookies, 'refreshToken', mockTokens.refresh_token);
@@ -58,7 +58,7 @@ describe('exchange', () => {
 			.send({ authCode: mockAuthCode });
 
 		expect(response.status).toBe(400);
-		expect(response.body).toHaveProperty('error');
+		expect(response.body.details).toHaveProperty('error');
 	});
 
 	it('should handle error parsing response from token endpoint', async () => {
@@ -71,7 +71,11 @@ describe('exchange', () => {
 			.send({ authCode: mockAuthCode });
 
 		expect(response.status).toBe(500);
-		expect(response.body).toHaveProperty('error');
+		expect(response.body).toHaveProperty(
+			'message',
+			'Error parsing response from server'
+		);
+		expect(response.body).toHaveProperty('details');
 	});
 
 	it('should handle missing authCode in request body', async () => {
@@ -82,7 +86,7 @@ describe('exchange', () => {
 		const response = await request(app).post('/api/auth/exchange').send({});
 
 		expect(response.status).toBe(400);
-		expect(response.body).toHaveProperty('error');
+		expect(response.body).toHaveProperty('message', 'Invalid auth code');
 	});
 
 	it('should handle error thrown when making HTTPS request', async () => {
@@ -94,7 +98,15 @@ describe('exchange', () => {
 			.post('/api/auth/exchange')
 			.send({ authCode: mockAuthCode });
 
+		console.log(response.body);
 		expect(response.status).toBe(500);
-		expect(response.body).toHaveProperty('error');
+		expect(response.body).toHaveProperty(
+			'message',
+			'Error making HTTPS request'
+		);
+		expect(response.body.details).toHaveProperty(
+			'message',
+			'An error occurred while making the HTTPS request.'
+		);
 	});
 });

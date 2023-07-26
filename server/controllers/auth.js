@@ -7,7 +7,9 @@ const exchangeAuthCode = async (req, res) => {
 	const { authCode } = req.body;
 
 	if (!authCode || Buffer.byteLength(authCode, 'utf8') > 256) {
-		return res.status(400).json({ error: 'Invalid auth code' });
+		return res
+			.status(400)
+			.json({ statusCode: 400, message: 'Invalid auth code' });
 	}
 
 	const postData = stringify({
@@ -33,28 +35,30 @@ const exchangeAuthCode = async (req, res) => {
 			accessToken: parsedData.access_token,
 			refreshToken: parsedData.refresh_token,
 		});
+		setCookies(
+			res,
+			{ isAuthenticated: true },
+			{ httpOnly: false, maxAge: 1000 * 60 * 60 * 24 * 30 } // 30 days
+		);
 
 		res.status(200).json({
-			status: 'success',
+			statusCode: 200,
 			message: 'User logged in successfully',
 		});
-	} catch ({ statusCode, details }) {
-		res.status(statusCode).json({
-			error: `Server returned status code ${statusCode}`,
-			details: details,
-		});
+	} catch ({ statusCode, message, details }) {
+		res.status(statusCode).json({ statusCode, message, details });
 	}
 };
 
-const checkAuth = (req, res) => {
-	const idToken = req.cookies.idToken;
-	const accessToken = req.cookies.accessToken;
+// const checkAuth = (req, res) => {
+// 	const idToken = req.cookies.idToken;
+// 	const accessToken = req.cookies.accessToken;
 
-	if (idToken && accessToken) {
-		res.json({ isAuthenticated: true });
-	} else {
-		res.json({ isAuthenticated: false });
-	}
-};
+// 	if (idToken && accessToken) {
+// 		res.json({ isAuthenticated: true });
+// 	} else {
+// 		res.json({ isAuthenticated: false });
+// 	}
+// };
 
-module.exports = { exchangeAuthCode, checkAuth };
+module.exports = { exchangeAuthCode };
