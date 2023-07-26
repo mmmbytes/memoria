@@ -19,20 +19,25 @@ function NoteManager() {
 	const [note, setNote] = useState({ title: '', textbody: '' });
 
 	const fetchNote = async (noteId) => {
-		let activeNote;
+		try {
+			let activeNote;
 
-		if (noteId) {
-			activeNote = await fetchSpecificNote(noteId);
-		} else {
-			activeNote = await fetchLatestNote();
-		}
+			if (noteId) {
+				activeNote = await fetchSpecificNote(noteId);
+			} else {
+				activeNote = await fetchLatestNote();
+			}
 
-		if (activeNote) {
-			setNote(activeNote);
-		} else if (activeNote === null) {
-			handleNewNote();
-		} else {
-			console.error('Error loading note.');
+			if (activeNote.error) {
+				throw new Error(activeNote.error);
+			} else if (activeNote === null) {
+				handleNewNote();
+			} else {
+				setNote(activeNote);
+			}
+		} catch (error) {
+			// TODO: Create error handling component that displays error message to user
+			console.error(error.message);
 		}
 	};
 
@@ -44,31 +49,44 @@ function NoteManager() {
 		const { name, value } = e.target;
 		const editedNote = { ...note, [name]: value };
 		setNote(editedNote);
-		const updatedNote = await updateNote(note._id, editedNote);
-		if (updatedNote) {
-			console.log(`Note ${updatedNote._id} updated.`);
-		} else {
-			console.error('Error saving note.');
+		try {
+			const updatedNote = await updateNote(note._id, editedNote);
+			if (updatedNote.error) {
+				throw new Error(updatedNote.error);
+			} else {
+				console.log(`Note ${updatedNote._id} updated.`);
+			}
+		} catch (error) {
+			// TODO: Create error handling component that displays error message to user
+			console.error(error.message);
 		}
 	}
 
 	async function handleDeleteNote() {
-		const deletedNote = await deleteNote(note._id);
-		if (deletedNote) {
+		try {
+			const deletedNote = await deleteNote(note._id);
+			if (deletedNote.error) {
+				throw new Error(deletedNote.error);
+			}
 			console.log(`Note ${deletedNote.noteId} deleted.`);
 			fetchNote();
-		} else {
-			console.error('Error deleting note.');
+		} catch (error) {
+			// TODO: Create error handling component that displays error message to user
+			console.error(error.message);
 		}
 	}
 
 	async function handleNewNote() {
-		const newNote = await createNote();
-		if (newNote) {
+		try {
+			const newNote = await createNote();
+			if (newNote.error) {
+				throw new Error('Error creating note.');
+			}
 			console.log(`Note ${newNote._id} created.`);
 			fetchNote();
-		} else {
-			console.error('Error creating note.');
+		} catch (error) {
+			// TODO: Create error handling component that displays error message to user
+			console.error(error.message);
 		}
 	}
 
