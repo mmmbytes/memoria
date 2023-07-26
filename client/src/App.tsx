@@ -38,6 +38,9 @@ const App: FC = () => {
 	const [cookies] = useCookies(['isAuthenticated']);
 	const [isLoading, setLoading] = useState<boolean>(true);
 
+	console.log(cookies.isAuthenticated);
+	console.log(cookies);
+
 	useEffect(() => {
 		console.log('This user is authenticated:');
 		console.log(cookies.isAuthenticated);
