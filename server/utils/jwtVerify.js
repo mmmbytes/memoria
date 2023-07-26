@@ -48,6 +48,9 @@ const handleAuthError = (res, message, error) => {
 
 async function jwtVerify(req, res, next) {
 	let { accessToken, idToken, refreshToken } = req.cookies;
+	console.log('accessToken', accessToken);
+	console.log('idToken', idToken);
+	console.log('refreshToken', refreshToken);
 	const currentTimestamp = Math.floor(Date.now() / 1000);
 
 	if (jwt.decode(refreshToken).exp < currentTimestamp) {
