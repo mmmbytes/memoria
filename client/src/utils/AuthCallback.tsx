@@ -1,10 +1,10 @@
-import { FC, useContext, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import AuthContext from './AuthContext';
+// import AuthContext from './AuthContext';
 
 const AuthCallback: FC = () => {
-	const { setUser } = useContext(AuthContext);
+	// const { setUser } = useContext(AuthContext);
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -23,7 +23,7 @@ const AuthCallback: FC = () => {
 			})
 				.then((response) => {
 					if (response.ok) {
-						setUser({ accessToken: true, idToken: true });
+						// setUser({ accessToken: true, idToken: true });
 						navigate('/');
 						return response.json();
 					} else {
@@ -32,7 +32,7 @@ const AuthCallback: FC = () => {
 				})
 				.catch((error) => console.log(error));
 		} else {
-			setUser(null);
+			// setUser(null);
 			console.error('Authentication failed');
 			window.location.href = process.env.REACT_APP_LOGIN_URL;
 		}
