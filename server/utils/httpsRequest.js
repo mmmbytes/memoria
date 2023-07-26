@@ -11,25 +11,30 @@ const httpsRequest = async (options, postData) => {
 			response.on('end', () => {
 				try {
 					if (response.statusCode >= 400) {
-						const details = isJson(data) ? JSON.parse(data) : {};
-						return reject({ statusCode: response.statusCode, details });
+						const parsedData = isJson(data) ? JSON.parse(data) : {};
+						return reject({
+							statusCode: response.statusCode,
+							message: 'Request failed',
+							details: parsedData,
+						});
 					}
 					const parsedData = JSON.parse(data);
 					resolve(parsedData);
 				} catch (error) {
 					reject({
 						statusCode: 500,
-						details: { error: 'Error parsing response from server' },
+						message: 'Error parsing response from server',
+						details: { message: error.message, stack: error.stack },
 					});
 				}
 			});
 		});
 
 		request.on('error', (error) => {
-			console.error(error);
 			reject({
 				statusCode: 500,
-				details: { error: 'Error making HTTPS request' },
+				message: 'Error making HTTPS request',
+				details: { message: error.message, stack: error.stack },
 			});
 		});
 

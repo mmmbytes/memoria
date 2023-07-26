@@ -28,20 +28,30 @@ const refreshTokens = async (refreshToken, res) => {
 			idToken: parsedData.id_token,
 		});
 		return parsedData.access_token;
-	} catch ({ statusCode, details }) {
-		res.status(statusCode).json({
-			error: `Server returned status code ${statusCode}`,
-			details: details,
-		});
+	} catch (error) {
+		console.error(error);
+		res
+			.status(error.statusCode || 500)
+			.json({ statusCode: error.statusCode || 500, message: error.message });
 	}
 };
 
+const handleAuthError = (res, message, error) => {
+	let err = {
+		statusCode: 401,
+		message,
+		details: { message: error.message, stack: error.stack },
+	};
+	console.error(err);
+	res.status(401).json({ statusCode: 401, message });
+};
+
 async function jwtVerify(req, res, next) {
-	let { accessToken, refreshToken } = req.cookies;
+	let { accessToken, idToken, refreshToken } = req.cookies;
 	const currentTimestamp = Math.floor(Date.now() / 1000);
 
-	if (!accessToken) {
-		res.status(401).send('Unauthorized request. Missing tokens');
+	if (jwt.decode(refreshToken).exp < currentTimestamp) {
+		handleAuthError(res, 'Session expired.');
 		return;
 	}
 
@@ -49,18 +59,33 @@ async function jwtVerify(req, res, next) {
 		accessToken = await refreshTokens(refreshToken, res);
 	}
 
-	const verifier = CognitoJwtVerifier.create({
+	const accessVerifier = CognitoJwtVerifier.create({
 		userPoolId: process.env.USER_POOL_ID,
 		tokenUse: 'access',
 		clientId: process.env.CLIENT_ID,
 	});
 
+	const idVerifier = CognitoJwtVerifier.create({
+		userPoolId: process.env.USER_POOL_ID,
+		tokenUse: 'id',
+		clientId: process.env.CLIENT_ID,
+	});
+
 	try {
-		await verifier.verify(accessToken);
+		const accessClaims = await accessVerifier.verify(accessToken);
+		const idClaims = await idVerifier.verify(idToken);
+
+		if (accessClaims.sub !== idClaims.sub) {
+			throw new Error('Access token and ID token do not match.');
+		}
+
 		next();
-	} catch (err) {
-		console.error('Error verifying token: ', err);
-		res.status(401).send('Unauthorized request. Invalid token');
+	} catch (error) {
+		handleAuthError(
+			res,
+			'Redirecting to the login page to re-establish a valid session.',
+			error
+		);
 	}
 }
 
