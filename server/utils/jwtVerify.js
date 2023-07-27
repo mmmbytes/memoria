@@ -27,7 +27,10 @@ const refreshTokens = async (refreshToken, res) => {
 			accessToken: parsedData.access_token,
 			idToken: parsedData.id_token,
 		});
-		return parsedData.access_token;
+		return {
+			accessToken: parsedData.access_token,
+			idToken: parsedData.id_token,
+		};
 	} catch (error) {
 		console.error(error);
 		res
@@ -56,7 +59,7 @@ async function jwtVerify(req, res, next) {
 	}
 
 	if (jwt.decode(accessToken).exp < currentTimestamp) {
-		accessToken = await refreshTokens(refreshToken, res);
+		({ accessToken, idToken } = await refreshTokens(refreshToken, res));
 	}
 
 	const accessVerifier = CognitoJwtVerifier.create({
