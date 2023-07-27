@@ -36,7 +36,7 @@ const refreshTokens = async (refreshToken, res) => {
 	}
 };
 
-const handleAuthError = (res, message, error) => {
+const handleAuthError = (res, message, error = {}) => {
 	let err = {
 		statusCode: 401,
 		message,
