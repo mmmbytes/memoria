@@ -57,8 +57,9 @@ describe('exchange', () => {
 			.post('/api/auth/exchange')
 			.send({ authCode: mockAuthCode });
 
+		console.log(response.body);
 		expect(response.status).toBe(400);
-		expect(response.body.details).toHaveProperty('error');
+		expect(response.body).toHaveProperty('message', 'Request failed');
 	});
 
 	it('should handle error parsing response from token endpoint', async () => {
@@ -75,7 +76,6 @@ describe('exchange', () => {
 			'message',
 			'Error parsing response from server'
 		);
-		expect(response.body).toHaveProperty('details');
 	});
 
 	it('should handle missing authCode in request body', async () => {
@@ -103,10 +103,6 @@ describe('exchange', () => {
 		expect(response.body).toHaveProperty(
 			'message',
 			'Error making HTTPS request'
-		);
-		expect(response.body.details).toHaveProperty(
-			'message',
-			'An error occurred while making the HTTPS request.'
 		);
 	});
 });

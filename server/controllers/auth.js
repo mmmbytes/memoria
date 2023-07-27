@@ -41,14 +41,19 @@ const exchangeAuthCode = async (req, res) => {
 			{ httpOnly: false, maxAge: 1000 * 60 * 60 * 24 * 30 } // 30 days
 		);
 
-		console.log('isAuthenticated', req.cookies.isAuthenticated);
-
 		res.status(200).json({
 			statusCode: 200,
 			message: 'User logged in successfully',
 		});
-	} catch ({ statusCode, message, details }) {
-		res.status(statusCode).json({ statusCode, message, details });
+	} catch (error) {
+		const { statusCode, message, details } = error;
+		let err = {
+			statusCode,
+			message,
+			details,
+		};
+		console.error(err);
+		res.status(statusCode).json({ statusCode, message });
 	}
 };
 
