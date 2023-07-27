@@ -15,6 +15,7 @@ import NewNoteButton from './NewNoteButton';
 import NoteContent from './NoteContent';
 
 function NoteManager() {
+	console.lof('NoteManager');
 	const { noteId } = useParams();
 	const [note, setNote] = useState({ title: '', textbody: '' });
 
