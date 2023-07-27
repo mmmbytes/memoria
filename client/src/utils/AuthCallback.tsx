@@ -2,6 +2,7 @@ import { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const AuthCallback: FC = () => {
+	console.log('AuthCallback');
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -10,6 +11,7 @@ const AuthCallback: FC = () => {
 		const authCode = urlParams.get('code');
 
 		if (authCode) {
+			console.log('Auth code found');
 			fetch('/api/auth/exchange', {
 				method: 'POST',
 				headers: {

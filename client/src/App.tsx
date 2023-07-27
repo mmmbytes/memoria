@@ -9,7 +9,7 @@ const App: FC = () => {
 	const [cookies] = useCookies(['isAuthenticated']);
 	const [isLoading, setLoading] = useState<boolean>(true);
 
-	console.log('isAuthenticated: ', cookies.isAuthenticated);
+	console.log('App: isAuthenticated: ', cookies.isAuthenticated);
 	useEffect(() => {
 		if (!cookies.isAuthenticated) {
 			window.location.href = process.env.REACT_APP_LOGIN_URL;

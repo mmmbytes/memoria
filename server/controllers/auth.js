@@ -4,6 +4,7 @@ const httpsRequest = require('../utils/httpsRequest.js');
 const setCookies = require('../utils/setCookies.js');
 
 const exchangeAuthCode = async (req, res) => {
+	console.log('exchangeAuthCode');
 	const { authCode } = req.body;
 
 	if (!authCode || Buffer.byteLength(authCode, 'utf8') > 256) {
