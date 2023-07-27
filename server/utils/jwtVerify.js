@@ -53,6 +53,8 @@ async function jwtVerify(req, res, next) {
 	let { accessToken, idToken, refreshToken, isAuthenticated } = req.cookies;
 	const currentTimestamp = Math.floor(Date.now() / 1000);
 
+	console.log('isAuthenticated: ', isAuthenticated);
+
 	if (!isAuthenticated) {
 		handleAuthError(res, 'Session expired.');
 		return;
