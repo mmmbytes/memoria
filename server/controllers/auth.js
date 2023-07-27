@@ -4,7 +4,6 @@ const httpsRequest = require('../utils/httpsRequest.js');
 const setCookies = require('../utils/setCookies.js');
 
 const exchangeAuthCode = async (req, res) => {
-	console.log('exchangeAuthCode');
 	const { authCode } = req.body;
 
 	if (!authCode || Buffer.byteLength(authCode, 'utf8') > 256) {
@@ -42,9 +41,6 @@ const exchangeAuthCode = async (req, res) => {
 			{ httpOnly: false, maxAge: 1000 * 60 * 60 * 24 * 30 } // 30 days
 		);
 
-		console.log('Cookies set:');
-		console.log(res.getHeaders()['set-cookie']);
-
 		res.status(200).json({
 			statusCode: 200,
 			message: 'User logged in successfully',
@@ -60,16 +56,5 @@ const exchangeAuthCode = async (req, res) => {
 		res.status(statusCode).json({ statusCode, message });
 	}
 };
-
-// const checkAuth = (req, res) => {
-// 	const idToken = req.cookies.idToken;
-// 	const accessToken = req.cookies.accessToken;
-
-// 	if (idToken && accessToken) {
-// 		res.json({ isAuthenticated: true });
-// 	} else {
-// 		res.json({ isAuthenticated: false });
-// 	}
-// };
 
 module.exports = { exchangeAuthCode };
