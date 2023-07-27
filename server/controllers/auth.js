@@ -41,6 +41,9 @@ const exchangeAuthCode = async (req, res) => {
 			{ httpOnly: false, maxAge: 1000 * 60 * 60 * 24 * 30 } // 30 days
 		);
 
+		console.log('Cookies set:');
+		console.log(res.getHeaders()['set-cookie']);
+
 		res.status(200).json({
 			statusCode: 200,
 			message: 'User logged in successfully',
