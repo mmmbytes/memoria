@@ -12,7 +12,7 @@ const handleResponse = async (response) => {
 		case 401:
 			// TODO: Send json message to login page to display why user is being redirected
 			window.location.href = process.env.REACT_APP_LOGIN_URL;
-			return;
+			return null;
 		default:
 			if (response.ok) {
 				return response.json();
