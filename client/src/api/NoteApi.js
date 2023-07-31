@@ -7,7 +7,6 @@ const defaultOptions = {
 const handleResponse = async (response) => {
 	switch (response.status) {
 		case 204:
-			console.log(response);
 			return { statusCode: 204 };
 		case 401:
 			// TODO: Send json message to login page to display why user is being redirected
