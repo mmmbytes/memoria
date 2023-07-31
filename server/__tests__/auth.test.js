@@ -57,7 +57,6 @@ describe('exchange', () => {
 			.post('/api/auth/exchange')
 			.send({ authCode: mockAuthCode });
 
-		console.log(response.body);
 		expect(response.status).toBe(400);
 		expect(response.body).toHaveProperty('message', 'Request failed');
 	});
@@ -98,7 +97,6 @@ describe('exchange', () => {
 			.post('/api/auth/exchange')
 			.send({ authCode: mockAuthCode });
 
-		console.log(response.body);
 		expect(response.status).toBe(500);
 		expect(response.body).toHaveProperty(
 			'message',
