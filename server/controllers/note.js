@@ -6,7 +6,7 @@ const getLatestNote = async (req, res) => {
 	const latestNote = await Note.findOne().sort({ updatedAt: -1 });
 
 	if (!latestNote) {
-		return res.status(204).end();
+		return res.status(204).json({ statusCode: 204 });
 	}
 	res.status(200).json(latestNote);
 };

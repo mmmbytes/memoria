@@ -30,7 +30,7 @@ function NoteManager() {
 
 			if (activeNote.error) {
 				throw new Error(activeNote.error);
-			} else if (activeNote.status === 204) {
+			} else if (activeNote.statusCode === 204) {
 				console.log('No notes in database. Creating new note.');
 				handleNewNote();
 			} else {
