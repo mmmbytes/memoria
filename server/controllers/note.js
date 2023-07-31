@@ -32,7 +32,7 @@ const getAllNotes = async (req, res) => {
 	const notes = await Note.find({});
 
 	if (notes.length === 0) {
-		return res.status(204).end();
+		return res.status(204).json({ statusCode: 204 });
 	}
 	res.status(200).json(notes);
 };

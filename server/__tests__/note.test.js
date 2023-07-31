@@ -61,7 +61,7 @@ describe('getLatestNote', () => {
 		await getLatestNote(req, res);
 
 		expect(res.status).toHaveBeenCalledWith(204);
-		expect(res.end).toHaveBeenCalled();
+		expect(res.json).toHaveBeenCalledWith({ statusCode: 204 });
 	});
 });
 
@@ -93,7 +93,7 @@ describe('getAllNotes', () => {
 		await getAllNotes(req, res);
 
 		expect(res.status).toHaveBeenCalledWith(204);
-		expect(res.end).toHaveBeenCalled();
+		expect(res.json).toHaveBeenCalledWith({ statusCode: 204 });
 	});
 });
 
