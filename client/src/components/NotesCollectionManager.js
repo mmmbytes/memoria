@@ -10,12 +10,12 @@ function NotesCollectionManager() {
 
 	const fetchNotes = async () => {
 		const notesData = await fetchAllNotes();
-		if (notesData) {
-			setNotesCollection(notesData);
-		} else if (notesData === null) {
+		if (notesData.error) {
+			console.error('Error loading note.');
+		} else if (notesData.statusCode === 204) {
 			console.log('No notes found.');
 		} else {
-			console.error('Error loading note.');
+			setNotesCollection(notesData);
 		}
 	};
 

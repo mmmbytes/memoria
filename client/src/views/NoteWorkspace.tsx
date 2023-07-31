@@ -1,18 +1,26 @@
-import { FC, useContext, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
+import { useCookies } from 'react-cookie';
 
 import NoteManager from '../components/NoteManager';
-import AuthContext from '../utils/AuthContext';
 
 const NoteWorkspace: FC = () => {
-	const { isAuthenticated } = useContext(AuthContext);
+	const authCookieName = 'isAuthenticated';
+	const [cookies] = useCookies([authCookieName]);
+	const [isLoading, setLoading] = useState<boolean>(true);
 
 	useEffect(() => {
-		if (!isAuthenticated) {
+		if (!cookies[authCookieName]) {
 			window.location.href = process.env.REACT_APP_LOGIN_URL;
 		}
-	}, [isAuthenticated]);
+		setLoading(false);
+	}, [cookies[authCookieName]]);
 
-	return isAuthenticated ? <NoteManager /> : null;
+	return isLoading || !cookies[authCookieName] ? (
+		// TODO: Add a loading animation
+		<div>Loading...</div>
+	) : (
+		<NoteManager />
+	);
 };
 
 export default NoteWorkspace;
