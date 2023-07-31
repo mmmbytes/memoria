@@ -1,42 +1,15 @@
-const https = require('https');
 const { stringify } = require('querystring');
 
-const isJson = require('../utils/isJson.js');
+const httpsRequest = require('../utils/httpsRequest.js');
+const setCookies = require('../utils/setCookies.js');
 
-const makeRequest = (options, postData, successCallback, errorCallback) => {
-	const request = https.request(options, (response) => {
-		let data = '';
-		response.on('data', (chunk) => {
-			data += chunk;
-		});
-		response.on('end', () => {
-			try {
-				if (response.statusCode >= 400) {
-					const details = isJson(data) ? JSON.parse(data) : {};
-					return errorCallback(response.statusCode, details);
-				}
-				const parsedData = JSON.parse(data);
-				successCallback(parsedData);
-			} catch (error) {
-				errorCallback(500, { error: 'Error parsing response from server' });
-			}
-		});
-	});
-
-	request.on('error', (error) => {
-		console.error(error);
-		errorCallback(500, { error: 'Error making HTTPS request' });
-	});
-
-	request.write(postData);
-	request.end();
-};
-
-const exchangeAuthCode = (req, res) => {
+const exchangeAuthCode = async (req, res) => {
 	const { authCode } = req.body;
 
 	if (!authCode || Buffer.byteLength(authCode, 'utf8') > 256) {
-		return res.status(400).json({ error: 'Invalid auth code' });
+		return res
+			.status(400)
+			.json({ statusCode: 400, message: 'Invalid auth code' });
 	}
 
 	const postData = stringify({
@@ -55,36 +28,33 @@ const exchangeAuthCode = (req, res) => {
 		},
 	};
 
-	const successCallback = (parsedData) => {
-		res.cookie('idToken', parsedData.id_token, {
-			httpOnly: true,
-			sameSite: 'lax',
+	try {
+		const parsedData = await httpsRequest(options, postData);
+		setCookies(res, {
+			idToken: parsedData.id_token,
+			accessToken: parsedData.access_token,
+			refreshToken: parsedData.refresh_token,
 		});
-
-		res.cookie('accessToken', parsedData.access_token, {
-			httpOnly: true,
-			sameSite: 'lax',
-		});
-
-		res.cookie('refreshToken', parsedData.refresh_token, {
-			httpOnly: true,
-			sameSite: 'lax',
-		});
+		setCookies(
+			res,
+			{ isAuthenticated: true },
+			{ httpOnly: false, maxAge: 1000 * 60 * 60 * 24 * 30 } // 30 days
+		);
 
 		res.status(200).json({
-			status: 'success',
+			statusCode: 200,
 			message: 'User logged in successfully',
 		});
-	};
-
-	const errorCallback = (statusCode, details) => {
-		res.status(statusCode).json({
-			error: `Server returned status code ${statusCode}`,
-			details: details,
-		});
-	};
-
-	makeRequest(options, postData, successCallback, errorCallback);
+	} catch (error) {
+		const { statusCode, message, details } = error;
+		let err = {
+			statusCode,
+			message,
+			details,
+		};
+		console.error(err);
+		res.status(statusCode).json({ statusCode, message });
+	}
 };
 
 module.exports = { exchangeAuthCode };

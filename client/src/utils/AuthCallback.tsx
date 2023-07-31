@@ -1,10 +1,7 @@
-import { FC, useContext, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import AuthContext from './AuthContext';
-
 const AuthCallback: FC = () => {
-	const { setAuthStatus } = useContext(AuthContext);
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -23,7 +20,6 @@ const AuthCallback: FC = () => {
 			})
 				.then((response) => {
 					if (response.ok) {
-						setAuthStatus(true);
 						navigate('/');
 						return response.json();
 					} else {
@@ -32,7 +28,6 @@ const AuthCallback: FC = () => {
 				})
 				.catch((error) => console.log(error));
 		} else {
-			setAuthStatus(false);
 			console.error('Authentication failed');
 			window.location.href = process.env.REACT_APP_LOGIN_URL;
 		}
