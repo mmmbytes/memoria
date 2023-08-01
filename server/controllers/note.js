@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 
 const Note = require('../models/Note');
 
 const getLatestNote = async (req, res) => {
-	const latestNote = await Note.findOne().sort({ updatedAt: -1 });
+	const { idToken } = req.cookies;
+	const sub = jwt.decode(idToken).sub;
+
+	const latestNote = await Note.findOne({ sub }).sort({ updatedAt: -1 });
 
 	if (!latestNote) {
 		return res.status(204).end();
@@ -12,6 +16,8 @@ const getLatestNote = async (req, res) => {
 };
 
 const getNote = async (req, res) => {
+	const { idToken } = req.cookies;
+	const sub = jwt.decode(idToken).sub;
 	const { id } = req.params;
 
 	if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -20,7 +26,7 @@ const getNote = async (req, res) => {
 			.json({ statusCode: 400, message: 'Invalid note id' });
 	}
 
-	const note = await Note.findById(id);
+	const note = await Note.findOne({ _id: id, sub });
 
 	if (!note) {
 		return res.status(404).json({ statusCode: 404, message: 'Note not found' });
@@ -29,7 +35,10 @@ const getNote = async (req, res) => {
 };
 
 const getAllNotes = async (req, res) => {
-	const notes = await Note.find({});
+	const { idToken } = req.cookies;
+	const sub = jwt.decode(idToken).sub;
+
+	const notes = await Note.find({ sub });
 
 	if (notes.length === 0) {
 		return res.status(204).end();
@@ -38,9 +47,13 @@ const getAllNotes = async (req, res) => {
 };
 
 const createNote = async (req, res) => {
+	const { idToken } = req.cookies;
+	const sub = jwt.decode(idToken).sub;
+
 	const blankNote = {
 		title: '',
 		textbody: '',
+		sub,
 	};
 	try {
 		const newNote = await Note.create(blankNote);
@@ -51,6 +64,8 @@ const createNote = async (req, res) => {
 };
 
 const updateNote = async (req, res) => {
+	const { idToken } = req.cookies;
+	const sub = jwt.decode(idToken).sub;
 	const { id } = req.params;
 	const { title, textbody } = req.body;
 
@@ -62,7 +77,7 @@ const updateNote = async (req, res) => {
 	}
 
 	const note = await Note.findOneAndUpdate(
-		{ _id: id },
+		{ _id: id, sub },
 		{ title, textbody },
 		{ new: true }
 	);
@@ -76,6 +91,8 @@ const updateNote = async (req, res) => {
 };
 
 const deleteNote = async (req, res) => {
+	const { idToken } = req.cookies;
+	const sub = jwt.decode(idToken).sub;
 	const { id } = req.params;
 
 	if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -85,7 +102,7 @@ const deleteNote = async (req, res) => {
 	}
 
 	try {
-		const note = await Note.findByIdAndDelete(id);
+		const note = await Note.findOneAndDelete({ _id: id, sub });
 		if (!note) {
 			return res
 				.status(404)
