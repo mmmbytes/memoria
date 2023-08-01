@@ -58,6 +58,13 @@ async function jwtVerify(req, res, next) {
 		return;
 	}
 
+	if (!accessToken) {
+		console.log('Access token is null or undefined');
+	}
+	const decodedToken = jwt.decode(accessToken);
+	console.log('Access token:', decodedToken);
+	console.log('Access token expiration:', decodedToken.exp);
+
 	if (jwt.decode(accessToken).exp < currentTimestamp) {
 		({ accessToken, idToken } = await refreshTokens(refreshToken, res));
 	}
