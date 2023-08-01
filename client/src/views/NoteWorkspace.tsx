@@ -8,6 +8,8 @@ const NoteWorkspace: FC = () => {
 	const [cookies] = useCookies([authCookieName]);
 	const [isLoading, setLoading] = useState<boolean>(true);
 
+	console.log(cookies[authCookieName]);
+
 	useEffect(() => {
 		if (!cookies[authCookieName]) {
 			window.location.href = process.env.REACT_APP_LOGIN_URL;

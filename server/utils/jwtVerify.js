@@ -58,6 +58,8 @@ async function jwtVerify(req, res, next) {
 		return;
 	}
 
+	console.log('isAuthenticated:', isAuthenticated);
+	console.log('ID token:', idToken);
 	if (!accessToken) {
 		console.log('Access token is null or undefined');
 	}
