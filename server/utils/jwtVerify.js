@@ -53,20 +53,10 @@ async function jwtVerify(req, res, next) {
 	let { accessToken, idToken, refreshToken, isAuthenticated } = req.cookies;
 	const currentTimestamp = Math.floor(Date.now() / 1000);
 
-	if (!isAuthenticated) {
+	if (!isAuthenticated || !accessToken || !refreshToken) {
 		handleAuthError(res, 'Session expired.');
 		return;
 	}
-
-	console.log('refreshToken:', refreshToken);
-	console.log('isAuthenticated:', isAuthenticated);
-	console.log('ID token:', idToken);
-	if (!accessToken) {
-		console.log('Access token is null or undefined');
-	}
-	const decodedToken = jwt.decode(accessToken);
-	console.log('Access token:', decodedToken);
-	console.log('Access token expiration:', decodedToken.exp);
 
 	if (jwt.decode(accessToken).exp < currentTimestamp) {
 		({ accessToken, idToken } = await refreshTokens(refreshToken, res));
