@@ -1,7 +1,8 @@
-function mockReqRes(params = {}, body = {}) {
+function mockReqRes(params = {}, body = {}, cookies = {}) {
 	const req = {
 		params,
 		body,
+		cookies,
 	};
 	const res = {
 		status: jest.fn().mockReturnThis(),
