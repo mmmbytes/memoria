@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+require('express-async-errors');
 
 const jwtVerify = require('./utils/jwtVerify');
 const authRoutes = require('./routes/auth');
@@ -30,6 +31,14 @@ app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
 });
 
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
+	console.error(err);
+	res
+		.status(500)
+		.json({ statusCode: 500, message: 'An unexpected error occurred' });
+});
+
 mongoose
 	.connect(process.env.MONGO_URI)
 	.then(() => {
@@ -38,5 +47,5 @@ mongoose
 		});
 	})
 	.catch((err) => {
-		console.log(err);
+		console.error(err);
 	});
