@@ -58,6 +58,7 @@ async function jwtVerify(req, res, next) {
 		return;
 	}
 
+	console.log('refreshToken:', refreshToken);
 	console.log('isAuthenticated:', isAuthenticated);
 	console.log('ID token:', idToken);
 	if (!accessToken) {
