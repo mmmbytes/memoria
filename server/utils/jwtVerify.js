@@ -88,7 +88,7 @@ async function jwtVerify(req, res, next) {
 			throw new Error('Access token and ID token do not match.');
 		}
 
-		req.sub = jwt.decode(idToken).sub;
+		req.sub = jwt.decode(idToken).sub; // sub = Cognito user id
 		next();
 	} catch (error) {
 		handleAuthError(

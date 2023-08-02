@@ -14,7 +14,7 @@ const { mockReqRes } = require('./utils/testHelpers');
 
 let mongoServer;
 
-const sub = 'test-sub';
+const TEST_SUB = 'test-sub'; // Test subject (unique identifier for a user)
 
 beforeAll(async () => {
 	mongoServer = await MongoMemoryServer.create();
@@ -44,18 +44,18 @@ describe('getLatestNote', () => {
 		const latestNoteData = {
 			title: 'Test Note 3',
 			textbody: 'Test content 3',
-			sub,
+			TEST_SUB,
 		};
 		const notesData = [
-			{ title: 'Test Note 1', textbody: 'Test content 1', sub },
-			{ title: 'Test Note 2', textbody: 'Test content 2', sub },
+			{ title: 'Test Note 1', textbody: 'Test content 1', TEST_SUB },
+			{ title: 'Test Note 2', textbody: 'Test content 2', TEST_SUB },
 			latestNoteData,
 		];
 		for (const noteData of notesData) {
 			await Note.create(noteData);
 		}
 
-		const { req, res } = mockReqRes({}, {}, sub);
+		const { req, res } = mockReqRes({}, {}, TEST_SUB);
 		await getLatestNote(req, res);
 
 		expect(res.status).toHaveBeenCalledWith(200);
@@ -65,7 +65,7 @@ describe('getLatestNote', () => {
 	});
 
 	it('returns a 204 status when there are no notes in the database', async () => {
-		const { req, res } = mockReqRes({}, {}, sub);
+		const { req, res } = mockReqRes({}, {}, TEST_SUB);
 
 		await getLatestNote(req, res);
 
@@ -78,9 +78,9 @@ describe('getNote', () => {
 	it('retrieves a note successfully', async () => {
 		let existingNote;
 		const notesData = [
-			{ title: 'Test Note 1', textbody: 'Test content 1', sub },
-			{ title: 'Test Note 2', textbody: 'Test content 2', sub },
-			{ title: 'Test Note 3', textbody: 'Test content 3', sub },
+			{ title: 'Test Note 1', textbody: 'Test content 1', TEST_SUB },
+			{ title: 'Test Note 2', textbody: 'Test content 2', TEST_SUB },
+			{ title: 'Test Note 3', textbody: 'Test content 3', TEST_SUB },
 		];
 
 		for (const noteData of notesData) {
@@ -90,7 +90,7 @@ describe('getNote', () => {
 				await Note.create(noteData);
 			}
 		}
-		const { req, res } = mockReqRes({ id: existingNote._id }, {}, sub);
+		const { req, res } = mockReqRes({ id: existingNote._id }, {}, TEST_SUB);
 		await getNote(req, res);
 
 		expect(res.status).toHaveBeenCalledWith(200);
@@ -98,13 +98,13 @@ describe('getNote', () => {
 			expect.objectContaining({
 				title: 'Test Note 1',
 				textbody: 'Test content 1',
-				sub,
+				TEST_SUB,
 			})
 		);
 	});
 
 	it('returns a 400 status when the note id is invalid', async () => {
-		const { req, res } = mockReqRes({ id: 'invalid-id' }, {}, sub);
+		const { req, res } = mockReqRes({ id: 'invalid-id' }, {}, TEST_SUB);
 		await getNote(req, res);
 
 		expect(res.status).toHaveBeenCalledWith(400);
@@ -118,7 +118,7 @@ describe('getNote', () => {
 		const { req, res } = mockReqRes(
 			{ id: new mongoose.Types.ObjectId() },
 			{},
-			sub
+			TEST_SUB
 		);
 		await getNote(req, res);
 
@@ -133,16 +133,16 @@ describe('getNote', () => {
 describe('getAllNotes', () => {
 	it('retrieves all notes successfully', async () => {
 		const notesData = [
-			{ title: 'Test Note 1', textbody: 'Test content 1', sub },
-			{ title: 'Test Note 2', textbody: 'Test content 2', sub },
-			{ title: 'Test Note 3', textbody: 'Test content 3', sub },
+			{ title: 'Test Note 1', textbody: 'Test content 1', TEST_SUB },
+			{ title: 'Test Note 2', textbody: 'Test content 2', TEST_SUB },
+			{ title: 'Test Note 3', textbody: 'Test content 3', TEST_SUB },
 		];
 
 		for (const noteData of notesData) {
 			await Note.create(noteData);
 		}
 
-		const { req, res } = mockReqRes({}, {}, sub);
+		const { req, res } = mockReqRes({}, {}, TEST_SUB);
 		await getAllNotes(req, res);
 		const returnedNotes = res.json.mock.calls[0][0];
 
@@ -154,7 +154,7 @@ describe('getAllNotes', () => {
 	});
 
 	it('returns a 204 status when there are no notes in the database', async () => {
-		const { req, res } = mockReqRes({}, {}, sub);
+		const { req, res } = mockReqRes({}, {}, TEST_SUB);
 		await getAllNotes(req, res);
 
 		expect(res.status).toHaveBeenCalledWith(204);
@@ -164,10 +164,10 @@ describe('getAllNotes', () => {
 
 describe('createNote', () => {
 	it('creates a blank new note successfully', async () => {
-		const { req, res } = mockReqRes({}, {}, sub);
+		const { req, res } = mockReqRes({}, {}, TEST_SUB);
 		await createNote(req, res);
 
-		const newNote = await Note.findOne({ sub });
+		const newNote = await Note.findOne({ TEST_SUB });
 
 		expect(res.status).toHaveBeenCalledWith(200);
 		expect(res.json).toHaveBeenCalledWith(
@@ -176,14 +176,14 @@ describe('createNote', () => {
 				createdAt: newNote.createdAt,
 				title: '',
 				textbody: '',
-				sub,
+				TEST_SUB,
 				updatedAt: newNote.updatedAt,
 			})
 		);
 	});
 
 	it('returns a 500 status when there is an error creating a new note', async () => {
-		const { req, res } = mockReqRes({}, {}, sub);
+		const { req, res } = mockReqRes({}, {}, TEST_SUB);
 
 		jest.spyOn(Note, 'create').mockImplementationOnce(() => {
 			throw new Error('Error creating a new note');
@@ -203,7 +203,11 @@ describe('updateNote', () => {
 	let existingNote;
 
 	beforeEach(async () => {
-		const noteData = { title: 'Test Note 1', textbody: 'Test content 1', sub };
+		const noteData = {
+			title: 'Test Note 1',
+			textbody: 'Test content 1',
+			TEST_SUB,
+		};
 		existingNote = await Note.create(noteData);
 	});
 
@@ -213,20 +217,20 @@ describe('updateNote', () => {
 			{
 				title: 'Updated Test Note 1',
 				textbody: 'Updated Test content 1',
-				sub,
+				TEST_SUB,
 			},
-			sub
+			TEST_SUB
 		);
 		await updateNote(req, res);
 
-		const updatedNote = await Note.findOne({ _id: existingNote._id, sub });
+		const updatedNote = await Note.findOne({ _id: existingNote._id, TEST_SUB });
 
 		expect(res.status).toHaveBeenCalledWith(200);
 		expect(res.json).toHaveBeenCalledWith(
 			expect.objectContaining({
 				title: 'Updated Test Note 1',
 				textbody: 'Updated Test content 1',
-				sub,
+				TEST_SUB,
 			})
 		);
 		expect(res.json).toHaveBeenCalledWith(updatedNote);
@@ -238,9 +242,9 @@ describe('updateNote', () => {
 			{
 				title: 'Updated Test Note 1',
 				textbody: 'Updated Test content 1',
-				sub,
+				TEST_SUB,
 			},
-			sub
+			TEST_SUB
 		);
 		await updateNote(req, res);
 
@@ -254,8 +258,12 @@ describe('updateNote', () => {
 	it('returns a 400 status when the note id is invalid', async () => {
 		const { req, res } = mockReqRes(
 			{ id: 'invalid-id' },
-			{ title: 'Updated Test Note 1', textbody: 'Updated Test content 1', sub },
-			sub
+			{
+				title: 'Updated Test Note 1',
+				textbody: 'Updated Test content 1',
+				TEST_SUB,
+			},
+			TEST_SUB
 		);
 		await updateNote(req, res);
 
@@ -271,22 +279,26 @@ describe('deleteNote', () => {
 	let existingNote;
 
 	beforeEach(async () => {
-		const noteData = { title: 'Test Note 1', textbody: 'Test content 1', sub };
+		const noteData = {
+			title: 'Test Note 1',
+			textbody: 'Test content 1',
+			TEST_SUB,
+		};
 		existingNote = await Note.create(noteData);
 	});
 
 	it('deletes a note successfully', async () => {
-		const { req, res } = mockReqRes({ id: existingNote._id }, {}, sub);
+		const { req, res } = mockReqRes({ id: existingNote._id }, {}, TEST_SUB);
 		await deleteNote(req, res);
 
-		const deletedNote = await Note.findOne(existingNote._id, sub);
+		const deletedNote = await Note.findOne(existingNote._id, TEST_SUB);
 
 		expect(res.status).toHaveBeenCalledWith(200);
 		expect(deletedNote).toBeNull();
 	});
 
 	it('returns the deleted note id', async () => {
-		const { req, res } = mockReqRes({ id: existingNote._id }, {}, sub);
+		const { req, res } = mockReqRes({ id: existingNote._id }, {}, TEST_SUB);
 		await deleteNote(req, res);
 
 		expect(res.json).toHaveBeenCalledWith({
@@ -298,7 +310,7 @@ describe('deleteNote', () => {
 		const { req, res } = mockReqRes(
 			{ id: new mongoose.Types.ObjectId() },
 			{},
-			sub
+			TEST_SUB
 		);
 		await deleteNote(req, res);
 
@@ -310,7 +322,7 @@ describe('deleteNote', () => {
 	});
 
 	it('returns a 400 status when the note id is invalid', async () => {
-		const { req, res } = mockReqRes({ id: 'invalid-id' }, {}, sub);
+		const { req, res } = mockReqRes({ id: 'invalid-id' }, {}, TEST_SUB);
 		await deleteNote(req, res);
 
 		expect(res.status).toHaveBeenCalledWith(400);
@@ -321,7 +333,7 @@ describe('deleteNote', () => {
 	});
 
 	it("returns a 500 status when there's a database error", async () => {
-		const { req, res } = mockReqRes({ id: existingNote._id }, {}, sub);
+		const { req, res } = mockReqRes({ id: existingNote._id }, {}, TEST_SUB);
 
 		jest.spyOn(Note, 'findOneAndDelete').mockImplementationOnce(() => {
 			throw new Error('Error deleting note');
