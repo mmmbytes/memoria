@@ -1,4 +1,4 @@
-const defaultOptions = {
+const DEFAULT_OPTIONS = {
 	method: 'GET',
 	credentials: 'include',
 	headers: { 'Content-Type': 'application/json' },
@@ -24,7 +24,7 @@ const handleResponse = async (response) => {
 };
 
 const apiRequest = async (url, options = {}) => {
-	const mergedOptions = { ...defaultOptions, ...options };
+	const mergedOptions = { ...DEFAULT_OPTIONS, ...options };
 
 	try {
 		const response = await fetch(url, mergedOptions);
