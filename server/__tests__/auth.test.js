@@ -23,7 +23,6 @@ describe('exchange', () => {
 		refresh_token: 'mockRefreshToken',
 		id_token: 'mockIdToken',
 		token_type: 'Bearer',
-		expires_in: 3600,
 	};
 
 	it('should exchange auth code for tokens successfully and set them in HttpOnly cookies', async () => {

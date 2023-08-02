@@ -86,7 +86,6 @@ describe('getNote', () => {
 		for (const noteData of notesData) {
 			if (noteData.title === 'Test Note 1') {
 				existingNote = await Note.create(noteData);
-				console.log(existingNote);
 			} else {
 				await Note.create(noteData);
 			}
