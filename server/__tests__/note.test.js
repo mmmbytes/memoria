@@ -44,11 +44,11 @@ describe('getLatestNote', () => {
 		const latestNoteData = {
 			title: 'Test Note 3',
 			textbody: 'Test content 3',
-			TEST_SUB,
+			sub: TEST_SUB,
 		};
 		const notesData = [
-			{ title: 'Test Note 1', textbody: 'Test content 1', TEST_SUB },
-			{ title: 'Test Note 2', textbody: 'Test content 2', TEST_SUB },
+			{ title: 'Test Note 1', textbody: 'Test content 1', sub: TEST_SUB },
+			{ title: 'Test Note 2', textbody: 'Test content 2', sub: TEST_SUB },
 			latestNoteData,
 		];
 		for (const noteData of notesData) {
@@ -78,9 +78,9 @@ describe('getNote', () => {
 	it('retrieves a note successfully', async () => {
 		let existingNote;
 		const notesData = [
-			{ title: 'Test Note 1', textbody: 'Test content 1', TEST_SUB },
-			{ title: 'Test Note 2', textbody: 'Test content 2', TEST_SUB },
-			{ title: 'Test Note 3', textbody: 'Test content 3', TEST_SUB },
+			{ title: 'Test Note 1', textbody: 'Test content 1', sub: TEST_SUB },
+			{ title: 'Test Note 2', textbody: 'Test content 2', sub: TEST_SUB },
+			{ title: 'Test Note 3', textbody: 'Test content 3', sub: TEST_SUB },
 		];
 
 		for (const noteData of notesData) {
@@ -98,7 +98,7 @@ describe('getNote', () => {
 			expect.objectContaining({
 				title: 'Test Note 1',
 				textbody: 'Test content 1',
-				TEST_SUB,
+				sub: TEST_SUB,
 			})
 		);
 	});
@@ -133,9 +133,9 @@ describe('getNote', () => {
 describe('getAllNotes', () => {
 	it('retrieves all notes successfully', async () => {
 		const notesData = [
-			{ title: 'Test Note 1', textbody: 'Test content 1', TEST_SUB },
-			{ title: 'Test Note 2', textbody: 'Test content 2', TEST_SUB },
-			{ title: 'Test Note 3', textbody: 'Test content 3', TEST_SUB },
+			{ title: 'Test Note 1', textbody: 'Test content 1', sub: TEST_SUB },
+			{ title: 'Test Note 2', textbody: 'Test content 2', sub: TEST_SUB },
+			{ title: 'Test Note 3', textbody: 'Test content 3', sub: TEST_SUB },
 		];
 
 		for (const noteData of notesData) {
@@ -167,7 +167,7 @@ describe('createNote', () => {
 		const { req, res } = mockReqRes({}, {}, TEST_SUB);
 		await createNote(req, res);
 
-		const newNote = await Note.findOne({ TEST_SUB });
+		const newNote = await Note.findOne({ sub: TEST_SUB });
 
 		expect(res.status).toHaveBeenCalledWith(200);
 		expect(res.json).toHaveBeenCalledWith(
@@ -176,7 +176,7 @@ describe('createNote', () => {
 				createdAt: newNote.createdAt,
 				title: '',
 				textbody: '',
-				TEST_SUB,
+				sub: TEST_SUB,
 				updatedAt: newNote.updatedAt,
 			})
 		);
@@ -206,7 +206,7 @@ describe('updateNote', () => {
 		const noteData = {
 			title: 'Test Note 1',
 			textbody: 'Test content 1',
-			TEST_SUB,
+			sub: TEST_SUB,
 		};
 		existingNote = await Note.create(noteData);
 	});
@@ -217,20 +217,23 @@ describe('updateNote', () => {
 			{
 				title: 'Updated Test Note 1',
 				textbody: 'Updated Test content 1',
-				TEST_SUB,
+				sub: TEST_SUB,
 			},
 			TEST_SUB
 		);
 		await updateNote(req, res);
 
-		const updatedNote = await Note.findOne({ _id: existingNote._id, TEST_SUB });
+		const updatedNote = await Note.findOne({
+			_id: existingNote._id,
+			sub: TEST_SUB,
+		});
 
 		expect(res.status).toHaveBeenCalledWith(200);
 		expect(res.json).toHaveBeenCalledWith(
 			expect.objectContaining({
 				title: 'Updated Test Note 1',
 				textbody: 'Updated Test content 1',
-				TEST_SUB,
+				sub: TEST_SUB,
 			})
 		);
 		expect(res.json).toHaveBeenCalledWith(updatedNote);
@@ -242,7 +245,7 @@ describe('updateNote', () => {
 			{
 				title: 'Updated Test Note 1',
 				textbody: 'Updated Test content 1',
-				TEST_SUB,
+				sub: TEST_SUB,
 			},
 			TEST_SUB
 		);
@@ -261,7 +264,7 @@ describe('updateNote', () => {
 			{
 				title: 'Updated Test Note 1',
 				textbody: 'Updated Test content 1',
-				TEST_SUB,
+				sub: TEST_SUB,
 			},
 			TEST_SUB
 		);
@@ -282,7 +285,7 @@ describe('deleteNote', () => {
 		const noteData = {
 			title: 'Test Note 1',
 			textbody: 'Test content 1',
-			TEST_SUB,
+			sub: TEST_SUB,
 		};
 		existingNote = await Note.create(noteData);
 	});
@@ -291,7 +294,10 @@ describe('deleteNote', () => {
 		const { req, res } = mockReqRes({ id: existingNote._id }, {}, TEST_SUB);
 		await deleteNote(req, res);
 
-		const deletedNote = await Note.findOne(existingNote._id, TEST_SUB);
+		const deletedNote = await Note.findOne({
+			_id: existingNote._id,
+			sub: TEST_SUB,
+		});
 
 		expect(res.status).toHaveBeenCalledWith(200);
 		expect(deletedNote).toBeNull();
