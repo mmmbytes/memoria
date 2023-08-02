@@ -4,20 +4,18 @@ import { useCookies } from 'react-cookie';
 import NoteManager from '../components/NoteManager';
 
 const NoteWorkspace: FC = () => {
-	const authCookieName = 'isAuthenticated';
-	const [cookies] = useCookies([authCookieName]);
+	const AUTH_COOKIE_NAME = 'isAuthenticated';
+	const [cookies] = useCookies([AUTH_COOKIE_NAME]);
 	const [isLoading, setLoading] = useState<boolean>(true);
 
-	console.log(cookies[authCookieName]);
-
 	useEffect(() => {
-		if (!cookies[authCookieName]) {
+		if (!cookies[AUTH_COOKIE_NAME]) {
 			window.location.href = process.env.REACT_APP_LOGIN_URL;
 		}
 		setLoading(false);
-	}, [cookies[authCookieName]]);
+	}, [cookies[AUTH_COOKIE_NAME]]);
 
-	return isLoading || !cookies[authCookieName] ? (
+	return isLoading || !cookies[AUTH_COOKIE_NAME] ? (
 		// TODO: Add a loading animation
 		<div>Loading...</div>
 	) : (

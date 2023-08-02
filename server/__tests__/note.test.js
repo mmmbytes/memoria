@@ -1,4 +1,3 @@
-const jwt = require('jsonwebtoken');
 const { MongoMemoryServer } = require('mongodb-memory-server');
 const mongoose = require('mongoose');
 
@@ -7,12 +6,15 @@ const {
 	deleteNote,
 	getAllNotes,
 	getLatestNote,
+	getNote,
 	updateNote,
 } = require('../controllers/note');
 const Note = require('../models/Note');
 const { mockReqRes } = require('./utils/testHelpers');
 
 let mongoServer;
+
+const sub = 'test-sub';
 
 beforeAll(async () => {
 	mongoServer = await MongoMemoryServer.create();
@@ -38,13 +40,6 @@ afterAll(async () => {
 });
 
 describe('getLatestNote', () => {
-	const sub = 'test-sub';
-	const idToken = 'mock-token';
-
-	beforeEach(async () => {
-		jest.spyOn(jwt, 'decode').mockReturnValue({ sub });
-	});
-
 	it('retrieves the latest note successfully', async () => {
 		const latestNoteData = {
 			title: 'Test Note 3',
@@ -60,7 +55,7 @@ describe('getLatestNote', () => {
 			await Note.create(noteData);
 		}
 
-		const { req, res } = mockReqRes({}, {}, { idToken });
+		const { req, res } = mockReqRes({}, {}, sub);
 		await getLatestNote(req, res);
 
 		expect(res.status).toHaveBeenCalledWith(200);
@@ -70,7 +65,7 @@ describe('getLatestNote', () => {
 	});
 
 	it('returns a 204 status when there are no notes in the database', async () => {
-		const { req, res } = mockReqRes({}, {}, { idToken });
+		const { req, res } = mockReqRes({}, {}, sub);
 
 		await getLatestNote(req, res);
 
@@ -79,14 +74,64 @@ describe('getLatestNote', () => {
 	});
 });
 
-describe('getAllNotes', () => {
-	const sub = 'test-sub';
-	const idToken = 'mock-token';
+describe('getNote', () => {
+	it('retrieves a note successfully', async () => {
+		let existingNote;
+		const notesData = [
+			{ title: 'Test Note 1', textbody: 'Test content 1', sub },
+			{ title: 'Test Note 2', textbody: 'Test content 2', sub },
+			{ title: 'Test Note 3', textbody: 'Test content 3', sub },
+		];
 
-	beforeEach(async () => {
-		jest.spyOn(jwt, 'decode').mockReturnValue({ sub });
+		for (const noteData of notesData) {
+			if (noteData.title === 'Test Note 1') {
+				existingNote = await Note.create(noteData);
+				console.log(existingNote);
+			} else {
+				await Note.create(noteData);
+			}
+		}
+		const { req, res } = mockReqRes({ id: existingNote._id }, {}, sub);
+		await getNote(req, res);
+
+		expect(res.status).toHaveBeenCalledWith(200);
+		expect(res.json).toHaveBeenCalledWith(
+			expect.objectContaining({
+				title: 'Test Note 1',
+				textbody: 'Test content 1',
+				sub,
+			})
+		);
 	});
 
+	it('returns a 400 status when the note id is invalid', async () => {
+		const { req, res } = mockReqRes({ id: 'invalid-id' }, {}, sub);
+		await getNote(req, res);
+
+		expect(res.status).toHaveBeenCalledWith(400);
+		expect(res.json).toHaveBeenCalledWith({
+			statusCode: 400,
+			message: 'Invalid note id',
+		});
+	});
+
+	it('returns a 404 status when the note is not found', async () => {
+		const { req, res } = mockReqRes(
+			{ id: new mongoose.Types.ObjectId() },
+			{},
+			sub
+		);
+		await getNote(req, res);
+
+		expect(res.status).toHaveBeenCalledWith(404);
+		expect(res.json).toHaveBeenCalledWith({
+			statusCode: 404,
+			message: 'Note not found',
+		});
+	});
+});
+
+describe('getAllNotes', () => {
 	it('retrieves all notes successfully', async () => {
 		const notesData = [
 			{ title: 'Test Note 1', textbody: 'Test content 1', sub },
@@ -98,7 +143,7 @@ describe('getAllNotes', () => {
 			await Note.create(noteData);
 		}
 
-		const { req, res } = mockReqRes({}, {}, { idToken });
+		const { req, res } = mockReqRes({}, {}, sub);
 		await getAllNotes(req, res);
 		const returnedNotes = res.json.mock.calls[0][0];
 
@@ -110,7 +155,7 @@ describe('getAllNotes', () => {
 	});
 
 	it('returns a 204 status when there are no notes in the database', async () => {
-		const { req, res } = mockReqRes({}, {}, { idToken });
+		const { req, res } = mockReqRes({}, {}, sub);
 		await getAllNotes(req, res);
 
 		expect(res.status).toHaveBeenCalledWith(204);
@@ -119,15 +164,8 @@ describe('getAllNotes', () => {
 });
 
 describe('createNote', () => {
-	const sub = 'test-sub';
-	const idToken = 'mock-token';
-
-	beforeEach(async () => {
-		jest.spyOn(jwt, 'decode').mockReturnValue({ sub });
-	});
-
 	it('creates a blank new note successfully', async () => {
-		const { req, res } = mockReqRes({}, {}, { idToken });
+		const { req, res } = mockReqRes({}, {}, sub);
 		await createNote(req, res);
 
 		const newNote = await Note.findOne({ sub });
@@ -139,13 +177,14 @@ describe('createNote', () => {
 				createdAt: newNote.createdAt,
 				title: '',
 				textbody: '',
+				sub,
 				updatedAt: newNote.updatedAt,
 			})
 		);
 	});
 
 	it('returns a 500 status when there is an error creating a new note', async () => {
-		const { req, res } = mockReqRes({}, {}, { idToken });
+		const { req, res } = mockReqRes({}, {}, sub);
 
 		jest.spyOn(Note, 'create').mockImplementationOnce(() => {
 			throw new Error('Error creating a new note');
@@ -162,14 +201,11 @@ describe('createNote', () => {
 });
 
 describe('updateNote', () => {
-	const sub = 'test-sub';
-	const idToken = 'mock-token';
 	let existingNote;
 
 	beforeEach(async () => {
 		const noteData = { title: 'Test Note 1', textbody: 'Test content 1', sub };
 		existingNote = await Note.create(noteData);
-		jest.spyOn(jwt, 'decode').mockReturnValue({ sub });
 	});
 
 	it('updates a note successfully', async () => {
@@ -180,7 +216,7 @@ describe('updateNote', () => {
 				textbody: 'Updated Test content 1',
 				sub,
 			},
-			{ idToken }
+			sub
 		);
 		await updateNote(req, res);
 
@@ -191,6 +227,7 @@ describe('updateNote', () => {
 			expect.objectContaining({
 				title: 'Updated Test Note 1',
 				textbody: 'Updated Test content 1',
+				sub,
 			})
 		);
 		expect(res.json).toHaveBeenCalledWith(updatedNote);
@@ -204,7 +241,7 @@ describe('updateNote', () => {
 				textbody: 'Updated Test content 1',
 				sub,
 			},
-			{ idToken }
+			sub
 		);
 		await updateNote(req, res);
 
@@ -219,7 +256,7 @@ describe('updateNote', () => {
 		const { req, res } = mockReqRes(
 			{ id: 'invalid-id' },
 			{ title: 'Updated Test Note 1', textbody: 'Updated Test content 1', sub },
-			{ idToken }
+			sub
 		);
 		await updateNote(req, res);
 
@@ -232,18 +269,15 @@ describe('updateNote', () => {
 });
 
 describe('deleteNote', () => {
-	const sub = 'test-sub';
-	const idToken = 'mock-token';
 	let existingNote;
 
 	beforeEach(async () => {
 		const noteData = { title: 'Test Note 1', textbody: 'Test content 1', sub };
 		existingNote = await Note.create(noteData);
-		jest.spyOn(jwt, 'decode').mockReturnValue({ sub });
 	});
 
 	it('deletes a note successfully', async () => {
-		const { req, res } = mockReqRes({ id: existingNote._id }, {}, { idToken });
+		const { req, res } = mockReqRes({ id: existingNote._id }, {}, sub);
 		await deleteNote(req, res);
 
 		const deletedNote = await Note.findOne(existingNote._id, sub);
@@ -253,7 +287,7 @@ describe('deleteNote', () => {
 	});
 
 	it('returns the deleted note id', async () => {
-		const { req, res } = mockReqRes({ id: existingNote._id }, {}, { idToken });
+		const { req, res } = mockReqRes({ id: existingNote._id }, {}, sub);
 		await deleteNote(req, res);
 
 		expect(res.json).toHaveBeenCalledWith({
@@ -265,7 +299,7 @@ describe('deleteNote', () => {
 		const { req, res } = mockReqRes(
 			{ id: new mongoose.Types.ObjectId() },
 			{},
-			{ idToken }
+			sub
 		);
 		await deleteNote(req, res);
 
@@ -277,7 +311,7 @@ describe('deleteNote', () => {
 	});
 
 	it('returns a 400 status when the note id is invalid', async () => {
-		const { req, res } = mockReqRes({ id: 'invalid-id' }, {}, { idToken });
+		const { req, res } = mockReqRes({ id: 'invalid-id' }, {}, sub);
 		await deleteNote(req, res);
 
 		expect(res.status).toHaveBeenCalledWith(400);
@@ -288,7 +322,7 @@ describe('deleteNote', () => {
 	});
 
 	it("returns a 500 status when there's a database error", async () => {
-		const { req, res } = mockReqRes({ id: existingNote._id }, {}, { idToken });
+		const { req, res } = mockReqRes({ id: existingNote._id }, {}, sub);
 
 		jest.spyOn(Note, 'findOneAndDelete').mockImplementationOnce(() => {
 			throw new Error('Error deleting note');
