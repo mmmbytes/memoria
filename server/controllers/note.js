@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 const Note = require('../models/Note');
 
 const getLatestNote = async (req, res) => {
-	const latestNote = await Note.findOne().sort({ updatedAt: -1 });
+	const latestNote = await Note.findOne({ sub: req.sub }).sort({
+		updatedAt: -1,
+	});
 
 	if (!latestNote) {
 		return res.status(204).end();
@@ -20,7 +22,7 @@ const getNote = async (req, res) => {
 			.json({ statusCode: 400, message: 'Invalid note id' });
 	}
 
-	const note = await Note.findById(id);
+	const note = await Note.findOne({ _id: id, sub: req.sub });
 
 	if (!note) {
 		return res.status(404).json({ statusCode: 404, message: 'Note not found' });
@@ -29,7 +31,7 @@ const getNote = async (req, res) => {
 };
 
 const getAllNotes = async (req, res) => {
-	const notes = await Note.find({});
+	const notes = await Note.find({ sub: req.sub });
 
 	if (notes.length === 0) {
 		return res.status(204).end();
@@ -41,6 +43,7 @@ const createNote = async (req, res) => {
 	const blankNote = {
 		title: '',
 		textbody: '',
+		sub: req.sub,
 	};
 	try {
 		const newNote = await Note.create(blankNote);
@@ -62,7 +65,7 @@ const updateNote = async (req, res) => {
 	}
 
 	const note = await Note.findOneAndUpdate(
-		{ _id: id },
+		{ _id: id, sub: req.sub },
 		{ title, textbody },
 		{ new: true }
 	);
@@ -85,7 +88,7 @@ const deleteNote = async (req, res) => {
 	}
 
 	try {
-		const note = await Note.findByIdAndDelete(id);
+		const note = await Note.findOneAndDelete({ _id: id, sub: req.sub });
 		if (!note) {
 			return res
 				.status(404)
