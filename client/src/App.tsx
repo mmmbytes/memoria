@@ -2,7 +2,7 @@ import './App.css';
 
 import { FC } from 'react';
 
-import AppRouter from './AppRouter';
+import AppRouter from './routes/AppRouter';
 
 const App: FC = () => {
 	return (
