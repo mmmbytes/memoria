@@ -5,6 +5,8 @@ const { stringify } = require('querystring');
 const httpsRequest = require('./httpsRequest.js');
 const setCookies = require('./setCookies.js');
 
+const ONE_HOUR = 1000 * 60 * 60; // 1 hour in milliseconds
+
 const refreshTokens = async (refreshToken, res) => {
 	const postData = stringify({
 		grant_type: 'refresh_token',
@@ -23,10 +25,14 @@ const refreshTokens = async (refreshToken, res) => {
 
 	try {
 		const parsedData = await httpsRequest(options, postData);
-		setCookies(res, {
-			accessToken: parsedData.access_token,
-			idToken: parsedData.id_token,
-		});
+		setCookies(
+			res,
+			{
+				accessToken: parsedData.access_token,
+				idToken: parsedData.id_token,
+			},
+			{ maxAge: ONE_HOUR }
+		);
 		return {
 			accessToken: parsedData.access_token,
 			idToken: parsedData.id_token,
@@ -51,14 +57,13 @@ const handleAuthError = (res, message, error = {}) => {
 
 async function jwtVerify(req, res, next) {
 	let { accessToken, idToken, refreshToken, isAuthenticated } = req.cookies;
-	const currentTimestamp = Math.floor(Date.now() / 1000);
 
 	if (!isAuthenticated || !refreshToken) {
 		handleAuthError(res, 'Session expired.');
 		return;
 	}
 
-	if (jwt.decode(accessToken).exp < currentTimestamp) {
+	if (!accessToken) {
 		({ accessToken, idToken } = await refreshTokens(refreshToken, res));
 	}
 

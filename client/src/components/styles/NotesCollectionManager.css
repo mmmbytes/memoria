@@ -2,13 +2,12 @@
  * Notes Collection - Container
  * ------------------------------------------------------------------------- */
 
-.notes-collection
-{
-  display: flex;
-  max-width: 100vw;
-  min-height: 100vh;
-  padding: 20px;
-  background-color: #f8f8f8;
+.notes-collection {
+	display: flex;
+	max-width: 100vw;
+	min-height: 100vh;
+	padding: 20px;
+	background-color: var(--primary-bg-color);
 }
 
 /* ----------------------------------------------------------------------------
@@ -16,9 +15,9 @@
  * ------------------------------------------------------------------------- */
 
 .notes-collection__notecards {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin: 10px;
-  width: 100%;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	margin: 10px;
+	width: 100%;
 }

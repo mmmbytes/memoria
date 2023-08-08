@@ -33,10 +33,14 @@ const exchangeAuthCode = async (req, res) => {
 
 	try {
 		const parsedData = await httpsRequest(options, postData);
-		setCookies(res, {
-			idToken: parsedData.id_token,
-			accessToken: parsedData.access_token,
-		});
+		setCookies(
+			res,
+			{
+				idToken: parsedData.id_token,
+				accessToken: parsedData.access_token,
+			},
+			{ maxAge: ONE_HOUR }
+		);
 		setCookies(
 			res,
 			{ refreshToken: parsedData.refresh_token },
