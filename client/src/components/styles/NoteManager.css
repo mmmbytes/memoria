@@ -2,11 +2,11 @@
  * Note Workspace - Container
  * ------------------------------------------------------------------------- */
 
-.workspace{
-  display: flex;
-  justify-content: center;
-  width: 100vw;
-  height: 93vh;
+.workspace {
+	display: flex;
+	justify-content: center;
+	width: 100vw;
+	height: 93vh;
 }
 
 /* ----------------------------------------------------------------------------
@@ -14,9 +14,9 @@
  * ------------------------------------------------------------------------- */
 
 .workspace__active-note {
-  display: flex;
-  width: 60%;
-  height: 100%;
+	display: flex;
+	width: 60%;
+	height: 100%;
 }
 
 /* ----------------------------------------------------------------------------
@@ -24,6 +24,6 @@
  * ------------------------------------------------------------------------- */
 
 .workspace__btns {
-  display: flex;
-  align-items: flex-end;
+	display: flex;
+	align-items: flex-end;
 }

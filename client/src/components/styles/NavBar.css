@@ -1,90 +1,100 @@
 /* ----------------------------------------------------------------------------
  * Navigation Bar
  * ------------------------------------------------------------------------- */
- .navbar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  border: 1px solid #e4e6e6;
-  width: 100%;
-  height: 7%;
-  background-color: #ffffff;
+.navbar {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	border: 1px solid #e4e6e6;
+	width: 100%;
+	height: 7%;
 }
 
 /* ----------------------------------------------------------------------------
  * Navigation Bar - Container
  * ------------------------------------------------------------------------- */
- .navbar_container {
-  display: flex;
-  width: 100%;
-  height: 100%;
+.navbar__container {
+	display: flex;
+	width: 100%;
+	height: 100%;
 }
 
 /* ----------------------------------------------------------------------------
  * Menu Icon - Button
  * ------------------------------------------------------------------------- */
 .navbar__icon {
-  position: fixed;
-  bottom: 10px;
-  left: 15px;
+	position: fixed;
+	bottom: 10px;
+	left: 15px;
 }
 
 /* ----------------------------------------------------------------------------
  * Navigation Menu - Container
  * ------------------------------------------------------------------------- */
 .navbar__menu {
-  position: fixed;
-  bottom: 7%;
-  visibility: hidden;
-  overflow: hidden;
-  list-style: none;
-  transform: translateX(-100%);
-  transition: all 0.5s ease-out;
-  height: 93%;
+	position: fixed;
+	bottom: 7%;
+	visibility: hidden;
+	overflow: hidden;
+	list-style: none;
+	transform: translateX(-100%);
+	transition: all 0.5s ease-out;
+	height: 93%;
 }
 
 .navbar__menu--show {
-  display: flex;
-  justify-content: center;
-  bottom: 7%;
-  visibility: visible;
-  transform: translateX(0);
-  box-shadow: 0 0 20px 0 #d9dee3;
-  width: 15%;
-  min-width: 150px;
-  height: 93%;
-  background-color: #f8f8f8;
-  text-align: center;
+	display: flex;
+	justify-content: center;
+	bottom: 7%;
+	visibility: visible;
+	transform: translateX(0);
+	box-shadow: 0 0 20px 0 #d9dee3;
+	width: 15%;
+	min-width: 150px;
+	height: 93%;
+	text-align: center;
 }
 
+.navbar__menu--show,
+.navbar__links,
+.navbar__links li,
+.navbar__links li a {
+	background-color: var(--tertiary-bg-color);
+}
 /* ----------------------------------------------------------------------------
  * Navigation Menu - Links
  * ------------------------------------------------------------------------- */
 
 .navbar__links {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  margin: 17%;
-  width: 100%;
-  font: 1.2em 'Lora', serif;
-  color: var(--link-text-color);
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	margin: 40px;
+	width: 100%;
+	font: 1.2em var(--secondary-font);
 }
 
 .navbar__links li {
-  margin: 8% 0 8% 0;
-  padding: 3%;
+	margin: 8% 0 8% 0;
+	padding: 3%;
 }
 
+.navbar__links li:hover {
+	text-shadow: 0 0.125rem 0.25rem rgba(141, 141, 141, 0.377);
+}
 /* ----------------------------------------------------------------------------
  * Home Icon - Button
  * ------------------------------------------------------------------------- */
- .home-icon {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  margin: 1%;
-  width: 100%;
-  font: 900 1.5rem 'tangerine', cursive;
+.navbar__home-icon {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	margin: 1%;
+	width: 100%;
+}
+
+.navbar__home-icon--text {
+	font: 300 1.5rem var(--primary-font);
+	color: var(--primary-text-color);
 }
