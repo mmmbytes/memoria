@@ -5,8 +5,6 @@ const { stringify } = require('querystring');
 const httpsRequest = require('./httpsRequest.js');
 const setCookies = require('./setCookies.js');
 
-const ONE_HOUR = 1000 * 60 * 60; // 1 hour in milliseconds
-
 const refreshTokens = async (refreshToken, res) => {
 	const postData = stringify({
 		grant_type: 'refresh_token',
@@ -25,14 +23,10 @@ const refreshTokens = async (refreshToken, res) => {
 
 	try {
 		const parsedData = await httpsRequest(options, postData);
-		setCookies(
-			res,
-			{
-				accessToken: parsedData.access_token,
-				idToken: parsedData.id_token,
-			},
-			{ maxAge: ONE_HOUR }
-		);
+		setCookies(res, {
+			accessToken: parsedData.access_token,
+			idToken: parsedData.id_token,
+		});
 		return {
 			accessToken: parsedData.access_token,
 			idToken: parsedData.id_token,
