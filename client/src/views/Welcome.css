@@ -1,0 +1,112 @@
+/* ----------------------------------------------------------------------------
+ * Welcome - Global Rules
+ * ------------------------------------------------------------------------- */
+
+.welcome,
+.welcome__heading,
+.welcome__header,
+.welcome__logo,
+.welcome__logo--img,
+.welcome__logo--txt {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+
+/* ----------------------------------------------------------------------------
+ * Welcome Page 
+ * ------------------------------------------------------------------------- */
+
+.welcome {
+	flex-direction: column;
+	width: 100vw;
+	height: 100vh;
+	padding: 40px;
+	font-family: var(--primary-font);
+}
+
+/* ----------------------------------------------------------------------------
+ * Welcome - Heading Container
+ * ------------------------------------------------------------------------- */
+
+.welcome__heading {
+	flex-direction: column;
+	height: 100%;
+}
+
+/* ----------------------------------------------------------------------------
+ * Welcome - Header
+ * ------------------------------------------------------------------------- */
+
+.welcome__header {
+	height: 15%;
+	font-size: 60px;
+	font-weight: 500;
+}
+
+/* ----------------------------------------------------------------------------
+ * Welcome - Memoria Logo 
+ * ------------------------------------------------------------------------- */
+
+.welcome__logo {
+	flex-direction: column;
+	overflow: hidden;
+	height: 85%;
+}
+
+.welcome__logo--img {
+	width: auto;
+	height: 100%;
+}
+
+.welcome__logo--txt {
+	transform: translate(0%, -100%);
+	font-size: 1.25rem;
+	font-weight: 200;
+	text-shadow: 0 0.125rem 0.25rem rgba(141, 141, 141, 0.377);
+	color: #1b1b1b;
+}
+
+/* ----------------------------------------------------------------------------
+ * Welcome - Sign In Button
+ * ------------------------------------------------------------------------- */
+
+.welcome__btn {
+	width: 180px;
+	height: 50px;
+	transition: background-color 0.3s ease;
+	padding: 12px 24px;
+	box-shadow: 0 2px 4px rgba(21, 17, 57, 0.352);
+	border-radius: 25px;
+	background-color: var(--tertiary-bg-color);
+	font-size: 1rem;
+	font-family: var(--secondary-font);
+	font-weight: 500;
+}
+
+.welcome__btn:hover {
+	transform: scale(1.03);
+	box-shadow: 0 0.5rem 1.5rem rgba(120, 121, 122, 0.531);
+}
+
+.welcome__btn:before {
+	content: '➔';
+	margin-right: 5px;
+}
+
+@media only screen and (min-width: 769px) {
+	.welcome__btn {
+		position: fixed;
+		bottom: 90%;
+		left: 85%;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	.welcome__btns {
+		position: sticky;
+		display: block;
+		margin: 20px auto;
+	}
+}
