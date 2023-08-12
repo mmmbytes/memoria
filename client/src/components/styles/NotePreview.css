@@ -6,14 +6,13 @@
 	display: flex;
 	flex-direction: column;
 	transition: all 0.3s ease-in-out;
-	margin: 10px;
 	box-shadow: 0 2px 4px rgba(21, 17, 57, 0.352);
 	border-radius: 8px;
 	width: 250px;
 	height: 275px;
 	padding: 15px;
-	background-color: #ffffff;
-	font-family: 'Cardo', serif;
+	background-color: var(--secondary-bg-color);
+	font-family: var(--primary-font);
 }
 
 .note-preview:hover {
@@ -27,16 +26,15 @@
  * ------------------------------------------------------------------------- */
 
 .note-preview__title {
-	margin-bottom: 5px;
-	padding-bottom: 10px;
-	font-size: 1.5em;
+	padding-bottom: 15px;
+	font-size: 1.2rem;
 }
 
 .note-preview__textbody {
 	position: relative;
 	overflow: hidden;
 	height: 100%;
-	font-size: 0.75em;
+	font-size: 0.75rem;
 }
 
 .note-preview__textbody::after {

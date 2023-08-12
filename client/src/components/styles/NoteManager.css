@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------
- * Note Workspace - Container
+ * Note Workspace 
  * ------------------------------------------------------------------------- */
 
 .workspace {
@@ -7,6 +7,8 @@
 	justify-content: center;
 	width: 100vw;
 	height: 93vh;
+	max-height: calc(100vh - 45px);
+	padding: 40px;
 }
 
 /* ----------------------------------------------------------------------------
@@ -15,15 +17,40 @@
 
 .workspace__active-note {
 	display: flex;
-	width: 60%;
+	overflow: hidden;
+	width: clamp(40ch, 50%, 80ch);
 	height: 100%;
 }
 
 /* ----------------------------------------------------------------------------
- * Edit Buttons
+ * Buttons
  * ------------------------------------------------------------------------- */
 
 .workspace__btns {
-	display: flex;
-	align-items: flex-end;
+	display: grid;
+	grid-template-columns: 1fr auto auto 1fr;
+	grid-template-rows: 1.5rem;
+	position: fixed;
+	bottom: calc(7% + 40px);
+	left: clamp(20ch, 25%, 40ch);
+	width: 100vw;
+}
+
+.workspace__btn-delete {
+	grid-column: 2;
+}
+
+/* ----------------------------------------------------------------------------
+ * Responsive Breakpoints
+ * ------------------------------------------------------------------------- */
+
+@media screen and (max-width: 399px) {
+	.workspace {
+		padding: 30px 20px;
+	}
+
+	.workspace__btns {
+		top: 30px;
+		left: 40%;
+	}
 }

@@ -5,8 +5,9 @@
 .notes-collection {
 	display: flex;
 	max-width: 100vw;
-	min-height: 100vh;
-	padding: 20px;
+	min-height: 93vh;
+	margin: 40px;
+	padding-bottom: 7vh;
 	background-color: var(--primary-bg-color);
 }
 
@@ -16,8 +17,9 @@
 
 .notes-collection__notecards {
 	display: flex;
-	justify-content: center;
 	flex-wrap: wrap;
-	margin: 10px;
+	justify-content: center;
+	align-content: flex-start;
+	gap: 25px;
 	width: 100%;
 }

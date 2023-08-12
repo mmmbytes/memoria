@@ -17,7 +17,9 @@ function Welcome() {
 					<h2 className="welcome__logo--txt">Your thoughts. Untangled.</h2>
 				</div>
 			</div>
-			<SignInButton className="welcome__btn" />
+			<div className="welcome__btn-container">
+				<SignInButton className="welcome__btn" />
+			</div>
 		</div>
 	);
 }

@@ -1,9 +1,9 @@
 import { RiDeleteBin2Line } from 'react-icons/ri';
 import { VscNewFile } from 'react-icons/vsc';
 
-export function DeleteButton({ handleDeleteNote }) {
+export function DeleteButton({ className, handleDeleteNote }) {
 	return (
-		<button onClick={handleDeleteNote}>
+		<button className={className} onClick={handleDeleteNote}>
 			<RiDeleteBin2Line />
 		</button>
 	);

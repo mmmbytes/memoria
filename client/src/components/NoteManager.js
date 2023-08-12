@@ -96,7 +96,10 @@ function NoteManager() {
 				<NoteContent note={note} handleTextChange={handleTextChange} />
 			</div>
 			<div className="workspace__btns">
-				<DeleteButton handleDeleteNote={handleDeleteNote} />
+				<DeleteButton
+					className="workspace__btn-delete"
+					handleDeleteNote={handleDeleteNote}
+				/>
 				<NewNoteButton handleNewNote={handleNewNote} />
 			</div>
 		</div>
