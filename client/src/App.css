@@ -24,7 +24,6 @@ button {
 	border: none;
 	cursor: pointer;
 	background-color: transparent;
-	font-size: 1.5rem;
 	color: var(--link-text-color);
 }
 

@@ -30,12 +30,16 @@
 	display: grid;
 	grid-template-columns: 1fr auto auto 1fr;
 	grid-template-rows: 1.5rem;
+	grid-column-gap: 0.5rem;
 	position: fixed;
 	bottom: calc(7% + 40px);
 	left: clamp(20ch, 25%, 40ch);
 	width: 100vw;
 }
 
+.workspace__btns button {
+	font-size: 1.7rem;
+}
 .workspace__btn-delete {
 	grid-column: 2;
 }
