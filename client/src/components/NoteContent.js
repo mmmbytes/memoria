@@ -1,4 +1,4 @@
-import './NoteContent.css';
+import './styles/NoteContent.css';
 
 function NoteContent({ note, handleTextChange }) {
 	return (

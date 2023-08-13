@@ -1,4 +1,4 @@
-import './NavBar.css';
+import './styles/NavBar.css';
 
 import { useState } from 'react';
 import { VscClose, VscMenu } from 'react-icons/vsc';
@@ -32,9 +32,9 @@ const NavBar = () => {
 						</li>
 					</div>
 				</ul>
-				<div className="home-icon">
+				<div className="navbar__home-icon">
 					<Link to="/">
-						<h1>Memoria</h1>
+						<h1 className="navbar__home-icon--text">MEMORIA</h1>
 					</Link>
 				</div>
 			</div>
