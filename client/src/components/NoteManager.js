@@ -1,4 +1,4 @@
-import './NoteManager.css';
+import './styles/NoteManager.css';
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -10,8 +10,7 @@ import {
 	fetchSpecificNote,
 	updateNote,
 } from '../api/NoteApi';
-import DeleteButton from './DeleteButton';
-import NewNoteButton from './NewNoteButton';
+import { DeleteButton, NewNoteButton } from './Buttons';
 import NoteContent from './NoteContent';
 
 function NoteManager() {
@@ -97,7 +96,10 @@ function NoteManager() {
 				<NoteContent note={note} handleTextChange={handleTextChange} />
 			</div>
 			<div className="workspace__btns">
-				<DeleteButton handleDeleteNote={handleDeleteNote} />
+				<DeleteButton
+					className="workspace__btn-delete"
+					handleDeleteNote={handleDeleteNote}
+				/>
 				<NewNoteButton handleNewNote={handleNewNote} />
 			</div>
 		</div>

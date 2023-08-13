@@ -1,0 +1,34 @@
+/* ----------------------------------------------------------------------------
+ * Notes Collection - Container
+ * ------------------------------------------------------------------------- */
+
+.notes-collection {
+	display: flex;
+	margin: 40px;
+	background-color: var(--primary-bg-color);
+
+	/* Fallback styles */
+	max-width: 100vw;
+	min-height: 93vh;
+	padding-bottom: 7vh;
+
+	/* Styles for browsers that support dvw and dvh */
+	@supports (width: 1dvw) and (height: 1dvh) {
+		max-width: 100dvw;
+		min-height: 93dvh;
+		padding-bottom: 7dvh;
+	}
+}
+
+/* ----------------------------------------------------------------------------
+ * Notes Collection - Notecards - Container
+ * ------------------------------------------------------------------------- */
+
+.notes-collection__notecards {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: flex-start;
+	gap: 25px;
+	width: 100%;
+}

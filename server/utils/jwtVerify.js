@@ -57,14 +57,13 @@ const handleAuthError = (res, message, error = {}) => {
 
 async function jwtVerify(req, res, next) {
 	let { accessToken, idToken, refreshToken, isAuthenticated } = req.cookies;
-	const currentTimestamp = Math.floor(Date.now() / 1000);
 
-	if (!isAuthenticated || !accessToken || !refreshToken) {
+	if (!isAuthenticated || !refreshToken) {
 		handleAuthError(res, 'Session expired.');
 		return;
 	}
 
-	if (jwt.decode(accessToken).exp < currentTimestamp) {
+	if (!accessToken) {
 		({ accessToken, idToken } = await refreshTokens(refreshToken, res));
 	}
 

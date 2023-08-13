@@ -1,4 +1,4 @@
-import './NotesCollectionManager.css';
+import './styles/NotesCollectionManager.css';
 
 import { useEffect, useState } from 'react';
 
