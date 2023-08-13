@@ -3,15 +3,14 @@
  * ------------------------------------------------------------------------- */
 
 :root {
-	--border-color: #d9dee3;
+	--border-color: #ffffff;
 	--primary-bg-color: #fcfdfd;
 	--secondary-bg-color: #ffffff;
 	--tertiary-bg-color: #f8f8f8;
 	--primary-font: 'Cardo', serif;
 	--secondary-font: 'Lora', serif;
 	--primary-text-color: #000000;
-	--primary-text-color: #000000;
-	--link-text-color: #696072;
+	--secondary-text-color: #696072;
 }
 
 * {
@@ -24,10 +23,10 @@ button {
 	border: none;
 	cursor: pointer;
 	background-color: transparent;
-	color: var(--link-text-color);
+	color: var(--secondary-text-color);
 }
 
 a {
 	text-decoration: none;
-	color: var(--link-text-color);
+	color: var(--secondary-text-color);
 }

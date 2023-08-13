@@ -25,8 +25,8 @@
  * ------------------------------------------------------------------------- */
 
 .welcome {
-	width: 100vw;
-	height: 95vh;
+	width: 100dvw;
+	height: 95dvh;
 	padding: 40px;
 	font-family: var(--primary-font);
 	background-color: var(--primary-bg-color);

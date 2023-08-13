@@ -5,10 +5,19 @@
 .workspace {
 	display: flex;
 	justify-content: center;
+	padding: 40px;
+
+	/* Fallback styles */
 	width: 100vw;
 	height: 93vh;
 	max-height: calc(100vh - 45px);
-	padding: 40px;
+
+	/* Styles for browsers that support dvw and dvh */
+	@supports (width: 1dvw) and (height: 1dvh) {
+		width: 100dvw;
+		height: 93dvh;
+		max-height: calc(100dvh - 45px);
+	}
 }
 
 /* ----------------------------------------------------------------------------
@@ -30,7 +39,7 @@
 	display: grid;
 	grid-template-columns: 1fr auto auto 1fr;
 	grid-template-rows: 1.5rem;
-	grid-column-gap: 0.5rem;
+	grid-column-gap: 0.6rem;
 	position: fixed;
 	bottom: calc(7% + 40px);
 	left: clamp(20ch, 25%, 40ch);
