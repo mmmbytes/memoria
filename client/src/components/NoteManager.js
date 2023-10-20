@@ -10,7 +10,7 @@ import {
 	fetchSpecificNote,
 	updateNote,
 } from '../api/NoteApi';
-import { DeleteButton, NewNoteButton } from './Buttons';
+import ActionsMenu from './ActionsMenu';
 import NoteContent from './NoteContent';
 
 function NoteManager() {
@@ -95,13 +95,10 @@ function NoteManager() {
 			<div className="workspace__active-note">
 				<NoteContent note={note} handleTextChange={handleTextChange} />
 			</div>
-			<div className="workspace__btns">
-				<DeleteButton
-					className="workspace__btn-delete"
-					handleDeleteNote={handleDeleteNote}
-				/>
-				<NewNoteButton handleNewNote={handleNewNote} />
-			</div>
+			<ActionsMenu
+				handleNewNote={handleNewNote}
+				handleDeleteNote={handleDeleteNote}
+			/>
 		</div>
 	);
 }

@@ -5,65 +5,36 @@
 .workspace {
 	display: flex;
 	justify-content: center;
-	padding: 40px;
+	padding: 30px 20px;
 
 	/* Fallback styles */
 	width: 100vw;
-	height: 93vh;
-	max-height: calc(100vh - 45px);
+	height: 93svh;
+	max-height: calc(100svh - 55px);
 
 	/* Styles for browsers that support dvw and dvh */
 	@supports (width: 1dvw) and (height: 1dvh) {
 		width: 100dvw;
 		height: 93dvh;
-		max-height: calc(100dvh - 45px);
+		max-height: calc(100dvh - 55px);
 	}
 }
-
 /* ----------------------------------------------------------------------------
  * Note Editor
  * ------------------------------------------------------------------------- */
 
 .workspace__active-note {
 	display: flex;
-	overflow: hidden;
 	width: clamp(40ch, 50%, 80ch);
 	height: 100%;
-}
-
-/* ----------------------------------------------------------------------------
- * Buttons
- * ------------------------------------------------------------------------- */
-
-.workspace__btns {
-	display: grid;
-	grid-template-columns: 1fr auto auto 1fr;
-	grid-template-rows: 1.5rem;
-	grid-column-gap: 0.6rem;
-	position: fixed;
-	bottom: calc(7% + 40px);
-	left: clamp(20ch, 25%, 40ch);
-	width: 100vw;
-}
-
-.workspace__btns button {
-	font-size: 1.7rem;
-}
-.workspace__btn-delete {
-	grid-column: 2;
 }
 
 /* ----------------------------------------------------------------------------
  * Responsive Breakpoints
  * ------------------------------------------------------------------------- */
 
-@media screen and (max-width: 399px) {
+@media screen and (min-width: 400px) {
 	.workspace {
-		padding: 30px 20px;
-	}
-
-	.workspace__btns {
-		top: 30px;
-		left: 40%;
+		padding: 40px;
 	}
 }
