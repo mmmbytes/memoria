@@ -1,4 +1,4 @@
-import './Welcome.css';
+import './styles/Welcome.css';
 
 import { SignInButton } from '../components/Buttons';
 import MemoriaLogo from '../images/memoria-logo-large.png';
@@ -18,7 +18,7 @@ function Welcome() {
 				</div>
 			</div>
 			<div className="welcome__btn-container">
-				<SignInButton className="welcome__btn" />
+				<SignInButton className="btn welcome__btn" />
 			</div>
 		</div>
 	);

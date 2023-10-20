@@ -18,9 +18,11 @@ const NavBar = () => {
 					{navbarOpen ? <VscClose /> : <VscMenu />}
 				</button>
 				<ul
-					className={`navbar__menu ${navbarOpen ? 'navbar__menu--show' : ''}`}
+					className={`navbar__menu ${
+						navbarOpen ? 'navbar__menu--visible' : ''
+					}`}
 				>
-					<div className="navbar__links">
+					<div className="navbar__links" onClick={handleToggle}>
 						<li>
 							<Link to="/">Note Workspace</Link>
 						</li>
@@ -28,13 +30,13 @@ const NavBar = () => {
 							<Link to="/notes-collection">Notes Collection</Link>
 						</li>
 						<li>
-							<Link to="/login">Account</Link>
+							<Link to="/account">Account</Link>
 						</li>
 					</div>
 				</ul>
 				<div className="navbar__home-icon">
 					<Link to="/">
-						<h1 className="navbar__home-icon--text">MEMORIA</h1>
+						<h1 className="navbar__home-text">MEMORIA</h1>
 					</Link>
 				</div>
 			</div>
