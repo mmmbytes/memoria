@@ -1,0 +1,62 @@
+/* ----------------------------------------------------------------------------
+ * Account Details - Wrapper
+ * ------------------------------------------------------------------------- */
+
+.account__details {
+	display: flex;
+	flex-direction: column;
+	gap: 35px;
+}
+
+/* ----------------------------------------------------------------------------
+ * Account Details - Header
+ * ------------------------------------------------------------------------- */
+
+.account__details-header {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 40px;
+}
+
+.account__details-title {
+	display: flex;
+	align-items: center;
+	font-size: clamp(2.15rem, 3.4vw, 3.68rem);
+	font-weight: 400;
+}
+
+.account__details-username {
+	font-size: clamp(1.25rem, 2.5vw, 3rem);
+	font-weight: 500;
+	text-shadow: 0 0.125rem 0.25rem rgba(141, 141, 141, 0.377);
+}
+
+/* ----------------------------------------------------------------------------
+ * Account Details - Personal Information 
+ * ------------------------------------------------------------------------- */
+
+.account__details-personal-info {
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+}
+
+.account__details-subtitle {
+	font-size: clamp(1.1rem, 1.75vw, 1.5rem);
+	font-weight: 600;
+}
+
+/* ----------------------------------------------------------------------------
+ * Account Details - Items
+ * ------------------------------------------------------------------------- */
+
+.account__details-item {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	height: 50%;
+	gap: 20px;
+	font-size: clamp(1rem, 1.25vw, 1.15rem);
+}
