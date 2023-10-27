@@ -2,7 +2,12 @@ import './styles/ActionsMenu.css';
 
 import { useState } from 'react';
 
-import { ActionsMenuButton } from './Buttons';
+import btnMod from '../sharedStyles/button.module.css';
+import {
+	DeleteNoteButton,
+	NewNoteButton,
+	NoteActionsButton,
+} from './buttons/NoteActionsButtons';
 
 function ActionsMenu({ handleNewNote, handleDeleteNote }) {
 	const [menuOpen, setMenuOpen] = useState(false);
@@ -13,8 +18,8 @@ function ActionsMenu({ handleNewNote, handleDeleteNote }) {
 
 	return (
 		<div className="actions-menu">
-			<ActionsMenuButton
-				className="actions-menu__toggle-btn"
+			<NoteActionsButton
+				className={`${btnMod.btn} actions-menu__toggle-btn`}
 				onClick={handleToggle}
 			/>
 			<div
@@ -23,12 +28,14 @@ function ActionsMenu({ handleNewNote, handleDeleteNote }) {
 					menuOpen ? 'actions-menu__dropdown--visible' : ''
 				}`}
 			>
-				<button className="btn actions-menu__btn" onClick={handleNewNote}>
-					New Note
-				</button>
-				<button className="btn actions-menu__btn" onClick={handleDeleteNote}>
-					Delete Note
-				</button>
+				<NewNoteButton
+					className={`${btnMod.btn} ${btnMod.btnStyled} actions-menu__btn`}
+					onClick={handleNewNote}
+				/>
+				<DeleteNoteButton
+					className={`${btnMod.btn} ${btnMod.btnStyled} actions-menu__btn`}
+					onClick={handleDeleteNote}
+				/>
 			</div>
 		</div>
 	);

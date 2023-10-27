@@ -13,6 +13,9 @@ import {
 import ActionsMenu from './ActionsMenu';
 import NoteContent from './NoteContent';
 
+/* TODO: Refactor to separate out the API functionality and makethis a UI-only
+ class. Pass a note-state function (setNote) around instead of passing API 
+ functions.  */
 function NoteManager() {
 	const { noteId } = useParams();
 	const [note, setNote] = useState({ title: '', textbody: '' });
@@ -91,7 +94,7 @@ function NoteManager() {
 	}
 
 	return (
-		<div className="workspace">
+		<div className="workspace-modern workspace">
 			<div className="workspace__active-note">
 				<NoteContent note={note} handleTextChange={handleTextChange} />
 			</div>

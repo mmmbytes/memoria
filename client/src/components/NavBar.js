@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { VscClose, VscMenu } from 'react-icons/vsc';
 import { Link } from 'react-router-dom';
 
+import btnMod from '../sharedStyles/button.module.css';
+
 const NavBar = () => {
 	const [navbarOpen, setbarOpen] = useState(false);
 
@@ -14,7 +16,7 @@ const NavBar = () => {
 	return (
 		<nav className="navbar">
 			<div className="navbar__container">
-				<button className="navbar__icon" onClick={handleToggle}>
+				<button className={`${btnMod.btn} navbar__icon`} onClick={handleToggle}>
 					{navbarOpen ? <VscClose /> : <VscMenu />}
 				</button>
 				<ul

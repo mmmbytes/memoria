@@ -2,14 +2,14 @@ import './styles/AccountDetails.css';
 
 function AccountDetails() {
 	return (
-		<div className="account__details">
-			<div className="account__details-header">
-				<h1 className="account__details-title">Account</h1>
-				<h2 className="account__details-username">Placeholder Name</h2>
+		<div className="account-details">
+			<div className="account-details__header">
+				<h1 className="account-details__title">Account</h1>
+				<h2 className="account-details__username">Placeholder Name</h2>
 			</div>
-			<div className="account__details-personal-info">
-				<h3 className="account__details-subtitle">Personal Information</h3>
-				<div className="account__details-item">
+			<div className="account-details__personal-info">
+				<h3 className="account-details__subtitle">Personal Information</h3>
+				<div className="account-details__info-item">
 					<p>Email: </p>
 					<p>sample.email@gmail.com</p>
 				</div>

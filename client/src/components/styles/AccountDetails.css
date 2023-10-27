@@ -1,8 +1,8 @@
 /* ----------------------------------------------------------------------------
- * Account Details - Wrapper
+ * Account Details - Container
  * ------------------------------------------------------------------------- */
 
-.account__details {
+.account-details {
 	display: flex;
 	flex-direction: column;
 	gap: 35px;
@@ -12,7 +12,7 @@
  * Account Details - Header
  * ------------------------------------------------------------------------- */
 
-.account__details-header {
+.account-details__header {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -20,14 +20,14 @@
 	gap: 40px;
 }
 
-.account__details-title {
+.account-details__title {
 	display: flex;
 	align-items: center;
 	font-size: clamp(2.15rem, 3.4vw, 3.68rem);
 	font-weight: 400;
 }
 
-.account__details-username {
+.account-details__username {
 	font-size: clamp(1.25rem, 2.5vw, 3rem);
 	font-weight: 500;
 	text-shadow: 0 0.125rem 0.25rem rgba(141, 141, 141, 0.377);
@@ -37,13 +37,13 @@
  * Account Details - Personal Information 
  * ------------------------------------------------------------------------- */
 
-.account__details-personal-info {
+.account-details__personal-info {
 	display: flex;
 	flex-direction: column;
 	gap: 25px;
 }
 
-.account__details-subtitle {
+.account-details__subtitle {
 	font-size: clamp(1.1rem, 1.75vw, 1.5rem);
 	font-weight: 600;
 }
@@ -52,7 +52,7 @@
  * Account Details - Items
  * ------------------------------------------------------------------------- */
 
-.account__details-item {
+.account-details__info-item {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;

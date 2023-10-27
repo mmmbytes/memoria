@@ -1,29 +1,30 @@
 /* ----------------------------------------------------------------------------
  * Welcome Page 
  * ------------------------------------------------------------------------- */
+
+.welcome {
+	height: 100vh;
+	padding: 40px 30px;
+	background-color: var(--primary-bg-color);
+	font-family: var(--primary-font);
+}
+
 .welcome,
 .welcome__heading,
-.welcome__header,
-.welcome__logo,
-.welcome__logo--img,
-.welcome__logo--txt {
+.welcome__logo-container {
+	flex-direction: column;
+}
+
+.welcome,
+.welcome__heading,
+.welcome__title,
+.welcome__logo-container,
+.welcome__logo-img,
+.welcome__logo-txt {
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	width: 100%;
-}
-
-.welcome,
-.welcome__heading,
-.welcome__logo {
-	flex-direction: column;
-}
-
-.welcome {
-	height: 100svh;
-	background-color: var(--primary-bg-color);
-	padding: 40px 30px;
-	font-family: var(--primary-font);
 }
 
 /* ----------------------------------------------------------------------------
@@ -35,10 +36,10 @@
 }
 
 /* ----------------------------------------------------------------------------
- * Welcome - Header
+ * Welcome - Heading Title
  * ------------------------------------------------------------------------- */
 
-.welcome__header {
+.welcome__title {
 	overflow: hidden;
 	height: 15%;
 	font-size: clamp(45px, 3.5vw, 70px);
@@ -49,17 +50,17 @@
  * Welcome - Logo 
  * ------------------------------------------------------------------------- */
 
-.welcome__logo {
+.welcome__logo-container {
 	overflow: hidden;
 	height: 85%;
 }
 
-.welcome__logo--img {
+.welcome__logo-img {
 	width: auto;
 	height: 100%;
 }
 
-.welcome__logo--txt {
+.welcome__logo-txt {
 	transform: translate(0%, -100%);
 	font-size: 1.25rem;
 	font-weight: 200;
