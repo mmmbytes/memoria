@@ -7,17 +7,10 @@
 	--primary-bg-color: #fcfdfd;
 	--secondary-bg-color: #ffffff;
 	--tertiary-bg-color: #f8f8f8;
-	--primary-font: 'Cardo', serif;
-	--secondary-font: 'Lora', serif;
+	--primary-font: Cardo, serif;
+	--secondary-font: Lora, serif;
 	--primary-text-color: #000000;
 	--secondary-text-color: #696072;
-	--btn-shadow: 0 2px 4px rgba(21, 17, 57, 0.352);
-	--btn-border-radius: 25px;
-	--btn-padding: 12px 24px;
-	--btn-bg-color: var(--tertiary-bg-color);
-	--btn-font-size: 15px;
-	--btn-font-family: var(--secondary-font);
-	--btn-font-weight: 600;
 }
 
 * {
@@ -29,32 +22,4 @@
 a {
 	text-decoration: none;
 	color: var(--secondary-text-color);
-}
-
-/* ----------------------------------------------------------------------------
- * Common Button Styles
- * ------------------------------------------------------------------------- */
-
-button {
-	border: none;
-	cursor: pointer;
-	background-color: transparent;
-	color: var(--secondary-text-color);
-}
-
-.btn {
-	transition: background-color 0.3s ease;
-	box-shadow: var(--btn-shadow);
-	border: 2px white solid;
-	border-radius: var(--btn-border-radius);
-	padding: var(--btn-padding);
-	background-color: var(--btn-bg-color);
-	font-size: var(--btn-font-size);
-	font-family: var(--btn-font-family);
-	font-weight: var(--btn-font-weight);
-}
-
-.btn:hover {
-	transform: scale(1.03);
-	box-shadow: 0 0.5rem 1.5rem rgba(120, 121, 122, 0.531);
 }
