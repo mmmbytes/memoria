@@ -94,7 +94,7 @@ function NoteManager() {
 	}
 
 	return (
-		<div className="workspace-modern workspace">
+		<div className="workspace">
 			<div className="workspace__active-note">
 				<NoteContent note={note} handleTextChange={handleTextChange} />
 			</div>

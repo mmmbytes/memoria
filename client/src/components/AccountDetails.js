@@ -1,5 +1,6 @@
 import './styles/AccountDetails.css';
 
+// TODO: Fetch and display the user's actual username and email from the backend
 function AccountDetails() {
 	return (
 		<div className="account-details">
