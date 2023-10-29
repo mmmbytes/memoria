@@ -13,7 +13,7 @@ import {
 import ActionsMenu from './ActionsMenu';
 import NoteContent from './NoteContent';
 
-/* TODO: Refactor to separate out the API functionality and makethis a UI-only
+/* TODO: Refactor to separate out the API functionality and make this a UI-only
  class. Pass a note-state function (setNote) around instead of passing API 
  functions.  */
 function NoteManager() {
