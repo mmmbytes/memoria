@@ -1,21 +1,10 @@
 /* ----------------------------------------------------------------------------
- * Nvaigation Bar - Global Styles
- * ------------------------------------------------------------------------- */
-
-.navbar,
-.navbar__container,
-.navbar__icon,
-.navbar__menu,
-.navbar__menu--show,
-.navbar__links,
-.navbar__links li,
-.navbar__links li a {
-	background-color: var(--tertiary-bg-color);
-}
-
-/* ----------------------------------------------------------------------------
  * Navigation Bar
  * ------------------------------------------------------------------------- */
+
+.navbar * {
+	background-color: var(--tertiary-bg-color);
+}
 
 .navbar {
 	position: fixed;
@@ -24,15 +13,29 @@
 	border: 1px solid var(--border-color);
 	width: 100%;
 	height: 7%;
-	min-height: 45px;
+	min-height: 55px;
 }
 
 .navbar__container {
 	display: grid;
-	grid-template-columns: auto 1fr calc(1.5rem + 15px);
+	grid-template-columns: auto 1fr calc(1.5rem + 20px);
 	align-items: center;
 	width: 100%;
 	height: 100%;
+}
+
+.navbar__icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: 20px;
+	font-size: 1.5rem;
+}
+
+.navbar__home-text {
+	font: 300 1.7rem var(--primary-font);
+	text-align: center;
+	color: var(--secondary-text-color);
 }
 
 /* ----------------------------------------------------------------------------
@@ -48,20 +51,19 @@
 	overflow: hidden;
 	transition: all 0.5s ease-out;
 	height: 93%;
-	max-height: calc(100% - 45px);
+	max-height: calc(100% - 55px);
 }
 
-.navbar__menu--show {
+.navbar__menu--visible {
 	display: flex;
 	justify-content: center;
 	visibility: visible;
 	transform: translateX(0);
 	box-shadow: 15px 0 20px -10px #d9dee3;
 	border: 1px solid var(--border-color);
-	width: 15%;
-	min-width: 245px;
+	width: 85%;
 	height: 93%;
-	max-height: calc(100% - 45px);
+	max-height: calc(100% - 55px);
 }
 
 /* ----------------------------------------------------------------------------
@@ -73,14 +75,14 @@
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	margin: 40px;
+	margin: 46px 20px;
 	width: 100%;
-	font: 1.2rem var(--secondary-font);
+	font: 1.4rem var(--secondary-font);
 	text-align: center;
 }
 
 .navbar__links li {
-	margin: 8% 0;
+	margin: 3%;
 	padding: 3%;
 }
 
@@ -89,42 +91,31 @@
 }
 
 /* ----------------------------------------------------------------------------
- * Menu Icon - Button
- * ------------------------------------------------------------------------- */
-
-.navbar__icon {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-left: 15px;
-	font-size: 1.5rem;
-}
-
-/* ----------------------------------------------------------------------------
- * Home Icon - Button
- * ------------------------------------------------------------------------- */
-
-.navbar__home-icon--text {
-	font: 300 1.7rem var(--primary-font);
-	text-align: center;
-	color: var(--secondary-text-color);
-}
-
-/* ----------------------------------------------------------------------------
  * Responsive Breakpoints
  * ------------------------------------------------------------------------- */
 
-@media only screen and (max-width: 576px) {
-	.navbar__menu--show {
-		width: 80%;
+@media screen and (min-width: 400px) {
+	.navbar__container {
+		grid-template-columns: auto 1fr calc(1.5rem + 40px);
+	}
+
+	.navbar__icon {
+		margin-left: 40px;
 	}
 
 	.navbar__links {
-		margin: 50px;
+		margin: 56px 20px;
+	}
+}
+
+@media only screen and (min-width: 576px) {
+	.navbar__menu--visible {
+		width: 15%;
+		min-width: 245px;
 	}
 
 	.navbar__links li {
-		margin: 2.5% 0;
-		font-size: 1.4rem;
+		margin: 4%;
+		padding: 4%;
 	}
 }

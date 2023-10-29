@@ -1,22 +1,28 @@
 /* ----------------------------------------------------------------------------
- * Note 
+ * Note - Container
  * ------------------------------------------------------------------------- */
+
+.note,
+.note__body-container,
+.note__body {
+	width: 100%;
+	height: 100%;
+}
 
 .note {
 	display: flex;
 	flex-direction: column;
-	width: 100%;
-	height: 100%;
-	padding: 0.5rem;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem;
+	padding-bottom: 0;
 }
 
 /* ----------------------------------------------------------------------------
  * Note - Title and Body
  * ------------------------------------------------------------------------- */
-
 .note__title,
 .note__body {
-	margin: 0.5rem;
 	border: none;
 	padding: 1rem;
 	font-family: var(--primary-font);
@@ -28,15 +34,46 @@
 	outline: none;
 }
 
+/* ----------------------------------------------------------------------------
+ * Note - Title
+ * ------------------------------------------------------------------------- */
 .note__title {
+	width: 100%;
+	margin: 0.2rem;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	font-size: clamp(1.5rem, 3vw, 3.33rem);
 }
 
+/* ----------------------------------------------------------------------------
+ * Note - Body Container
+ * ------------------------------------------------------------------------- */
+.note__body-container {
+	position: relative;
+	margin: 0.2rem;
+}
+
+.note__body-container::after {
+	content: '';
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 2.25rem;
+	background: linear-gradient(
+		to bottom,
+		rgba(255, 255, 255, 0),
+		rgba(255, 255, 255, 1)
+	);
+	pointer-events: none;
+}
+
+/* ----------------------------------------------------------------------------
+ * Note - Body
+ * ------------------------------------------------------------------------- */
 .note__body {
-	height: 80%;
 	font-size: 1rem;
 	resize: none;
 }
