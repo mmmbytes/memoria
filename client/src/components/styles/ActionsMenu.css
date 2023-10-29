@@ -1,0 +1,74 @@
+/* ----------------------------------------------------------------------------
+ * Main Button
+ * ------------------------------------------------------------------------- */
+
+.actions-menu__toggle-btn {
+	position: fixed;
+	z-index: 2;
+	top: 30px;
+	right: 20px;
+	font-size: clamp(1.5rem, 3vw, 3.33rem);
+}
+
+/* ----------------------------------------------------------------------------
+ * Dropdown Menu
+ * ------------------------------------------------------------------------- */
+
+.actions-menu__dropdown {
+	position: fixed;
+	top: 0;
+	left: 0;
+	visibility: hidden;
+	width: 100%;
+	height: 93%;
+	max-height: calc(100% - 55px);
+	padding: 76px 30px;
+	background-color: rgba(252, 253, 253, 0.81);
+}
+
+.actions-menu__dropdown--visible {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	visibility: visible;
+	gap: 30px;
+}
+
+/* ----------------------------------------------------------------------------
+ * Dropdown Buttons
+ * ------------------------------------------------------------------------- */
+
+.actions-menu__btn {
+	width: 100%;
+	max-width: 40ch;
+}
+
+/* ----------------------------------------------------------------------------
+ * Responsive Breakpoints
+ * ------------------------------------------------------------------------- */
+
+@media screen and (min-width: 400px) {
+	.actions-menu__toggle-btn {
+		top: 40px;
+		right: 40px;
+	}
+
+	.actions-menu__dropdown {
+		padding: 86px 40px;
+	}
+}
+
+@media screen and (min-width: 576px) {
+	.actions-menu__dropdown {
+		padding: 96px calc(60px + 3vw);
+	}
+
+	.actions-menu__dropdown--visible {
+		align-items: flex-end;
+	}
+
+	.actions-menu__btn {
+		width: 175px;
+	}
+}

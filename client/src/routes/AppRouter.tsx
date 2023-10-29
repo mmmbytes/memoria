@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import AuthCallback from '../utils/AuthCallback';
+import Account from '../views/Account';
 import NotesCollection from '../views/NotesCollection';
 import NoteWorkspace from '../views/NoteWorkspace';
 import Welcome from '../views/Welcome';
@@ -24,6 +25,10 @@ const AppRouter: React.FC = () => {
 					<Route
 						path="/notes-collection"
 						element={<PrivateRoute component={NotesCollection} />}
+					/>
+					<Route
+						path="/account"
+						element={<PrivateRoute component={Account} />}
 					/>
 				</>
 			</Routes>

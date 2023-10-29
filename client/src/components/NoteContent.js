@@ -11,13 +11,15 @@ function NoteContent({ note, handleTextChange }) {
 				onChange={handleTextChange}
 				value={note.title || ''}
 			/>
-			<textarea
-				className="note__body"
-				name="textbody"
-				placeholder="Begin your writing journey here..."
-				onChange={handleTextChange}
-				value={note.textbody || ''}
-			></textarea>
+			<div className="note__body-container">
+				<textarea
+					className="note__body"
+					name="textbody"
+					placeholder="Begin your writing journey here..."
+					onChange={handleTextChange}
+					value={note.textbody || ''}
+				></textarea>
+			</div>
 		</div>
 	);
 }
