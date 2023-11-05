@@ -88,6 +88,7 @@ async function jwtVerify(req, res, next) {
 		}
 
 		req.sub = jwt.decode(idToken).sub; // sub = Cognito user id
+		req.idToken = idToken;
 		next();
 	} catch (error) {
 		handleAuthError(

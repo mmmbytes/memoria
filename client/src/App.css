@@ -7,10 +7,12 @@
 	--primary-bg-color: #fcfdfd;
 	--secondary-bg-color: #ffffff;
 	--tertiary-bg-color: #f8f8f8;
+	--frosted-bg-color: rgba(252, 253, 253, 0.82);
 	--primary-font: Cardo, serif;
 	--secondary-font: Lora, serif;
 	--primary-text-color: #000000;
 	--secondary-text-color: #696072;
+	--text-shadow: 0 0.125rem 0.25rem rgba(141, 141, 141, 0.377);
 }
 
 * {

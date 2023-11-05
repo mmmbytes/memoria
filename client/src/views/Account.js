@@ -1,10 +1,8 @@
 import './styles/Account.css';
 
 import AccountDetails from '../components/AccountDetails';
-import {
-	DeleteAccountButton,
-	SignOutButton,
-} from '../components/buttons/AccountActionsButtons';
+import { SignOutButton } from '../components/buttons/AccountActionsButtons';
+import { DeleteAccountButton } from '../components/buttons/DeleteAccountButton';
 import btnMod from '../sharedStyles/button.module.css';
 
 function Account() {
@@ -21,8 +19,7 @@ function Account() {
 				</div>
 				<div className="account__btn-actions-2">
 					<DeleteAccountButton
-						className={`${btnMod.btn}`}
-						id="account__btn-delete"
+						className={`${btnMod.btn} ${btnMod.btnDelete}`}
 					/>
 				</div>
 			</div>
