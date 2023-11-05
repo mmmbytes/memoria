@@ -4,6 +4,7 @@ const DEFAULT_OPTIONS = {
 	headers: { 'Content-Type': 'application/json' },
 };
 
+// TODO: Consider combining this with NoteApi's handleResponse in a separate utility file
 const handleResponse = async (response) => {
 	switch (response.status) {
 		case 204:

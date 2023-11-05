@@ -14,6 +14,7 @@ export function DeleteAccountButton({ className, id }) {
 	const handleDeleteAccount = async (event) => {
 		event.stopPropagation();
 
+		// TODO: Combine deleteAllNotes and deleteAccount into one API call
 		try {
 			await deleteAllNotes();
 			await deleteAccount();
