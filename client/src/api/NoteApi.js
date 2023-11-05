@@ -62,6 +62,13 @@ export const deleteNote = (noteId) => {
 	return apiRequest(`/api/notes/${noteId}`, options);
 };
 
+export const deleteAllNotes = () => {
+	const options = {
+		method: 'DELETE',
+	};
+	return apiRequest('/api/notes', options);
+};
+
 export const createNote = () => {
 	const options = {
 		method: 'POST',

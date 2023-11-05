@@ -2,6 +2,7 @@ const express = require('express');
 const {
 	createNote,
 	deleteNote,
+	deleteAllNotes,
 	getAllNotes,
 	getLatestNote,
 	getNote,
@@ -21,5 +22,7 @@ router.post('/', createNote);
 router.put('/:id', updateNote);
 
 router.delete('/:id', deleteNote);
+
+router.delete('/', deleteAllNotes);
 
 module.exports = router;

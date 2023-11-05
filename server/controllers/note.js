@@ -100,9 +100,24 @@ const deleteNote = async (req, res) => {
 	}
 };
 
+const deleteAllNotes = async (req, res) => {
+	try {
+		const notes = await Note.deleteMany({ sub: req.sub });
+		if (notes.deletedCount === 0) {
+			return res
+				.status(204)
+				.json({ statusCode: 204, message: 'No notes found' });
+		}
+		res.status(200).json({ message: 'All notes deleted' });
+	} catch (error) {
+		res.status(500).json({ statusCode: 500, message: error.message });
+	}
+};
+
 module.exports = {
 	createNote,
 	deleteNote,
+	deleteAllNotes,
 	getAllNotes,
 	getLatestNote,
 	getNote,
