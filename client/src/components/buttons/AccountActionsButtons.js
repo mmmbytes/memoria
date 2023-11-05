@@ -1,5 +1,3 @@
-import { useNavigate } from 'react-router-dom';
-
 export function SignInButton({ className }) {
 	const handleLogin = () => {
 		const loginUrl = process.env.REACT_APP_LOGIN_URL;
@@ -22,26 +20,6 @@ export function SignOutButton({ className }) {
 	return (
 		<button type="button" className={className} onClick={handleLogout}>
 			Sign Out
-		</button>
-	);
-}
-
-export function DeleteAccountButton({ className, id }) {
-	const navigate = useNavigate();
-
-	// TODO: Add delete account functionality
-	const handleDeleteAccount = () => {
-		navigate('/welcome');
-	};
-
-	return (
-		<button
-			type="button"
-			className={className}
-			id={id}
-			onClick={handleDeleteAccount}
-		>
-			Delete Account
 		</button>
 	);
 }

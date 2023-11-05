@@ -23,7 +23,12 @@
 	height: 93%;
 	max-height: calc(100% - 55px);
 	padding: 76px 30px;
-	background-color: rgba(252, 253, 253, 0.81);
+	background: linear-gradient(
+		to bottom,
+		rgba(252, 253, 253, 0.98) 20%,
+		rgba(252, 253, 253, 0.92) 30%,
+		var(--frosted-bg-color) 95%
+	);
 }
 
 .actions-menu__dropdown--visible {
@@ -62,6 +67,7 @@
 @media screen and (min-width: 576px) {
 	.actions-menu__dropdown {
 		padding: 96px calc(60px + 3vw);
+		background: var(--frosted-bg-color);
 	}
 
 	.actions-menu__dropdown--visible {
