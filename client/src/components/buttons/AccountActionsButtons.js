@@ -1,43 +1,25 @@
-import { useNavigate } from 'react-router-dom';
-
 export function SignInButton({ className }) {
-	const handleLoginUrl = () => {
-		window.location.href = process.env.REACT_APP_LOGIN_URL;
+	const handleLogin = () => {
+		const loginUrl = process.env.REACT_APP_LOGIN_URL;
+		window.location.href = loginUrl;
 	};
 
 	return (
-		<button className={className} onClick={handleLoginUrl}>
+		<button type="button" className={className} onClick={handleLogin}>
 			Register / Sign In
 		</button>
 	);
 }
 
 export function SignOutButton({ className }) {
-	const navigate = useNavigate();
-
-	// TODO: Add sign out functionality
-	const handleSignOutUrl = () => {
-		navigate('/welcome');
+	const handleLogout = () => {
+		const logoutUrl = process.env.REACT_APP_LOGOUT_URL;
+		window.location.href = logoutUrl;
 	};
 
 	return (
-		<button className={className} onClick={handleSignOutUrl}>
+		<button type="button" className={className} onClick={handleLogout}>
 			Sign Out
-		</button>
-	);
-}
-
-export function DeleteAccountButton({ className, id }) {
-	const navigate = useNavigate();
-
-	// TODO: Add delete account functionality
-	const handleDeleteAccount = () => {
-		navigate('/welcome');
-	};
-
-	return (
-		<button className={className} id={id} onClick={handleDeleteAccount}>
-			Delete Account
 		</button>
 	);
 }

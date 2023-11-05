@@ -6,6 +6,7 @@
 	--btn-font-size: 15px;
 	--btn-font-family: var(--secondary-font);
 	--btn-font-weight: 600;
+	--btn-delete-text-color: #ff002e;
 }
 
 .btn {
@@ -13,6 +14,10 @@
 	background-color: transparent;
 	cursor: pointer;
 	color: var(--secondary-text-color);
+}
+
+.btn:hover {
+	text-shadow: var(--text-shadow);
 }
 
 .btnStyled {
@@ -30,4 +35,10 @@
 .btnStyled:hover {
 	transform: scale(1.03);
 	box-shadow: 0 0.5rem 1.5rem rgba(120, 121, 122, 0.531);
+}
+
+.btnDelete {
+	font-size: 1rem;
+	font-family: var(--secondary-font);
+	color: var(--btn-delete-text-color);
 }

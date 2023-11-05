@@ -1,0 +1,81 @@
+/* ----------------------------------------------------------------------------
+ * Delete Account Modal
+ * --------------------------------------------------------------------------*/
+
+.delete-account-modal,
+.delete-account-modal__container,
+.delete-account-modal__action-btns {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.delete-account-modal {
+	justify-content: center;
+	position: fixed;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	padding: 40px clamp(5px, 5%, 56px);
+	background-color: var(--frosted-bg-color);
+	font-family: var(--secondary-font);
+	color: var(--secondary-text-color);
+}
+
+/* ----------------------------------------------------------------------------
+ * Modal Container
+ * --------------------------------------------------------------------------*/
+
+.delete-account-modal__container {
+	justify-content: flex-start;
+	gap: 20px;
+	border-radius: 8px;
+	height: 100%;
+	padding: 20px 15%;
+	background: radial-gradient(
+		circle at center,
+		var(--secondary-bg-color) 70%,
+		var(--frosted-bg-color) 100%
+	);
+}
+
+/* ----------------------------------------------------------------------------
+ * Modal Header
+ * --------------------------------------------------------------------------*/
+
+.delete-account-modal__header {
+	font-size: clamp(2rem, 3.4vw, 3.68rem);
+}
+
+/* ----------------------------------------------------------------------------
+ * Action Buttons
+ * --------------------------------------------------------------------------*/
+
+.delete-account-modal__action-btns {
+	justify-content: center;
+	gap: 60px;
+	padding: 20px;
+}
+
+#delete-account-modal__btn-nevermind {
+	font-family: var(--secondary-font);
+	font-weight: 600;
+	font-size: 1rem;
+}
+
+/* ----------------------------------------------------------------------------
+ * Responsive Breakpoints
+ * --------------------------------------------------------------------------*/
+
+@media (min-width: 768px) {
+	.delete-account-modal {
+		padding: 56px;
+	}
+
+	.delete-account-modal__container {
+		width: 65%;
+		height: 95%;
+	}
+}

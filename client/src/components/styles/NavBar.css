@@ -35,6 +35,7 @@
 .navbar__home-text {
 	font: 300 1.7rem var(--primary-font);
 	text-align: center;
+	letter-spacing: 3.5px;
 	color: var(--secondary-text-color);
 }
 

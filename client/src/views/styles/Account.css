@@ -1,9 +1,16 @@
 /* ----------------------------------------------------------------------------
- * Account - Container
+ * Account Page
  * ------------------------------------------------------------------------- */
 
-.account {
+.account,
+.account__details,
+.account__btn-actions-1,
+.account__btn-actions-2,
+.account__btn-signout {
 	display: flex;
+}
+
+.account {
 	justify-content: center;
 	max-width: 100vw;
 	min-height: min(93vh, calc(100vh - 55px));
@@ -11,13 +18,6 @@
 	margin-bottom: max(7vh, 55px);
 	background-color: var(--primary-bg-color);
 	font-family: var(--primary-font);
-}
-
-.account__details,
-.account__btn-actions-1,
-.account__btn-actions-2,
-.account__btn-signout {
-	display: flex;
 }
 
 /* ----------------------------------------------------------------------------
@@ -76,11 +76,6 @@
 	width: fit-content;
 	height: fit-content;
 	padding: 12px 40px;
-}
-
-#account__btn-delete {
-	font-family: var(--secondary-font);
-	color: #ff002e;
 }
 
 /* ----------------------------------------------------------------------------
