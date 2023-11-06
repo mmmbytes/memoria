@@ -16,7 +16,7 @@ const deleteAccount = async (req, res) => {
 
 	try {
 		const deleteCommand = new AdminDeleteUserCommand({
-			UserPoolId: process.env.COGNITO_USER_POOL_ID,
+			UserPoolId: process.env.USER_POOL_ID,
 			Username: username,
 		});
 		await cognitoClient.send(deleteCommand);
