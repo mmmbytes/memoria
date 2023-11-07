@@ -1,26 +1,16 @@
-const {
-	CognitoIdentityProviderClient,
-	AdminDeleteUserCommand,
-} = require('@aws-sdk/client-cognito-identity-provider');
-
 const jwt = require('jsonwebtoken');
 
-const REGION = 'us-east-1';
-
-const cognitoClient = new CognitoIdentityProviderClient({ region: REGION });
+const accountService = require('../services/account');
 
 const deleteAccount = async (req, res) => {
+	const sub = req.sub;
 	const idToken = req.idToken;
 	const decoded = jwt.decode(idToken);
 	const username = decoded['cognito:username'] || decoded['username'];
 
 	try {
-		const deleteCommand = new AdminDeleteUserCommand({
-			UserPoolId: process.env.USER_POOL_ID,
-			Username: username,
-		});
-		await cognitoClient.send(deleteCommand);
-		res.status(200).json({ message: 'User deleted' });
+		await accountService.deleteAccount(sub, username);
+		res.status(200).json({ message: 'Account and notes successfully deleted' });
 	} catch (error) {
 		res.status(500).json({ message: error.message });
 	}

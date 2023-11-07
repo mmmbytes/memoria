@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { deleteAccount } from '../../api/AccountApi';
-import { deleteAllNotes } from '../../api/NoteApi';
 import btnMod from '../../sharedStyles/button.module.css';
 
 export function DeleteAccountButton({ className, id }) {
@@ -14,9 +13,7 @@ export function DeleteAccountButton({ className, id }) {
 	const handleDeleteAccount = async (event) => {
 		event.stopPropagation();
 
-		// TODO: Combine deleteAllNotes and deleteAccount into one API call
 		try {
-			await deleteAllNotes();
 			await deleteAccount();
 
 			navigate('/welcome');
