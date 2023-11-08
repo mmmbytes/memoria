@@ -14,9 +14,8 @@ export function SignInButton({ className }) {
 }
 
 export function SignOutButton({ className }) {
-	deleteAuthCookie();
-
 	const handleLogout = () => {
+		deleteAuthCookie();
 		const logoutUrl = process.env.REACT_APP_LOGOUT_URL;
 		window.location.href = logoutUrl;
 	};
