@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { deleteAccount } from '../../api/AccountApi';
 import btnMod from '../../sharedStyles/button.module.css';
+import { deleteAuthCookie } from '../../utils/AccountUtils';
 
 export function DeleteAccountButton({ className, id }) {
 	const [modalOpen, setModalOpen] = useState(false);
@@ -15,7 +16,7 @@ export function DeleteAccountButton({ className, id }) {
 
 		try {
 			await deleteAccount();
-
+			deleteAuthCookie();
 			navigate('/welcome');
 		} catch (error) {
 			// TODO: Create error handling component that displays error message to user

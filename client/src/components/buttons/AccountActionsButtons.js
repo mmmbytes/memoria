@@ -1,3 +1,5 @@
+import { deleteAuthCookie } from '../../utils/AccountUtils';
+
 export function SignInButton({ className }) {
 	const handleLogin = () => {
 		const loginUrl = process.env.REACT_APP_LOGIN_URL;
@@ -12,6 +14,8 @@ export function SignInButton({ className }) {
 }
 
 export function SignOutButton({ className }) {
+	deleteAuthCookie();
+
 	const handleLogout = () => {
 		const logoutUrl = process.env.REACT_APP_LOGOUT_URL;
 		window.location.href = logoutUrl;
