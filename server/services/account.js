@@ -5,6 +5,7 @@ const {
 } = require('@aws-sdk/client-cognito-identity-provider');
 
 const noteService = require('./note');
+
 const REGION = 'us-east-1';
 const cognitoClient = new CognitoIdentityProviderClient({ region: REGION });
 
