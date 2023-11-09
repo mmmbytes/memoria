@@ -3,8 +3,7 @@ import { useCookies } from 'react-cookie';
 import { Navigate } from 'react-router-dom';
 
 import NavBar from '../components/NavBar';
-
-const AUTH_COOKIE_NAME = 'isAuthenticated';
+import { AUTH_COOKIE_NAME } from '../constants/constants';
 
 interface PrivateRouteProps {
 	component: ComponentType;
