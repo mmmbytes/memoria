@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { deleteAccount } from '../../api/AccountApi';
-import { deleteAllNotes } from '../../api/NoteApi';
 import btnMod from '../../sharedStyles/button.module.css';
+import { deleteAuthCookie } from '../../utils/AccountUtils';
 
 export function DeleteAccountButton({ className, id }) {
 	const [modalOpen, setModalOpen] = useState(false);
@@ -14,11 +14,9 @@ export function DeleteAccountButton({ className, id }) {
 	const handleDeleteAccount = async (event) => {
 		event.stopPropagation();
 
-		// TODO: Combine deleteAllNotes and deleteAccount into one API call
 		try {
-			await deleteAllNotes();
 			await deleteAccount();
-
+			deleteAuthCookie();
 			navigate('/welcome');
 		} catch (error) {
 			// TODO: Create error handling component that displays error message to user
