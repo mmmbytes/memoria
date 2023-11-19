@@ -14,6 +14,7 @@ WORKDIR /usr/src/app
 COPY server/ ./server/
 COPY client/ ./client/
 
+WORKDIR /usr/src/app/client
 RUN npm run build
 
 WORKDIR /usr/src/app/server
