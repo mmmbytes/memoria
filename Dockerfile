@@ -9,17 +9,18 @@ RUN npm install
 
 WORKDIR /usr/src/app/client
 RUN npm install
-RUN npm run build
 
 WORKDIR /usr/src/app
 COPY server/ ./server/
 COPY client/ ./client/
 
-#DEVELOPMENT
-EXPOSE 3000
+RUN npm run build
 
+WORKDIR /usr/src/app/server
+#DEVELOPMENT
+EXPOSE 3000  
 #PRODUCTION
-EXPOSE 8080
+EXPOSE 8080  
 
 WORKDIR /usr/src/app/server
 CMD ["npm", "start"]
