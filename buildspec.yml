@@ -26,3 +26,6 @@ phases:
       - >
         docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/memoria-docker-images:latest
         || echo "Docker push failed"
+artifacts:
+  files:
+    - Dockerrun.aws.json
