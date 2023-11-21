@@ -29,3 +29,4 @@ phases:
 artifacts:
   files:
     - Dockerrun.aws.json
+    - .platform/nginx/conf.d/proxy.conf

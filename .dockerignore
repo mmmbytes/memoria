@@ -2,7 +2,6 @@
 *.log
 *.tmp
 README.md
-.platform/
 buildspec.yml
 Procfile
 
