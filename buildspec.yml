@@ -8,12 +8,16 @@ phases:
       - echo $AWS_ACCOUNT_ID
       - echo $AWS_DEFAULT_REGION
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      - echo "REACT_APP_LOGIN_URL = $REACT_APP_LOGIN_URL"
+      - echo "REACT_APP_LOGOUT_URL = $REACT_APP_LOGOUT_URL"
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
       - >
-        docker build -t memoria:latest .
+        docker build --build-arg REACT_APP_LOGIN_URL=$REACT_APP_LOGIN_URL
+                     --build-arg REACT_APP_LOGOUT_URL=$REACT_APP_LOGOUT_URL 
+                     -t memoria:latest .
         || echo "Docker build failed"
       - >
         docker tag memoria:latest

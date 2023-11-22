@@ -14,6 +14,12 @@ WORKDIR /usr/src/app
 COPY server/ ./server/
 COPY client/ ./client/
 
+ARG REACT_APP_LOGIN_URL
+ARG REACT_APP_LOGOUT_URL
+
+ENV REACT_APP_LOGIN_URL=$REACT_APP_LOGIN_URL
+ENV REACT_APP_LOGOUT_URL=$REACT_APP_LOGOUT_URL
+
 WORKDIR /usr/src/app/client
 RUN npm run build
 
