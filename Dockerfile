@@ -18,10 +18,10 @@ WORKDIR /usr/src/app/client
 RUN npm run build
 
 WORKDIR /usr/src/app/server
-#DEVELOPMENT
-EXPOSE 3000  
 #PRODUCTION
 EXPOSE 8080  
+#DEVELOPMENT
+EXPOSE 3000  
 
 WORKDIR /usr/src/app/server
 CMD ["npm", "start"]
