@@ -1,0 +1,12 @@
+{
+	"AWSEBDockerrunVersion": "1",
+	"Image": {
+		"Name": "853602538909.dkr.ecr.us-east-1.amazonaws.com/memoria-docker-images:latest",
+		"Update": "true"
+	},
+	"Ports": [
+		{
+			"ContainerPort": "8080"
+		}
+	]
+}

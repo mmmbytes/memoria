@@ -1,0 +1,34 @@
+# TODO: Consider using versioned tags instead of 'latest' for better control in production.
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo "Logging in to Amazon ECR..."
+      - echo $AWS_ACCOUNT_ID
+      - echo $AWS_DEFAULT_REGION
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+      - echo "REACT_APP_LOGIN_URL = $REACT_APP_LOGIN_URL"
+      - echo "REACT_APP_LOGOUT_URL = $REACT_APP_LOGOUT_URL"
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - >
+        docker build --build-arg REACT_APP_LOGIN_URL=$REACT_APP_LOGIN_URL --build-arg REACT_APP_LOGOUT_URL=$REACT_APP_LOGOUT_URL -t memoria:latest .
+        || echo "Docker build failed"
+      - >
+        docker tag memoria:latest
+        $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/memoria-docker-images:latest
+        || echo "Docker tagging failed"
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - >
+        docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/memoria-docker-images:latest
+        || echo "Docker push failed"
+artifacts:
+  files:
+    - Dockerrun.aws.json
+    - .platform/nginx/conf.d/proxy.conf
