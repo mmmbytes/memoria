@@ -12,6 +12,10 @@ Memoria's minimalist design philosophy ensures a clutter-free environment that a
 
 Memoria is being developed using the MERN stack (MongoDB, Express, React, and Node.js), ensuring a robust and scalable foundation. As Memoria continues to evolve, additional layers may be incorporated to enhance its capabilities. We welcome your suggestions and ideas for potential stacks that could further enrich this application.
 
+### System Design
+
+![System Design Diagram](/client/src/images/memoria-system-design.png)
+
 ## Contribute and Collaborate
 
 We invite you to be a part of Memoria's journey, whether by testing the app, providing feedback, suggesting features, or contributing to the development. Your insights and expertise are valuable in creating a truly transformative tool for organizing thoughts and memories.
@@ -29,7 +33,3 @@ Memoria's intelligent tagging system will categorize your notes automatically, h
 Leveraging the power of the tagging system, Memoria's unique organizational approach will reflect the true interconnectedness of our thoughts. Each note will belong to multiple families, enabling you to create diverse note collections tailored to your specific documentation needs.
 
 Join us on this exciting journey as we continue to develop and improve Memoria. Together, let's redefine the way we organize our thoughts and memories!
-
-### System Design Diagram
-
-![System Design Diagram](/client/src/images/memoria-system-design.png)
