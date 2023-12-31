@@ -29,3 +29,7 @@ Memoria's intelligent tagging system will categorize your notes automatically, h
 Leveraging the power of the tagging system, Memoria's unique organizational approach will reflect the true interconnectedness of our thoughts. Each note will belong to multiple families, enabling you to create diverse note collections tailored to your specific documentation needs.
 
 Join us on this exciting journey as we continue to develop and improve Memoria. Together, let's redefine the way we organize our thoughts and memories!
+
+### System Design Diagram
+
+![System Design Diagram](/client/src/images/memoria-system-design.png)
