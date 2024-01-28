@@ -25,11 +25,11 @@ phases:
 
       - echo "Building Docker image for Analytics Service..."
       - >
-        docker build -t memoria-analytics-service:latest .
+        docker build -t memoria-analytics-service:latest ./analytics_service
         || echo "Docker build for Analytics Service failed"
       - >
         docker tag memoria-analytics-service:latest
-        $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/memoria-docker-images:memoria-analytics-service-latest ./analytics_service
+        $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/memoria-docker-images:memoria-analytics-service-latest 
         || echo "Docker tagging failed"
       - cd ..
   post_build:
