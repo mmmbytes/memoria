@@ -1,12 +1,23 @@
 {
-	"AWSEBDockerrunVersion": "1",
-	"Image": {
-		"Name": "853602538909.dkr.ecr.us-east-1.amazonaws.com/memoria-docker-images:latest",
-		"Update": "true"
-	},
-	"Ports": [
+	"AWSEBDockerrunVersion": "2",
+	"ContainerDefinitions": [
 		{
-			"ContainerPort": "8080"
+			"name": "main_application",
+			"image": "853602538909.dkr.ecr.us-east-1.amazonaws.com/memoria-docker-images:memoria-main-app-latest",
+			"essential": "true",
+			"memory": "128",
+			"portMappings": [
+				{
+					"HostPort": "80",
+					"ContainerPort": "8080"
+				}
+			]
+		},
+		{
+			"name": "analytics_service",
+			"image": "853602538909.dkr.ecr.us-east-1.amazonaws.com/memoria-docker-images:memoria-analytics-service-latest",
+			"essential": "false",
+			"memory": "128"
 		}
 	]
 }
