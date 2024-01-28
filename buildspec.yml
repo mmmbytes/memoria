@@ -12,25 +12,24 @@ phases:
       - echo "REACT_APP_LOGOUT_URL = $REACT_APP_LOGOUT_URL"
   build:
     commands:
-      - echo Build started on `date`
+      - echo "Build started on $(date)"
+
       - echo "Building Docker image for Main Application..."
-      - cd main_application
       - >
-        docker build --build-arg REACT_APP_LOGIN_URL=$REACT_APP_LOGIN_URL --build-arg REACT_APP_LOGOUT_URL=$REACT_APP_LOGOUT_URL -t memoria-main-app:latest .
-        || echo "Docker build failed"
+        docker build --build-arg REACT_APP_LOGIN_URL=$REACT_APP_LOGIN_URL --build-arg REACT_APP_LOGOUT_URL=$REACT_APP_LOGOUT_URL -t memoria-main-app:latest ./main_application
+        || echo "Docker build for Main Application failed"
       - >
         docker tag memoria-main-app:latest
         $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/memoria-docker-images:memoria-main-app-latest
         || echo "Docker tagging failed"
 
       - echo "Building Docker image for Analytics Service..."
-      - cd analytics_service
       - >
         docker build -t memoria-analytics-service:latest .
-        || echo "Docker build failed"
+        || echo "Docker build for Analytics Service failed"
       - >
         docker tag memoria-analytics-service:latest
-        $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/memoria-docker-images:memoria-analytics-service-latest
+        $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/memoria-docker-images:memoria-analytics-service-latest ./analytics_service
         || echo "Docker tagging failed"
       - cd ..
   post_build:
