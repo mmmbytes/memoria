@@ -1,0 +1,13 @@
+.note-insights {
+	height: 100vh;
+	padding: 40px 30px;
+	background-color: var(--primary-bg-color);
+	font-family: var(--primary-font);
+	display: flex;
+	justify-content: center;
+}
+
+.signup-btn {
+	margin-top: 20px;
+	justify-content: center;
+}

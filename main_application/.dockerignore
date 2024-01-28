@@ -1,9 +1,6 @@
 # General
 *.log
 *.tmp
-README.md
-buildspec.yml
-Procfile
 
 # Client
 client/node_modules/

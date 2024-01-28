@@ -8,6 +8,7 @@ require('express-async-errors');
 const jwtVerify = require('./utils/jwtVerify');
 const authRoutes = require('./routes/auth');
 const noteRoutes = require('./routes/note');
+const insightsRoutes = require('./routes/noteInsights');
 const accountRoutes = require('./routes/account');
 
 if (process.env.NODE_ENV !== 'UAT') {
@@ -27,6 +28,7 @@ app.use((req, res, next) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/notes', jwtVerify, noteRoutes);
+app.use('/api/insights', jwtVerify, insightsRoutes);
 app.use('/api/account', jwtVerify, accountRoutes);
 
 app.get('*', (req, res) => {
