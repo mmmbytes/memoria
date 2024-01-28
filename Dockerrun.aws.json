@@ -1,6 +1,6 @@
 {
 	"AWSEBDockerrunVersion": "2",
-	"containerDefinitions": [
+	"ContainerDefinitions": [
 		{
 			"name": "main_application",
 			"image": "853602538909.dkr.ecr.us-east-1.amazonaws.com/memoria-docker-images:memoria-main-app-latest",
