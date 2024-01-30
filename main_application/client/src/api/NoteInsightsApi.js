@@ -6,5 +6,5 @@ export const fetchInsightsData = (message) => {
 		method: 'POST',
 		body: JSON.stringify({ message }),
 	};
-	return apiRequest('/api/insights', options);
+	return apiRequest('/api/insights/test-message', options);
 };
