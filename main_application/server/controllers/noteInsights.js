@@ -2,6 +2,7 @@ const insightsService = require('../services/noteInsights');
 
 const testInsights = async (req, res) => {
 	try {
+		console.log(req.body);
 		const testMessage = await insightsService.testInsights(req.body);
 		res.status(200).json(testMessage);
 	} catch (error) {
