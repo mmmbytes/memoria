@@ -25,11 +25,14 @@ const handleResponse = async (response) => {
 
 export const apiRequest = async (url, options = {}) => {
 	console.log('apiRequest called');
+	console.log(url);
+	console.log(options);
 	const mergedOptions = { ...DEFAULT_OPTIONS, ...options };
 
 	try {
 		console.log('POST request attempted');
 		const response = await fetch(url, mergedOptions);
+		console.log(response);
 		return handleResponse(response);
 	} catch (error) {
 		console.error(error);
