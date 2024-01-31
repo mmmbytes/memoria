@@ -4,7 +4,7 @@ const testInsights = async (data) => {
 	console.log('testInsights called with data:' + data);
 	const options = {
 		protocol: 'http:',
-		hostname: 'localhost',
+		hostname: 'analytics_service',
 		port: 8000,
 		path: '/test-message',
 		method: 'POST',

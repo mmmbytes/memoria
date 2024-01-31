@@ -11,7 +11,8 @@
 					"hostPort": "80",
 					"containerPort": "8080"
 				}
-			]
+			],
+			"links": ["analytics_service"]
 		},
 		{
 			"name": "analytics_service",
@@ -19,5 +20,6 @@
 			"essential": "false",
 			"memory": "250"
 		}
-	]
+	],
+	"networkMode": "bridge"
 }
