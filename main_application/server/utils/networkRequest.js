@@ -4,7 +4,7 @@ const isJson = require('./isJson.js');
 
 const networkRequest = async (options, postData) => {
 	return new Promise((resolve, reject) => {
-		const protocol = options.protocol === 'http' ? http : https;
+		const protocol = options.protocol === 'http:' ? http : https;
 
 		const request = protocol.request(options, (response) => {
 			let data = '';

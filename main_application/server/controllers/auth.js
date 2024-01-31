@@ -23,7 +23,7 @@ const exchangeAuthCode = async (req, res) => {
 	});
 
 	const options = {
-		protocol: 'https',
+		protocol: 'https:',
 		hostname: process.env.COGNITO_DOMAIN,
 		path: '/oauth2/token',
 		method: 'POST',
