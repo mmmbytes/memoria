@@ -14,6 +14,7 @@ const networkRequest = async (options, postData) => {
 			response.on('end', () => {
 				try {
 					if (response.statusCode >= 400) {
+						console.log('Error Details:', parsedData);
 						const parsedData = isJson(data) ? JSON.parse(data) : {};
 						return reject({
 							statusCode: response.statusCode,
