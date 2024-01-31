@@ -1,8 +1,9 @@
-const httpsRequest = require('../utils/httpsRequest');
+const httpRequest = require('../utils/networkRequest');
 
 const testInsights = async (data) => {
 	console.log('testInsights called with data:' + data);
 	const options = {
+		protocol: 'http:',
 		hostname: 'analytics_service',
 		port: 8000,
 		path: '/test-message',
@@ -13,7 +14,7 @@ const testInsights = async (data) => {
 	};
 
 	try {
-		const response = await httpsRequest(options, data);
+		const response = await httpRequest(options, data);
 		console.log(response);
 		return response;
 	} catch (error) {

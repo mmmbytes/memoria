@@ -1,6 +1,6 @@
 const { stringify } = require('querystring');
 
-const httpsRequest = require('../utils/httpsRequest.js');
+const httpsRequest = require('../utils/networkRequest.js');
 const setCookies = require('../utils/setCookies.js');
 
 const ONE_HOUR = 1000 * 60 * 60; // 1 hour in milliseconds
@@ -23,6 +23,7 @@ const exchangeAuthCode = async (req, res) => {
 	});
 
 	const options = {
+		protocol: 'https',
 		hostname: process.env.COGNITO_DOMAIN,
 		path: '/oauth2/token',
 		method: 'POST',

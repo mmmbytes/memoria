@@ -1,9 +1,12 @@
+const http = require('http');
 const https = require('https');
 const isJson = require('./isJson.js');
 
-const httpsRequest = async (options, postData) => {
+const networkRequest = async (options, postData) => {
 	return new Promise((resolve, reject) => {
-		const request = https.request(options, (response) => {
+		const protocol = options.protocol === 'http' ? http : https;
+
+		const request = protocol.request(options, (response) => {
 			let data = '';
 			response.on('data', (chunk) => {
 				data += chunk;
@@ -43,4 +46,4 @@ const httpsRequest = async (options, postData) => {
 	});
 };
 
-module.exports = httpsRequest;
+module.exports = networkRequest;

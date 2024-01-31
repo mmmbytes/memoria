@@ -2,7 +2,7 @@ const { CognitoJwtVerifier } = require('aws-jwt-verify');
 const jwt = require('jsonwebtoken');
 const { stringify } = require('querystring');
 
-const httpsRequest = require('./httpsRequest.js');
+const httpsRequest = require('./networkRequest.js');
 const setCookies = require('./setCookies.js');
 
 const ONE_HOUR = 1000 * 60 * 60; // 1 hour in milliseconds
@@ -15,6 +15,7 @@ const refreshTokens = async (refreshToken, res) => {
 	});
 
 	const options = {
+		protocol: 'https',
 		hostname: process.env.COGNITO_DOMAIN,
 		path: '/oauth2/token',
 		method: 'POST',
