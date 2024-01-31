@@ -29,7 +29,7 @@ app.use((req, res, next) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/notes', jwtVerify, noteRoutes);
-console.log('server entry point');
+console.log('server entry point 2024');
 app.use('/api/insights', jwtVerify, insightsRoutes);
 app.use('/api/account', jwtVerify, accountRoutes);
 

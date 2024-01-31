@@ -1,10 +1,9 @@
 const insightsService = require('../services/noteInsights');
 
 const testInsights = async (req, res) => {
-	const { message } = req.body;
+	const message = JSON.stringify(req.body);
 	try {
-		console.log('Calling testInsights');
-		console.log(message);
+		console.log('testInsights called with message: ' + message);
 		const testMessage = await insightsService.testInsights(message);
 		res.status(200).json(testMessage);
 	} catch (error) {

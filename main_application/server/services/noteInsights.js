@@ -1,7 +1,7 @@
 const httpRequest = require('../utils/networkRequest');
 
 const testInsights = async (data) => {
-	console.log('testInsights called with data:' + data);
+	console.log('testInsights called with data: ' + data);
 	const options = {
 		protocol: 'http:',
 		hostname: 'analytics_service',
