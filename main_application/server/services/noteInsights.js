@@ -1,7 +1,6 @@
 const httpRequest = require('../utils/networkRequest');
 
 const testInsights = async (data) => {
-	console.log('testInsights called with data: ' + data);
 	const options = {
 		protocol: 'http:',
 		hostname: 'analytics_service',
@@ -15,7 +14,6 @@ const testInsights = async (data) => {
 
 	try {
 		const response = await httpRequest(options, data);
-		console.log(response);
 		return response;
 	} catch (error) {
 		const { statusCode, message, details } = error;
@@ -24,7 +22,6 @@ const testInsights = async (data) => {
 			message,
 			details,
 		};
-		console.error(err);
 		throw err;
 	}
 };
