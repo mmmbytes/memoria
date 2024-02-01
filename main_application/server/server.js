@@ -22,14 +22,17 @@ app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 app.use(express.json());
 app.use(cookieParser());
 app.use((req, res, next) => {
-	console.log(req.path, req.method);
-	console.log(req.body);
+	const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+	console.log(
+		`Time: ${new Date().toISOString()}, IP: ${ip}, Path: ${req.path}, Method: ${
+			req.method
+		}`
+	);
 	next();
 });
 
 app.use('/api/auth', authRoutes);
 app.use('/api/notes', jwtVerify, noteRoutes);
-console.log('server entry point 2024');
 app.use('/api/insights', jwtVerify, insightsRoutes);
 app.use('/api/account', jwtVerify, accountRoutes);
 
