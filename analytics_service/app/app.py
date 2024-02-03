@@ -11,9 +11,10 @@ class MessageData(BaseModel):
 async def test_message(data: MessageData):
     print(f"Message received: {data.message}")
     try:
-        vector = get_text_embedding(data.message, "amazon.titan-embed-text-v1")
-        print(vector)
-        return {"message": "Received test"}
+        embedding = get_text_embedding(data.message, "amazon.titan-embed-text-v1")
+        if embedding:
+            print(embedding)
+            return {"message": "Received test embedding successfully."}
     except Exception as e:
-        print(f"Error retrieving text embedding: {e}")
-        raise e
+        print(f"Error: {e}")
+        return {"message": "An error occurred."}
