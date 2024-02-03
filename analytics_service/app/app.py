@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from services.text_embedding import get_text_embedding
 
 app = FastAPI()
 
