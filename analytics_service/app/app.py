@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from app.services.test_import import test_import
+from app.services.text_embedding import get_text_embedding
 
 app = FastAPI()
 
@@ -10,5 +10,6 @@ class MessageData(BaseModel):
 @app.post("/test-message")
 async def test_message(data: MessageData):
     print(f"Message received: {data.message}")
-    test_import()
+    embedding = get_text_embedding(data.message, "amazon.titan-embed-text-v1")
+    print(embedding)
     return {"message": "Received test"}
