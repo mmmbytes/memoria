@@ -21,7 +21,7 @@ def get_text_embedding(inputText, modelId):
         "inputText": inputText
     })
     try:
-        response = client.invoke_model(body=body, modelId=modelId, accept='**/**', contentType='application/json')
+        response = client.invoke_model(body=body, modelId=modelId, accept='*/*', contentType='application/json')
         if response['ResponseMetadata']['HTTPStatusCode'] != 200:
             print(f"Error: Received non-200 response status code: {response['ResponseMetadata']['HTTPStatusCode']}")
             return None
