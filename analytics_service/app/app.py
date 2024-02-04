@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from services.test_import import test_import
+from app.services.test_import import test_import
 
 app = FastAPI()
 
