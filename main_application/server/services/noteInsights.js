@@ -12,18 +12,8 @@ const testInsights = async (data) => {
 		},
 	};
 
-	try {
-		const response = await httpRequest(options, data);
-		return response;
-	} catch (error) {
-		const { statusCode, message, details } = error;
-		let err = {
-			statusCode,
-			message,
-			details,
-		};
-		throw err;
-	}
+	const response = await httpRequest(options, data);
+	return response;
 };
 
 module.exports = { testInsights };

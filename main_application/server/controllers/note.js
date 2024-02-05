@@ -1,6 +1,8 @@
+//TODO: Create service layers for all note controller functions
 const mongoose = require('mongoose');
 
 const Note = require('../models/Note');
+const noteService = require('../services/note');
 
 const getLatestNote = async (req, res) => {
 	const latestNote = await Note.findOne({ sub: req.sub }).sort({
@@ -31,12 +33,15 @@ const getNote = async (req, res) => {
 };
 
 const getAllNotes = async (req, res) => {
-	const notes = await Note.find({ sub: req.sub });
-
-	if (notes.length === 0) {
-		return res.status(204).end();
+	try {
+		const notes = await noteService.getAllNotes(req.sub);
+		if (notes.length === 0) {
+			return res.status(204).end();
+		}
+		res.status(200).json(notes);
+	} catch (error) {
+		res.status(500).json({ statusCode: 500, message: error.message });
 	}
-	res.status(200).json(notes);
 };
 
 const createNote = async (req, res) => {
@@ -102,8 +107,8 @@ const deleteNote = async (req, res) => {
 
 const deleteAllNotes = async (req, res) => {
 	try {
-		const notes = await Note.deleteMany({ sub: req.sub });
-		if (notes.deletedCount === 0) {
+		const notesDeletedCount = await noteService.deleteAllNotes(req.sub);
+		if (notesDeletedCount === 0) {
 			return res
 				.status(204)
 				.json({ statusCode: 204, message: 'No notes found' });

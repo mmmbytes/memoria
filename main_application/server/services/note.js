@@ -5,4 +5,9 @@ const deleteAllNotes = async (sub) => {
 	return result;
 };
 
-module.exports = { deleteAllNotes };
+const getAllNotes = async (sub) => {
+	const notes = await Note.find({ sub });
+	return notes;
+};
+
+module.exports = { deleteAllNotes, getAllNotes };
