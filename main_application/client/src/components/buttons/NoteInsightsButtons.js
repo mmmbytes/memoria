@@ -2,7 +2,7 @@ import { getInsightsData } from '../../services/NoteInsights';
 
 export function TestButton({ className, onTestComplete }) {
 	function handleTest() {
-		getInsightsData('test 1')
+		getInsightsData()
 			.then((res) => {
 				onTestComplete(res.message);
 			})

@@ -1,8 +1,8 @@
 import { fetchInsightsData } from '../api/NoteInsightsApi';
 
-export const getInsightsData = async (message) => {
+export const getInsightsData = async () => {
 	try {
-		const response = await fetchInsightsData(message);
+		const response = await fetchInsightsData();
 		return response;
 	} catch (error) {
 		throw new Error(error);

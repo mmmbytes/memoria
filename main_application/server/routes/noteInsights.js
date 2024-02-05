@@ -4,6 +4,6 @@ const { testInsights } = require('../controllers/noteInsights');
 
 const router = express.Router();
 
-router.post('/test-message', testInsights);
+router.get('/test-message', testInsights);
 
 module.exports = router;

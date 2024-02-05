@@ -1,12 +1,12 @@
 const insightsService = require('../services/noteInsights');
 
 const testInsights = async (req, res) => {
-	const message = JSON.stringify(req.body);
 	try {
-		const testMessage = await insightsService.testInsights(message);
-		res.status(200).json(testMessage);
+		const responseMessage = await insightsService.getNotesSimilarityData(
+			req.sub
+		);
+		res.status(200).json(responseMessage);
 	} catch (error) {
-		console.error(error);
 		res.status(500).json({ message: error.message });
 	}
 };
