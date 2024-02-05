@@ -2,14 +2,16 @@ const httpRequest = require('../utils/networkRequest');
 const NoteService = require('./note');
 
 const filterNotesList = (notesList) => {
-	notesList.map(({ _id, textbody }) => ({ _id, textbody }));
+	return notesList.map(({ _id, textbody }) => ({ _id, textbody }));
 };
 
 const getNotesSimilarityData = async (sub) => {
 	const notes = await NoteService.getAllNotes(sub);
 	const filteredNotesList = filterNotesList(notes);
+	console.log('filteredNotesList: ', filteredNotesList);
 
 	const response = await sendNotesList(filteredNotesList);
+	console.log('response : ', response);
 	return response;
 };
 
