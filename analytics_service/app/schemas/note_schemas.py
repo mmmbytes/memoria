@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field
 from typing import List
-from pymongo import ObjectId
+from bson.objectid import ObjectId
 
 class PyObjectID(str):
     @classmethod
