@@ -3,9 +3,11 @@ import json
 from botocore.config import Config
 from botocore.exceptions import BotoCoreError, ClientError
 
+AWS_REGION = 'us-east-1'
+
 def create_bedrock_client():
     config = Config(
-        region_name = 'us-east-1',
+        region_name = AWS_REGION,
         signature_version = 'v4',
         retries = {
             'max_attempts': 10,
