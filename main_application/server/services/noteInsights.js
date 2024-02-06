@@ -27,7 +27,7 @@ const sendNotesList = async (notesList) => {
 		},
 	};
 
-	const response = await httpRequest(options, JSON.stringify(notesList));
+	const response = await httpRequest(options, notesList);
 	return response;
 };
 
