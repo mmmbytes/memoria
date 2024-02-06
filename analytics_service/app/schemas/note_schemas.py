@@ -14,7 +14,7 @@ class PyObjectID(str):
         return str(v)
 
 class Note(BaseModel):
-    _id: PyObjectID = Field(..., alias='id')
+    id: PyObjectID = Field(..., alias='_id')
     textbody: str
 
 class NotesList(BaseModel):
