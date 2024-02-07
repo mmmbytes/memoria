@@ -1,5 +1,7 @@
+from typing import List
+
 from fastapi import FastAPI
-from pydantic import BaseModel
+
 from app.schemas.note_schemas import Note
 
 app = FastAPI()

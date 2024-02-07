@@ -2,7 +2,7 @@ const httpRequest = require('../utils/networkRequest');
 const NoteService = require('./note');
 
 const filterNotesList = (notesList) => {
-	return notesList.map(({ _id, textbody }) => ({ _id, textbody }));
+	return notesList.map(({ _id, textbody }) => ({ id: _id, textbody }));
 };
 
 const getNotesSimilarityData = async (sub) => {

@@ -1,6 +1,7 @@
-from pydantic import BaseModel, Field
-from typing import List
+from pydantic import BaseModel
 
 class Note(BaseModel):
-    id: str = Field(alias='_id')
+    id: str 
     textbody: str
+
+  
