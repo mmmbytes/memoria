@@ -1,4 +1,4 @@
-import typing from List
+from typing import List
 import numpy as np
 from itertools import combinations
 
