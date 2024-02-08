@@ -30,6 +30,7 @@ def get_text_embedding(inputText, modelId):
             return None
         try:
             response_body = json.loads(response.get('body').read())
+            print(response_body)
             return np.array(response_body)
         except json.JSONDecodeError as e:
             print(f"Error parsing response JSON: {e}")
