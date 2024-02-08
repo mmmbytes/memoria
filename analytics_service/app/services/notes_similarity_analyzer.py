@@ -8,14 +8,15 @@ def cosine_similarity(vecA, vecB):
   magnitude = np.linalg.norm(vecA) * np.linalg.norm(vecB)
   return dot_product / magnitude
 
-def find_notes_similarity(notes, similarity_function):
+def find_notes_similarity(notes):
   embeddings = [(note['id'], get_text_embedding(note['textbody'])) for note in notes]
   similarities = [
     {
-      "source": f"Vec {i+1}",
-      "target": f"Vec {j+1}",
+      "source": source_id,
+      "target": target_id,
       "value": cosine_similarity(vecA, vecB)
     }
-    for (i, (_, vecA)), (j, (_, vecB)) in combinations(enumerate(embeddings), 2)
+    for (i, (source_id, vecA)), (j, (target_id, vecB)) in combinations(enumerate(embeddings), 2)
   ]
+
   return similarities
