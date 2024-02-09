@@ -1,7 +1,7 @@
+import json
 import logging
 
 import boto3
-import json
 from botocore.config import Config
 from botocore.exceptions import BotoCoreError, ClientError
 import numpy as np

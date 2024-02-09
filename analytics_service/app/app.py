@@ -2,13 +2,16 @@ from typing import List
 from fastapi import FastAPI
 
 from app.schemas.note_schemas import Note
-from app.services.notes_similarity_analyzer import find_notes_similarity
+from app.services.note_similarity_analyzer import find_notes_similarities
 
 app = FastAPI()
 
-@app.post("/notes_similarity")
-async def notes_similarity(data: List[Note]):
-    print(data)
-    similarities = find_notes_similarity(data)
-    print(similarities)
-    return {"message": "Data received successfully!"}
+
+@app.post("/note_similarities")
+async def get_note_similarities(notes: List[Note]):
+    try:
+        note_similarities = find_note_similarities(notes)
+        return {"noteSimilarities": note_similarities}
+    except Exception as e:
+        logging.error(f"Error finding note similarities: {e}")
+        raise HTTPException(status_code=500, detail="Error finding note similarities")

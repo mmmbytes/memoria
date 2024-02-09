@@ -20,7 +20,7 @@ const sendNotesList = async (notesList) => {
 		protocol: 'http:',
 		hostname: 'analytics_service',
 		port: 8000,
-		path: '/notes_similarity',
+		path: '/note_similarities',
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -28,6 +28,7 @@ const sendNotesList = async (notesList) => {
 	};
 
 	const response = await httpRequest(options, JSON.stringify(notesList));
+	console.log('response from analytics_service: ', response);
 	return response;
 };
 
