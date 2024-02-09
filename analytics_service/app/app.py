@@ -2,7 +2,7 @@ from typing import List
 from fastapi import FastAPI
 
 from app.schemas.note_schemas import Note
-from app.services.note_similarity_analyzer import find_notes_similarities
+from app.services.note_similarity_analyzer import find_note_similarities
 
 app = FastAPI()
 
