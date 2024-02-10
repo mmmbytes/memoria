@@ -26,10 +26,13 @@ const NavBar = () => {
 				>
 					<div className="navbar__links" onClick={handleToggle}>
 						<li>
-							<Link to="/">Note Workspace</Link>
+							<Link to="/">Workspace</Link>
 						</li>
 						<li>
-							<Link to="/notes-collection">Notes Collection</Link>
+							<Link to="/notes-collection">Collection</Link>
+						</li>
+						<li>
+							<Link to="/note-insights">Insights</Link>
 						</li>
 						<li>
 							<Link to="/account">Account</Link>
