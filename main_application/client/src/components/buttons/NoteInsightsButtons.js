@@ -1,19 +1,20 @@
-import { getInsightsData } from '../../services/NoteInsights';
+import * as NoteInsightsService from '../../services/NoteInsightsService';
 
-export function TestButton({ className, onTestComplete }) {
+export function NoteInsightsButton({ className, onTestComplete }) {
 	function handleTest() {
-		getInsightsData()
+		NoteInsightsService.getInsightsData()
 			.then((res) => {
-				onTestComplete(res.message);
+				onTestComplete(res.noteSimilarities);
 			})
 			.catch((error) => {
-				onTestComplete(`Error: ${error}`);
+				console.error(error);
+				onTestComplete(`Error: ${error.message}`);
 			});
 	}
 
 	return (
 		<button type="button" className={className} onClick={handleTest}>
-			Sign Up
+			Note Insights
 		</button>
 	);
 }

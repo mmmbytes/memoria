@@ -7,12 +7,12 @@ const filterNotesList = (notesList) => {
 
 const getNotesSimilarityData = async (sub) => {
 	const notes = await NoteService.getAllNotes(sub);
+	if (notes.length < 3) {
+		return { message: 'Not enough notes to compare' };
+	}
 	const filteredNotesList = filterNotesList(notes);
-	console.log('filteredNotesList: ', filteredNotesList);
-
-	const response = await sendNotesList(filteredNotesList);
-	console.log('response : ', response);
-	return response;
+	const notesData = await sendNotesList(filteredNotesList);
+	return notesData;
 };
 
 const sendNotesList = async (notesList) => {
@@ -28,7 +28,6 @@ const sendNotesList = async (notesList) => {
 	};
 
 	const response = await httpRequest(options, JSON.stringify(notesList));
-	console.log('response from analytics_service: ', response);
 	return response;
 };
 

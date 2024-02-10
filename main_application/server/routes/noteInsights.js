@@ -1,9 +1,9 @@
 const express = require('express');
 
-const { testInsights } = require('../controllers/noteInsights');
+const { getNotesSimilarityData } = require('../controllers/noteInsights');
 
 const router = express.Router();
 
-router.get('/test-message', testInsights);
+router.get('/', getNotesSimilarityData);
 
 module.exports = router;

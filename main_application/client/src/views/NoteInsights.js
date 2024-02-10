@@ -2,7 +2,7 @@ import './styles/NoteInsights.css';
 
 import { useState } from 'react';
 
-import { TestButton } from '../components/buttons/NoteInsightsButtons';
+import { NoteInsightsButton } from '../components/buttons/NoteInsightsButtons';
 import btnMod from '../sharedStyles/button.module.css';
 
 function NoteInsights() {
@@ -21,7 +21,7 @@ function NoteInsights() {
 					early access? Join our Beta Tester community and be among the first to
 					shape the future of Note Insights.
 				</p>
-				<TestButton
+				<NoteInsightsButton
 					className={`${btnMod.btn} ${btnMod.btnStyled}`}
 					onTestComplete={handleTestResponse}
 				/>

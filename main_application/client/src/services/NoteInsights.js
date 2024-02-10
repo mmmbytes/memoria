@@ -1,9 +1,9 @@
-import { fetchInsightsData } from '../api/NoteInsightsApi';
+import { fetchNoteInsights } from '../api/NoteInsightsApi';
 
-export const getInsightsData = async () => {
+export const getNoteInsights = async () => {
 	try {
-		const response = await fetchInsightsData();
-		return response;
+		const notesData = await fetchNoteInsights();
+		return notesData;
 	} catch (error) {
 		throw new Error(error);
 	}
