@@ -1,8 +1,8 @@
-import * as NoteInsightsService from '../../services/NoteInsightsService';
+import * as NoteInsightsService from '../../services/NoteInsights';
 
 export function NoteInsightsButton({ className, onTestComplete }) {
 	function handleTest() {
-		NoteInsightsService.getInsightsData()
+		NoteInsightsService.getNoteInsights()
 			.then((res) => {
 				onTestComplete(res.noteSimilarities);
 			})

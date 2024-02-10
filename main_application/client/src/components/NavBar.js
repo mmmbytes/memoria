@@ -29,10 +29,10 @@ const NavBar = () => {
 							<Link to="/">Workspace</Link>
 						</li>
 						<li>
-							<Link to="/notes-collection">Collection</Link>
+							<Link to="/collection">Collection</Link>
 						</li>
 						<li>
-							<Link to="/note-insights">Insights</Link>
+							<Link to="/insights">Insights</Link>
 						</li>
 						<li>
 							<Link to="/account">Account</Link>

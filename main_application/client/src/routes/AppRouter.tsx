@@ -24,7 +24,7 @@ const AppRouter: React.FC = () => {
 						element={<PrivateRoute component={NoteWorkspace} />}
 					/>
 					<Route
-						path="/notes-collection"
+						path="/collection"
 						element={<PrivateRoute component={NotesCollection} />}
 					/>
 					<Route
