@@ -1,19 +1,20 @@
 const httpRequest = require('../utils/networkRequest');
-const NoteService = require('./note');
-
-const filterNotesList = (notesList) => {
-	return notesList.map(({ _id, textbody }) => ({ id: _id, textbody }));
-};
+const { getAllNotes } = require('./note');
+const {
+	filterNotesList,
+	textbodyData,
+	fullNoteData,
+} = require('../utils/filterNotesList');
 
 const getNotesSimilarityData = async (sub) => {
-	const notes = await NoteService.getAllNotes(sub);
+	const notes = await getAllNotes(sub);
 	if (notes.length < 3) {
 		return { message: 'Not enough notes to compare' };
 	}
-	const filteredNotesList = filterNotesList(notes);
-	const similarityData = await sendNotesList(filteredNotesList);
+	const textbodyList = filterNotesList(notes, textbodyData);
+	const similarityData = await sendNotesList(textbodyList);
 	return {
-		notesCollection: notes,
+		notesList: filterNotesList(notes, fullNoteData),
 		similarityData: similarityData.noteSimilarities,
 	};
 };
