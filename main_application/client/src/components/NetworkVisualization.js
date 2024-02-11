@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 import { useEffect, useRef } from 'react';
 
-export function NetworkVisualization(nodes, links) {
+export function NetworkVisualization({ nodes, links }) {
 	const svgRef = useRef();
 	const tooltipRef = useRef();
 
@@ -68,7 +68,7 @@ export function NetworkVisualization(nodes, links) {
 		});
 
 		return () => simulation.stop();
-	}, []);
+	}, [nodes, links]);
 
 	return (
 		<div className="insights-network">
