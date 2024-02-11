@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 import { useEffect, useRef } from 'react';
 
-function NoteInsights(nodes, links) {
+export function NetworkVisualization(nodes, links) {
 	const svgRef = useRef();
 	const tooltipRef = useRef();
 
@@ -81,5 +81,3 @@ function NoteInsights(nodes, links) {
 		</div>
 	);
 }
-
-export default NoteInsights;

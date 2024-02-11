@@ -23,11 +23,11 @@ function NoteInsights() {
 		<div className="note-insights">
 			<header>
 				<h1>{'Note Insights'}</h1>
+				<NoteInsightsButton
+					className={`${btnMod.btn} ${btnMod.btnStyled}`}
+					onClick={visualizeNotesData}
+				/>
 			</header>
-			<NoteInsightsButton
-				className={`${btnMod.btn} ${btnMod.btnStyled}`}
-				onClick={visualizeNotesData}
-			/>
 			{notesData && (
 				<NetworkVisualization
 					nodes={notesData.notesList}
