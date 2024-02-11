@@ -1,17 +1,9 @@
 import './styles/NoteInsights.css';
 
-import { useState } from 'react';
-
 import { NoteInsightsButton } from '../components/buttons/NoteInsightsButtons';
 import btnMod from '../sharedStyles/button.module.css';
 
 function NoteInsights() {
-	const [testResponse, setTestResponse] = useState('');
-
-	function handleTestResponse(response) {
-		setTestResponse(response);
-	}
-
 	return (
 		<div className="note-insights">
 			<header>
@@ -21,11 +13,7 @@ function NoteInsights() {
 					early access? Join our Beta Tester community and be among the first to
 					shape the future of Note Insights.
 				</p>
-				<NoteInsightsButton
-					className={`${btnMod.btn} ${btnMod.btnStyled}`}
-					onTestComplete={handleTestResponse}
-				/>
-				{testResponse && <div>{testResponse}</div>}{' '}
+				<NoteInsightsButton className={`${btnMod.btn} ${btnMod.btnStyled}`} />
 			</header>
 		</div>
 	);

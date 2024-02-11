@@ -1,19 +1,19 @@
 import * as NoteInsightsService from '../../services/NoteInsights';
 
-export function NoteInsightsButton({ className, onTestComplete }) {
-	function handleTest() {
-		NoteInsightsService.getNoteInsights()
-			.then((res) => {
-				onTestComplete(res.noteSimilarities);
-			})
-			.catch((error) => {
+export function NoteInsightsButton({ className }) {
+	function visualizeNotesData() {
+		(async () => {
+			try {
+				const notesData = await NoteInsightsService.getNoteInsights();
+				console.log(notesData);
+			} catch (error) {
 				console.error(error);
-				onTestComplete(`Error: ${error.message}`);
-			});
+			}
+		})();
 	}
 
 	return (
-		<button type="button" className={className} onClick={handleTest}>
+		<button type="button" className={className} onClick={visualizeNotesData}>
 			Note Insights
 		</button>
 	);

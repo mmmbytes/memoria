@@ -11,8 +11,11 @@ const getNotesSimilarityData = async (sub) => {
 		return { message: 'Not enough notes to compare' };
 	}
 	const filteredNotesList = filterNotesList(notes);
-	const notesData = await sendNotesList(filteredNotesList);
-	return notesData;
+	const similarityData = await sendNotesList(filteredNotesList);
+	return {
+		notesCollection: notes,
+		similarityData: similarityData.noteSimilarities,
+	};
 };
 
 const sendNotesList = async (notesList) => {
