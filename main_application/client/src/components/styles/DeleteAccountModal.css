@@ -21,7 +21,7 @@
 	padding: 40px clamp(5px, 5%, 56px);
 	background-color: var(--frosted-bg-color);
 	font-family: var(--secondary-font);
-	color: var(--secondary-text-color);
+	color: var(--primary-text-color);
 }
 
 /* ----------------------------------------------------------------------------
@@ -65,6 +65,9 @@
 	font-size: 1rem;
 }
 
+#delete-account-modal__btn-delete:hover {
+	text-shadow: var(--primary-text-shadow);
+}
 /* ----------------------------------------------------------------------------
  * Responsive Breakpoints
  * --------------------------------------------------------------------------*/

@@ -10,9 +10,10 @@
 	--frosted-bg-color: rgba(252, 253, 253, 0.82);
 	--primary-font: Cardo, serif;
 	--secondary-font: Lora, serif;
-	--primary-text-color: #000000;
-	--secondary-text-color: #696072;
-	--text-shadow: 0 0.125rem 0.25rem rgba(141, 141, 141, 0.377);
+	--primary-text-color: #5b5463;
+	--link-icon-color: #696072;
+	--primary-text-shadow: 0 0.125rem 0.25rem rgba(78, 63, 86, 0.3);
+	--secondary-text-shadow: 0rem 0.25rem 0.6rem rgba(78, 63, 86, 0.977);
 }
 
 * {
@@ -23,5 +24,5 @@
 
 a {
 	text-decoration: none;
-	color: var(--secondary-text-color);
+	color: var(--link-icon-color);
 }

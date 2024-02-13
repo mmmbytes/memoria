@@ -25,16 +25,16 @@ const NavBar = () => {
 					}`}
 				>
 					<div className="navbar__links" onClick={handleToggle}>
-						<li>
+						<li className={`${btnMod.btn}`}>
 							<Link to="/">Workspace</Link>
 						</li>
-						<li>
+						<li className={`${btnMod.btn}`}>
 							<Link to="/collection">Collection</Link>
 						</li>
-						<li>
+						<li className={`${btnMod.btn}`}>
 							<Link to="/insights">Insights</Link>
 						</li>
-						<li>
+						<li className={`${btnMod.btn}`}>
 							<Link to="/account">Account</Link>
 						</li>
 					</div>

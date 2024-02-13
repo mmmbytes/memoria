@@ -22,9 +22,9 @@ function NoteInsights() {
 	return (
 		<div className="note-insights">
 			<header>
-				<h1>{'Note Insights'}</h1>
+				<h1>{'Discover the hidden networks within your thoughts.'}</h1>
 				<NoteInsightsButton
-					className={`${btnMod.btn} ${btnMod.btnStyled}`}
+					className={`${btnMod.btn} ${btnMod.btnStyled} ${btnMod.btnMisc}`}
 					onClick={visualizeNotesData}
 				/>
 			</header>

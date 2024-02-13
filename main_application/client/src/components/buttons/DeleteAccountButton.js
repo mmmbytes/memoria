@@ -1,4 +1,4 @@
-import '../styles/DeleteAccountButton.css';
+import '../styles/DeleteAccountModal.css';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -46,6 +46,7 @@ export function DeleteAccountButton({ className, id }) {
 							<button
 								type="button"
 								className={`${btnMod.btn} ${btnMod.btnStyled} ${btnMod.btnDelete}`}
+								id="delete-account-modal__btn-delete"
 								onClick={handleDeleteAccount}
 							>
 								Delete Account

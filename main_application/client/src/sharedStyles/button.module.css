@@ -1,44 +1,85 @@
 :root {
+	--btn-transform-active: scale(0.96);
 	--btn-shadow: 0 2px 4px rgba(21, 17, 57, 0.352);
 	--btn-border-radius: 25px;
 	--btn-padding: 12px 24px;
 	--btn-bg-color: var(--tertiary-bg-color);
+	--btn-bg-color-hover: #eeecf1;
 	--btn-font-size: 15px;
 	--btn-font-family: var(--secondary-font);
 	--btn-font-weight: 600;
-	--btn-delete-text-color: #ff002e;
+	--btn-icon-color: var(--link-icon-color);
+	--btn-text-color: #988ba6;
+	--btn-text-color-delete: #ff002e;
 }
 
 .btn {
 	border: none;
 	background-color: transparent;
 	cursor: pointer;
-	color: var(--secondary-text-color);
+	color: var(--link-icon-color);
 }
 
 .btn:hover {
-	text-shadow: var(--text-shadow);
+	text-shadow: var(--primary-text-shadow);
+}
+.btn:active {
+	transform: var(--btn-transform-active);
 }
 
 .btnStyled {
-	transition: background-color 0.3s ease;
 	box-shadow: var(--btn-shadow);
-	border: 2px white solid;
+	border: 3px #f3edff solid;
 	border-radius: var(--btn-border-radius);
 	padding: var(--btn-padding);
 	background-color: var(--btn-bg-color);
 	font-size: var(--btn-font-size);
 	font-family: var(--btn-font-family);
 	font-weight: var(--btn-font-weight);
+	color: var(--btn-text-color);
 }
 
 .btnStyled:hover {
-	transform: scale(1.03);
-	box-shadow: 0 0.5rem 1.5rem rgba(120, 121, 122, 0.531);
+	transform: var(--btn-transform-active);
+	box-shadow: -5px -5px 10px #ffffff, 3px 3px 10px rgba(21, 17, 57, 0.352),
+		inset 1px 1px 2px #ffffff, inset -1px -1px 2px #bebebe,
+		inset 3px 3px 5px #bebebe, inset -3px -3px 5px #ffffff;
+	border: 5px #fff3ff solid;
+	background-color: var(--btn-bg-color-hover);
+}
+
+.btnStyled:active {
+	transform: scale(0.94);
+	box-shadow: inset 1px 1px 2px #ffffff, inset -1px -1px 2px #bebebe,
+		inset 3px 3px 5px #bebebe, inset -3px -3px 5px #ffffff;
+}
+
+.btnMisc {
+	border: 5px #f3edff solid;
+	position: relative;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	box-shadow: 0 2px 12px rgba(59, 51, 80, 0.525);
+}
+
+.btnMisc:hover {
+	background-color: #f3edff;
+	box-shadow: -5px -5px 10px #eadfff76, 3px 3px 20px rgba(35, 24, 69, 0.454),
+		inset 1px 1px 2px #ffffff, inset -1px -1px 2px #bebebe,
+		inset 3px 3px 5px #8e8893, inset -3px -3px 5px #ffffff;
 }
 
 .btnDelete {
 	font-size: 1rem;
 	font-family: var(--secondary-font);
-	color: var(--btn-delete-text-color);
+	color: var(--btn-text-color-delete);
+}
+
+.btnDelete:hover {
+	text-shadow: var(--secondary-text-shadow);
+}
+
+.btnDelete:active {
+	transform: var(--btn-transform-active);
 }

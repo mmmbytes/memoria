@@ -5,6 +5,7 @@
 	font-family: var(--primary-font);
 	display: flex;
 	justify-content: center;
+	color: var(--primary-text-color);
 }
 
 .signup-btn {
