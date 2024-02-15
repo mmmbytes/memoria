@@ -4,7 +4,7 @@
 	--btn-border-radius: 25px;
 	--btn-padding: 12px 24px;
 	--btn-bg-color: var(--tertiary-bg-color);
-	--btn-bg-color-hover: #eeecf1;
+	--btn-bg-color-hover: #ededed;
 	--btn-font-size: 15px;
 	--btn-font-family: var(--secondary-font);
 	--btn-font-weight: 600;
@@ -29,7 +29,7 @@
 
 .btnStyled {
 	box-shadow: var(--btn-shadow);
-	border: 3px #f3edff solid;
+	border: 3px #f5f5f5 solid;
 	border-radius: var(--btn-border-radius);
 	padding: var(--btn-padding);
 	background-color: var(--btn-bg-color);
@@ -41,11 +41,12 @@
 
 .btnStyled:hover {
 	transform: var(--btn-transform-active);
-	box-shadow: -5px -5px 10px #ffffff, 3px 3px 10px rgba(21, 17, 57, 0.352),
+	box-shadow: -5px -5px 10px #ffffff, 3px 3px 10px rgba(28, 17, 57, 0.352),
 		inset 1px 1px 2px #ffffff, inset -1px -1px 2px #bebebe,
 		inset 3px 3px 5px #bebebe, inset -3px -3px 5px #ffffff;
-	border: 5px #fff3ff solid;
+	border: 5px #f5f5f5 solid;
 	background-color: var(--btn-bg-color-hover);
+	text-shadow: none;
 }
 
 .btnStyled:active {
