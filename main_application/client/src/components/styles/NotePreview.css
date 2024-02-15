@@ -13,6 +13,7 @@
 	padding: 15px;
 	background-color: var(--secondary-bg-color);
 	font-family: var(--primary-font);
+	color: var(--primary-text-color);
 }
 
 .note-preview:hover {

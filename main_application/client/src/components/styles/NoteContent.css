@@ -26,12 +26,18 @@
 	border: none;
 	padding: 1rem;
 	font-family: var(--primary-font);
+	color: var(--primary-text-color);
 }
 
 .note__title:focus,
 .note__body:focus {
 	box-shadow: 0 0 10px #84888a;
 	outline: none;
+}
+
+.note__title::placeholder,
+.note__body::placeholder {
+	color: var(--secondary-text-color);
 }
 
 /* ----------------------------------------------------------------------------

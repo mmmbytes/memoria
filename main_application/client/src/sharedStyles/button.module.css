@@ -9,7 +9,6 @@
 	--btn-font-family: var(--secondary-font);
 	--btn-font-weight: 600;
 	--btn-icon-color: var(--link-icon-color);
-	--btn-text-color: #988ba6;
 	--btn-text-color-delete: #ff002e;
 }
 
@@ -36,7 +35,7 @@
 	font-size: var(--btn-font-size);
 	font-family: var(--btn-font-family);
 	font-weight: var(--btn-font-weight);
-	color: var(--btn-text-color);
+	color: var(--secondary-text-color);
 }
 
 .btnStyled:hover {
