@@ -10,7 +10,10 @@ const fullNoteData = ({ _id, title, textbody }) => ({
 });
 
 const filterNotesList = (notesList, filterType) => {
-	return notesList.map(filterType);
+	const nonEmptyNotesList = notesList.filter(
+		({ textbody }) => textbody.trim() !== ''
+	);
+	return nonEmptyNotesList.map(filterType);
 };
 
 module.exports = { filterNotesList, textbodyData, fullNoteData };

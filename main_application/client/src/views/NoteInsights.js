@@ -21,19 +21,25 @@ function NoteInsights() {
 
 	return (
 		<div className="note-insights">
-			<header>
-				<h1>{'Discover the hidden networks within your thoughts.'}</h1>
-				<NoteInsightsButton
-					className={`${btnMod.btn} ${btnMod.btnStyled} ${btnMod.btnMisc}`}
-					onClick={visualizeNotesData}
-				/>
-			</header>
-			{notesData && (
-				<NetworkVisualization
-					nodes={notesData.notesList}
-					links={notesData.similarityData}
-				/>
-			)}
+			<div className="note-insights__heading">
+				<h1 className="note-insights__title">
+					{'Discover the hidden networks within your thoughts.'}
+				</h1>
+				<div className="note-insights__btn">
+					<NoteInsightsButton
+						className={`${btnMod.btn} ${btnMod.btnStyled} ${btnMod.btnMisc} note-insights__btn`}
+						onClick={visualizeNotesData}
+					/>
+				</div>
+			</div>
+			<div className="note-insights__network">
+				{notesData && (
+					<NetworkVisualization
+						nodes={notesData.notesList}
+						links={notesData.similarityData}
+					/>
+				)}
+			</div>
 		</div>
 	);
 }

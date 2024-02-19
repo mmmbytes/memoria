@@ -1,14 +1,34 @@
 .note-insights {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
 	height: 100vh;
-	padding: 40px 30px;
+	padding: 40px 20px;
 	background-color: var(--primary-bg-color);
 	font-family: var(--primary-font);
-	display: flex;
-	justify-content: center;
 	color: var(--primary-text-color);
 }
 
-.signup-btn {
-	margin-top: 20px;
+.note-insights__heading {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 40px;
+}
+
+.note-insights__title {
+	font-size: clamp(2rem, 3.4vw, 3.68rem);
+}
+
+.note-insights__btn {
 	justify-content: center;
+	align-items: center;
+	margin-top: 20px;
+}
+
+@media only screen and (min-width: 708px) {
+	.note-insights {
+		justify-content: space-evenly;
+	}
 }
