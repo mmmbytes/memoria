@@ -1,0 +1,39 @@
+.note-insights-intro {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 50px;
+	min-height: min(93vh, calc(100vh - 55px));
+	padding: 40px;
+	background-image: radial-gradient(
+		circle,
+		#ffffff,
+		#fefefe,
+		#fcfdfc,
+		#fbfbfb,
+		#fafafa,
+		#f8f8f8,
+		#f6f5f7,
+		#f4f3f5,
+		#f1f0f2,
+		#eeecf0,
+		#eae9ed,
+		#e7e6eb
+	);
+	font-family: var(--primary-font);
+	color: var(--primary-text-color);
+}
+
+.note-insights-intro__heading {
+	font-size: clamp(1.75rem, 5.5vw, 3.4rem);
+	font-style: italic;
+	text-align: center;
+}
+
+@media only screen and (min-width: 708px) {
+	.note-insights-intro {
+		padding: 70px;
+		gap: 60px;
+	}
+}

@@ -1,0 +1,23 @@
+.network {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: var(--primary-bg-color);
+	overflow: hidden;
+	height: 100%;
+	font-family: var(--secondary-font);
+}
+
+.tooltip {
+	position: absolute;
+	background-color: var(--primary-text-color);
+	color: var(--primary-bg-color);
+	padding: 5px;
+	border-radius: 5px;
+	display: none;
+	pointer-events: none;
+}
+
+.nodes circle {
+	cursor: pointer;
+}

@@ -1,0 +1,34 @@
+.note-insights-network {
+	display: grid;
+	height: min(93vh, calc(100vh - 55px));
+	max-width: 100vw;
+	grid: 30px 1fr 1fr 30px / 30px 1fr 1fr 30px;
+	background-image: radial-gradient(
+		circle,
+		#ffffff,
+		#fefefe,
+		#fcfdfc,
+		#fbfbfb,
+		#fafafa,
+		#f8f8f8,
+		#f6f5f7,
+		#f4f3f5,
+		#f1f0f2,
+		#eeecf0,
+		#eae9ed,
+		#e7e6eb
+	);
+	font-family: var(--primary-font);
+	color: var(--primary-text-color);
+	overflow: hidden;
+}
+
+.note-insights-network__container {
+	grid-area: 2/2/4/4;
+}
+
+@media screen and (min-width: 708px) {
+	.note-insights-network {
+		grid: 40px 1fr 1fr 40px / 40px 1fr 1fr 40px;
+	}
+}
