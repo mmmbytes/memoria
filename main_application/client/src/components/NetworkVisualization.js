@@ -35,7 +35,7 @@ function NetworkVisualization({ nodes, links, dims }) {
 			.append('line')
 			.attr('stroke', '#5b5463')
 			.attr('stroke-opacity', (d) => 20 / d.value)
-			.attr('stroke-width', (d) => d.value * 1.75);
+			.attr('stroke-width', (d) => d.value * 2);
 
 		const node = svg
 			.append('g')
