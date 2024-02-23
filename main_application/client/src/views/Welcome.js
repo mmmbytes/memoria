@@ -2,8 +2,8 @@ import './styles/Welcome.css';
 
 import { SignInButton } from '../components/buttons/AccountActionsButtons';
 import LazyImage from '../components/LazyImage';
-import CompressedMemoriaLogo from '../images/memoria-logo-compressed.png';
 import MemoriaLogo from '../images/memoria-logo-large.png';
+import CompressedMemoriaLogo from '../images/memoria-logo-large-compressed.png';
 import btnMod from '../sharedStyles/button.module.css';
 
 function Welcome() {
