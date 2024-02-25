@@ -16,6 +16,7 @@ export function initIndexedDB({
 		};
 
 		request.onsuccess = function (event) {
+			console.log('IndexedDB opened successfully');
 			resolve(event.target.result);
 		};
 	});
@@ -50,7 +51,7 @@ export async function fetchIndexedDB(databaseName, objectStoreName) {
 
 		let data = await objectStore.getAll();
 		if (data.length === 0) {
-			return null;
+			return [];
 		}
 		return data;
 	} catch (error) {
