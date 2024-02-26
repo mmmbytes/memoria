@@ -45,8 +45,7 @@ export async function fetchIndexedDB(databaseName, objectStoreName) {
 		let transaction = db.transaction(objectStoreName, 'readonly');
 		let objectStore = transaction.objectStore(objectStoreName);
 		let data = await objectStore.getAll();
-		console.log('fetchData:', data);
-		return data;
+		return data[0];
 	} catch (error) {
 		console.error('Error retrieving data: ', error);
 	}
