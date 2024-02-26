@@ -41,9 +41,7 @@ export async function cacheIndexedDB(databaseName, objectStoreName, notesData) {
 
 export async function fetchIndexedDB(databaseName, objectStoreName) {
 	try {
-		let db = await initIndexedDB({
-			databaseName: databaseName,
-		});
+		let db = await initIndexedDB(databaseName);
 		let transaction = db.transaction(objectStoreName, 'readonly');
 		let objectStore = transaction.objectStore(objectStoreName);
 
