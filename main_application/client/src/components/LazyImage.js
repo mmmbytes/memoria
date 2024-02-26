@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-function LazyImage({ src, alt, placeholderSrc }) {
+function LazyImage({ className, src, alt, placeholderSrc }) {
 	const [imageSrc, setImageSrc] = useState(placeholderSrc);
 	const imageRef = useRef();
 
@@ -19,7 +19,7 @@ function LazyImage({ src, alt, placeholderSrc }) {
 		return () => observer.disconnect();
 	}, [src]);
 
-	return <img ref={imageRef} src={imageSrc} alt={alt} />;
+	return <img className={className} ref={imageRef} src={imageSrc} alt={alt} />;
 }
 
 export default LazyImage;
