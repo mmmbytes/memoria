@@ -33,7 +33,7 @@ export async function cacheIndexedDB(databaseName, objectStoreName, notesData) {
 			await objectStore.clear();
 		}
 
-		objectStore.add(notesData);
+		objectStore.add(notesData, 'latestData');
 	} catch (error) {
 		console.error('Error caching data: ', error);
 	}
