@@ -42,16 +42,16 @@ export async function cacheIndexedDB(databaseName, objectStoreName, notesData) {
 export async function fetchIndexedDB(databaseName, objectStoreName) {
 	try {
 		let db = await initIndexedDB(databaseName);
+		if (!db.objectStoreNames.contains(objectStoreName)) {
+			return [];
+		}
+
 		let transaction = db.transaction(objectStoreName, 'readonly');
 		let objectStore = transaction.objectStore(objectStoreName);
-
 		let data = await objectStore.getAll();
 		console.log('fetchData:', data);
 		return data;
 	} catch (error) {
-		if (error.name === 'NotFoundError') {
-			return [];
-		}
 		console.error('Error retrieving data: ', error);
 	}
 }
