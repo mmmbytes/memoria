@@ -47,11 +47,11 @@ export async function fetchIndexedDB(databaseName, objectStoreName) {
 
 		let data = await objectStore.getAll();
 		console.log('fetchData:', data);
-		if (data.length === 0) {
-			return [];
-		}
 		return data;
 	} catch (error) {
+		if (error.name === 'NotFoundError') {
+			return [];
+		}
 		console.error('Error retrieving data: ', error);
 	}
 }
