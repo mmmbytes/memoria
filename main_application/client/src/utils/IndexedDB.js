@@ -24,9 +24,7 @@ export function initIndexedDB({
 
 export async function cacheIndexedDB(databaseName, objectStoreName, notesData) {
 	try {
-		let db = await initIndexedDB({
-			databaseName: databaseName,
-		});
+		let db = await initIndexedDB(databaseName, objectStoreName);
 		let transaction = db.transaction(objectStoreName, 'readwrite');
 		let objectStore = transaction.objectStore(objectStoreName);
 
@@ -50,6 +48,7 @@ export async function fetchIndexedDB(databaseName, objectStoreName) {
 		let objectStore = transaction.objectStore(objectStoreName);
 
 		let data = await objectStore.getAll();
+		console.log('fetchData:', data);
 		if (data.length === 0) {
 			return [];
 		}

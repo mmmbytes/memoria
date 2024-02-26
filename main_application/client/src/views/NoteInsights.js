@@ -12,8 +12,8 @@ function NoteInsights() {
 	useEffect(() => {
 		async function fetchCachedData() {
 			const cachedNotesData = await fetchIndexedDB('cachedData', 'notesData');
+			console.log('Cached notes data:', cachedNotesData);
 			if (cachedNotesData.length > 0) {
-				console.log('Cached data found: ', cachedNotesData);
 				setNotesData(cachedNotesData);
 				setView('network');
 			}
