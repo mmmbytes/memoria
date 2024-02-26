@@ -1,6 +1,6 @@
 export function initIndexedDB({
 	databaseName,
-	version = 3,
+	version = 1,
 	objectStoreName = null,
 }) {
 	return new Promise((resolve, reject) => {
@@ -41,11 +41,7 @@ export async function cacheIndexedDB(databaseName, objectStoreName, notesData) {
 
 export async function fetchIndexedDB(databaseName, objectStoreName) {
 	try {
-		let db = await initIndexedDB({ databaseName });
-		if (!db.objectStoreNames.contains(objectStoreName)) {
-			return [];
-		}
-
+		let db = await initIndexedDB({ databaseName, objectStoreName });
 		let transaction = db.transaction(objectStoreName, 'readonly');
 		let objectStore = transaction.objectStore(objectStoreName);
 		let data = await objectStore.getAll();
