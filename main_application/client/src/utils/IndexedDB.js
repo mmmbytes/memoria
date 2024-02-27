@@ -40,19 +40,16 @@ export async function cacheIndexedDB(databaseName, objectStoreName, notesData) {
 	}
 }
 
-export async function fetchIndexedDB(databaseName, objectStoreName) {
+export async function fetchIndexedDB(databaseName, objectStoreName, key) {
 	console.log('fetchIndexedDB: ', databaseName, objectStoreName);
 	try {
 		let db = await initIndexedDB({ databaseName, objectStoreName });
 		console.log('fetchIndexedDB: ', db);
 		let transaction = db.transaction(objectStoreName, 'readonly');
-		console.log('fetchIndexedDB: ', transaction);
-
 		let objectStore = transaction.objectStore(objectStoreName);
-		console.log('fetchIndexedDB: ', objectStore);
-		let data = await objectStore.getAll();
-		console.log('fetchData:', data);
-		return data[0];
+		let dataRequest = await objectStore.get(key);
+		let data = dataRequest.result;
+		return data;
 	} catch (error) {
 		console.error('Error retrieving data: ', error);
 	}

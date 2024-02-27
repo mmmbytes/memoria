@@ -11,7 +11,11 @@ function NoteInsights() {
 
 	useEffect(() => {
 		async function fetchCachedData() {
-			const cachedNotesData = await fetchIndexedDB('cachedData', 'notesData');
+			const cachedNotesData = await fetchIndexedDB(
+				'cachedData',
+				'notesData',
+				'latestData'
+			);
 			console.log('Cached notes data:', cachedNotesData);
 			if (cachedNotesData.length > 0) {
 				setNotesData(cachedNotesData);
