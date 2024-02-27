@@ -17,7 +17,7 @@ function NoteInsights() {
 				'latestData'
 			);
 			console.log('Cached notes data:', cachedNotesData);
-			if (cachedNotesData.length > 0) {
+			if (cachedNotesData) {
 				setNotesData(cachedNotesData);
 				console.log('Cached notes data obj: ', notesData);
 				setView('network');

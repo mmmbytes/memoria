@@ -45,10 +45,18 @@ export async function fetchIndexedDB(databaseName, objectStoreName, key) {
 	try {
 		let db = await initIndexedDB({ databaseName, objectStoreName });
 		console.log('fetchIndexedDB: ', db);
-		let transaction = db.transaction(objectStoreName, 'readonly');
-		let objectStore = transaction.objectStore(objectStoreName);
-		let dataRequest = await objectStore.get(key);
-		let data = dataRequest.result;
+
+		const dataPromise = new Promise((resolve, reject) => {
+			let transaction = db.transaction(objectStoreName, 'readonly');
+			let objectStore = transaction.objectStore(objectStoreName);
+			let request = objectStore.get(key);
+
+			request.onsuccess = () => resolve(request.result);
+			request.onerror = () => reject('Error fetching data: ' + request.error);
+		});
+
+		let data = await dataPromise;
+		console.log('Fetched data*: ', data);
 		return data;
 	} catch (error) {
 		console.error('Error retrieving data: ', error);
