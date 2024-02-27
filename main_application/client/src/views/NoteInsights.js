@@ -14,7 +14,7 @@ function NoteInsights() {
 			const cachedNotesData = await fetchIndexedDB('cachedData', 'notesData');
 			console.log('Cached notes data:', cachedNotesData);
 			if (cachedNotesData.length > 0) {
-				setNotesData(cachedNotesData[0]);
+				setNotesData(cachedNotesData);
 				console.log('Cached notes data obj: ', notesData);
 				setView('network');
 			}

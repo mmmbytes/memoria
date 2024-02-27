@@ -11,6 +11,7 @@ export function initIndexedDB({
 		};
 
 		request.onupgradeneeded = function (event) {
+			console.log('onupgradeneeded');
 			let db = event.target.result;
 			db.createObjectStore(objectStoreName);
 		};
@@ -51,7 +52,7 @@ export async function fetchIndexedDB(databaseName, objectStoreName) {
 		console.log('fetchIndexedDB: ', objectStore);
 		let data = await objectStore.getAll();
 		console.log('fetchData:', data);
-		return data;
+		return data[0];
 	} catch (error) {
 		console.error('Error retrieving data: ', error);
 	}
