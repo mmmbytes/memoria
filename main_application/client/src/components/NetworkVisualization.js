@@ -6,6 +6,11 @@ import { useEffect, useRef } from 'react';
 import { WithContext } from '../utils/ReactDims';
 
 function NetworkVisualization({ nodes, links, dims }) {
+	nodes.forEach((node) => {
+		node.x = node.x || 0;
+		node.y = node.y || 0;
+	});
+
 	const svgRef = useRef();
 	const tooltipRef = useRef();
 

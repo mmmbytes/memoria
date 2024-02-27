@@ -16,10 +16,8 @@ function NoteInsights() {
 				'notesData',
 				'latestData'
 			);
-			console.log('Cached notes data:', cachedNotesData);
 			if (cachedNotesData) {
 				setNotesData(cachedNotesData);
-				console.log('Cached notes data obj: ', notesData);
 				setView('network');
 			}
 		}

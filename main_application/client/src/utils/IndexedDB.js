@@ -17,7 +17,6 @@ export function initIndexedDB({
 		};
 
 		request.onsuccess = function (event) {
-			console.log('IndexedDB opened successfully');
 			resolve(event.target.result);
 		};
 	});
@@ -41,10 +40,8 @@ export async function cacheIndexedDB(databaseName, objectStoreName, notesData) {
 }
 
 export async function fetchIndexedDB(databaseName, objectStoreName, key) {
-	console.log('fetchIndexedDB: ', databaseName, objectStoreName);
 	try {
 		let db = await initIndexedDB({ databaseName, objectStoreName });
-		console.log('fetchIndexedDB: ', db);
 
 		const dataPromise = new Promise((resolve, reject) => {
 			let transaction = db.transaction(objectStoreName, 'readonly');
@@ -56,7 +53,6 @@ export async function fetchIndexedDB(databaseName, objectStoreName, key) {
 		});
 
 		let data = await dataPromise;
-		console.log('Fetched data*: ', data);
 		return data;
 	} catch (error) {
 		console.error('Error retrieving data: ', error);
