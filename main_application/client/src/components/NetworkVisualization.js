@@ -6,15 +6,17 @@ import { useEffect, useRef } from 'react';
 import { WithContext } from '../utils/ReactDims';
 
 function NetworkVisualization({ nodes, links, dims }) {
-	nodes.forEach((node) => {
-		node.x = node.x || 0;
-		node.y = node.y || 0;
-	});
-
 	const svgRef = useRef();
 	const tooltipRef = useRef();
 
+	console.log('NetworkVisualization: ', nodes, links);
+
 	useEffect(() => {
+		nodes.forEach((node) => {
+			node.x = dims.width / 2;
+			node.y = dims.height / 2;
+		});
+
 		const svg = d3.select(svgRef.current);
 		const tooltip = d3.select(tooltipRef.current);
 		svg.selectAll('*').remove();
