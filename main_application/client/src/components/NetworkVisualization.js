@@ -56,10 +56,20 @@ function NetworkVisualization({ nodes, links, dims }) {
 					.style('left', `${event.pageX}px`)
 					.style('top', `${event.pageY}px`)
 					.text(d.title);
+
+				d3.select(event.currentTarget).transition().attr('r', 10);
 			})
-			.on('mouseout', () => {
+
+			.on('mouseout', (event) => {
 				tooltip.style('display', 'none');
+
+				d3.select(event.currentTarget).transition().attr('r', 6);
 			});
+
+		node.on('click', (event, d) => {
+			node.attr('fill', '#3f3a45');
+			d3.select(event.target).attr('fill', '#696072');
+		});
 
 		simulation.on('tick', () => {
 			// Update link positions
