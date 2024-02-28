@@ -12,6 +12,8 @@ function NetworkVisualization({ nodes, links, dims }) {
 	console.log('NetworkVisualization: ', nodes, links);
 
 	useEffect(() => {
+		let lastClickedNode = null;
+
 		const svg = d3.select(svgRef.current);
 		const tooltip = d3.select(tooltipRef.current);
 		svg.selectAll('*').remove();
@@ -67,8 +69,11 @@ function NetworkVisualization({ nodes, links, dims }) {
 			});
 
 		node.on('click', (event, d) => {
-			node.attr('r', 6).attr('fill', '#3f3a45');
-			d3.select(event.target).attr('r', 8).attr('fill', '#988ba6');
+			if (lastClickedNode) {
+				d3.select(lastClickedNode).attr('r', 6).attr('fill', '#3f3a45');
+			}
+			lastClickedNode = event.currentTarget;
+			d3.select(event.currentTarget).attr('r', 8).attr('fill', '#988ba6');
 		});
 
 		simulation.on('tick', () => {
