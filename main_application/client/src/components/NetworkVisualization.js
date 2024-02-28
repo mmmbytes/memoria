@@ -8,12 +8,9 @@ import { WithContext } from '../utils/ReactDims';
 function NetworkVisualization({ nodes, links, dims }) {
 	const svgRef = useRef();
 	const tooltipRef = useRef();
-
-	console.log('NetworkVisualization: ', nodes, links);
+	let lastClickedNode = useRef(null);
 
 	useEffect(() => {
-		let lastClickedNode = null;
-
 		const svg = d3.select(svgRef.current);
 		const tooltip = d3.select(tooltipRef.current);
 		svg.selectAll('*').remove();
@@ -65,7 +62,9 @@ function NetworkVisualization({ nodes, links, dims }) {
 			.on('mouseout', (event) => {
 				tooltip.style('display', 'none');
 
-				d3.select(event.currentTarget).transition().attr('r', 6);
+				if (event.currentTarget !== lastClickedNode.current) {
+					d3.select(event.currentTarget).transition().attr('r', 6);
+				}
 			});
 
 		node.on('click', (event, d) => {
