@@ -69,7 +69,7 @@ function NetworkVisualization({ nodes, links, dims }) {
 
 		node.on('click', (event, d) => {
 			if (lastClickedNode.current !== null) {
-				d3.select(lastClickedNode).attr('r', 6).attr('fill', '#3f3a45');
+				d3.select(lastClickedNode.current).attr('r', 6).attr('fill', '#3f3a45');
 			}
 			lastClickedNode.current = event.currentTarget;
 			d3.select(event.currentTarget).attr('r', 8).attr('fill', '#988ba6');
