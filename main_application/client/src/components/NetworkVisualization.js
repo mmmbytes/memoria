@@ -67,8 +67,8 @@ function NetworkVisualization({ nodes, links, dims }) {
 			});
 
 		node.on('click', (event, d) => {
-			node.attr('fill', '#3f3a45');
-			d3.select(event.target).attr('fill', '#696072');
+			node.attr('r', 6).attr('fill', '#3f3a45');
+			d3.select(event.target).attr('r', 8).attr('fill', '#988ba6');
 		});
 
 		simulation.on('tick', () => {
@@ -116,9 +116,7 @@ function NetworkVisualization({ nodes, links, dims }) {
 
 	return (
 		<div className="network" width={dims.width} height={dims.height}>
-			<div>
-				width~{dims.width}__ height~{dims.height}
-			</div>
+			<div>{'Title'}</div>
 			<svg
 				ref={svgRef}
 				className="network-svg"
