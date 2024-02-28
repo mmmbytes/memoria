@@ -3,7 +3,7 @@ import './styles/NotesCollectionManager.css';
 import { useEffect, useState } from 'react';
 
 import { fetchAllNotes } from '../api/NoteApi';
-import NotePreview from './NotePreview';
+import Notecard from './NoteCard';
 
 function NotesCollectionManager() {
 	const [notesCollection, setNotesCollection] = useState([]);
@@ -27,7 +27,7 @@ function NotesCollectionManager() {
 		<div className="notes-collection">
 			<div className="notes-collection__notecards">
 				{notesCollection.map((note) => (
-					<NotePreview key={note._id} note={note} />
+					<Notecard key={note._id} note={note} />
 				))}
 			</div>
 		</div>

@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react';
 
 import { WithContext } from '../utils/ReactDims';
 
-function NetworkVisualization({ nodes, links, dims }) {
+function NetworkVisualization({ nodes, links, dims, onNodeClickFunction }) {
 	const svgRef = useRef();
 	const tooltipRef = useRef();
 	let lastClickedNode = useRef(null);
@@ -56,7 +56,7 @@ function NetworkVisualization({ nodes, links, dims }) {
 					.style('top', `${event.pageY}px`)
 					.text(d.title);
 
-				d3.select(event.currentTarget).transition().attr('r', 10);
+				d3.select(event.currentTarget).transition().attr('r', 12);
 			})
 
 			.on('mouseout', (event) => {
@@ -68,11 +68,13 @@ function NetworkVisualization({ nodes, links, dims }) {
 			});
 
 		node.on('click', (event, d) => {
-			if (lastClickedNode.current !== null) {
+			if (lastClickedNode.current) {
 				d3.select(lastClickedNode.current).attr('r', 6).attr('fill', '#3f3a45');
 			}
 			lastClickedNode.current = event.currentTarget;
-			d3.select(event.currentTarget).attr('r', 8).attr('fill', '#988ba6');
+			d3.select(event.currentTarget).attr('r', 10).attr('fill', '#988ba6');
+
+			onNodeClickFunction(d);
 		});
 
 		simulation.on('tick', () => {
@@ -120,7 +122,6 @@ function NetworkVisualization({ nodes, links, dims }) {
 
 	return (
 		<div className="network" width={dims.width} height={dims.height}>
-			<div>{'Title'}</div>
 			<svg
 				ref={svgRef}
 				className="network-svg"
