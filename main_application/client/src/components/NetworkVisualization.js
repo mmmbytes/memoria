@@ -56,14 +56,14 @@ function NetworkVisualization({ nodes, links, dims }) {
 					.style('top', `${event.pageY}px`)
 					.text(d.title);
 
-				d3.select(event.currentTarget).transition().attr('r', 10);
+				d3.select(event.current).transition().attr('r', 10);
 			})
 
 			.on('mouseout', (event) => {
 				tooltip.style('display', 'none');
 
-				if (event.currentTarget !== lastClickedNode.current) {
-					d3.select(event.currentTarget).transition().attr('r', 6);
+				if (event.current !== lastClickedNode) {
+					d3.select(event.current).transition().attr('r', 6);
 				}
 			});
 
@@ -71,8 +71,8 @@ function NetworkVisualization({ nodes, links, dims }) {
 			if (lastClickedNode) {
 				d3.select(lastClickedNode).attr('r', 6).attr('fill', '#3f3a45');
 			}
-			lastClickedNode = event.currentTarget;
-			d3.select(event.currentTarget).attr('r', 8).attr('fill', '#988ba6');
+			lastClickedNode = event.current;
+			d3.select(event.current).attr('r', 8).attr('fill', '#988ba6');
 		});
 
 		simulation.on('tick', () => {
