@@ -5,26 +5,24 @@ const ReactDims = createContext(null);
 export const Provider = (props) => {
 	const domNode = useRef(null);
 	const [dimensions, setDimensions] = useState({});
-	const [timeoutID, newTimeoutID] = useState(null);
-
-	const getNodeDimensions = () => {
-		clearTimeout(timeoutID);
-		newTimeoutID(
-			setTimeout(() => {
-				setDimensions(domNode.current.getBoundingClientRect());
-			}, props.debounce)
-		);
-	};
 
 	useEffect(() => {
-		setDimensions(domNode.current.getBoundingClientRect());
-	}, []);
+		const node = domNode.current;
+		if (node) {
+			setDimensions(node.getBoundingClientRect());
 
-	useEffect(() => {
-		window.addEventListener('resize', getNodeDimensions);
-		return () => {
-			window.removeEventListener('resize', getNodeDimensions);
-		};
+			const resizeObserver = new ResizeObserver((entries) => {
+				for (let entry of entries) {
+					setDimensions(entry.contentRect);
+				}
+			});
+
+			resizeObserver.observe(node);
+
+			return () => {
+				resizeObserver.unobserve(node);
+			};
+		}
 	}, []);
 
 	return (
