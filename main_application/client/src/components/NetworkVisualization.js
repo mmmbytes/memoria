@@ -1,14 +1,14 @@
 import './styles/NetworkVisualization.css';
 
 import * as d3 from 'd3';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { WithContext } from '../utils/ReactDims';
 
-function NetworkVisualization({ nodes, links, dims, onNodeClickFunction }) {
+function NetworkVisualization({ nodes, links, onNodeClick, dims }) {
 	const svgRef = useRef();
 	const tooltipRef = useRef();
-	let lastClickedNode = useRef(null);
+	const [lastClickedNodeId, setLastClickedNodeId] = useState(null);
 
 	useEffect(() => {
 		const svg = d3.select(svgRef.current);
@@ -45,8 +45,10 @@ function NetworkVisualization({ nodes, links, dims, onNodeClickFunction }) {
 			.data(nodes)
 			.enter()
 			.append('circle')
-			.attr('r', 6)
-			.attr('fill', '#3f3a45');
+			.attr('r', (d) => (lastClickedNodeId === d.id ? 10 : 6))
+			.attr('fill', (d) =>
+				lastClickedNodeId === d.id ? '#988ba6' : '#3f3a45'
+			);
 
 		node
 			.on('mouseover', (event, d) => {
@@ -56,25 +58,27 @@ function NetworkVisualization({ nodes, links, dims, onNodeClickFunction }) {
 					.style('top', `${event.pageY}px`)
 					.text(d.title);
 
-				d3.select(event.currentTarget).transition().attr('r', 12);
+				if (lastClickedNodeId !== event.currentTarget.__data__.id) {
+					d3.select(event.currentTarget).transition().attr('r', 10);
+				} else {
+					d3.select(event.currentTarget).transition().attr('r', 10);
+				}
 			})
 
 			.on('mouseout', (event) => {
 				tooltip.style('display', 'none');
-
-				if (event.currentTarget !== lastClickedNode.current) {
+				if (lastClickedNodeId !== event.currentTarget.__data__.id) {
 					d3.select(event.currentTarget).transition().attr('r', 6);
+				} else {
+					d3.select(event.currentTarget).transition().attr('r', 8);
 				}
 			});
 
 		node.on('click', (event, d) => {
-			if (lastClickedNode.current) {
-				d3.select(lastClickedNode.current).attr('r', 6).attr('fill', '#3f3a45');
-			}
-			lastClickedNode.current = event.currentTarget;
-			d3.select(event.currentTarget).attr('r', 10).attr('fill', '#988ba6');
-
-			onNodeClickFunction(d);
+			setLastClickedNodeId(d.id);
+			d3.selectAll('.nodes circle').attr('r', 6).attr('fill', '#3f3a45');
+			d3.select(event.currentTarget).attr('r', 8).attr('fill', '#988ba6');
+			onNodeClick(d);
 		});
 
 		simulation.on('tick', () => {
@@ -118,7 +122,7 @@ function NetworkVisualization({ nodes, links, dims, onNodeClickFunction }) {
 		}
 
 		return () => simulation.stop();
-	}, [nodes, links, dims]);
+	}, [dims]);
 
 	return (
 		<div className="network" width={dims.width} height={dims.height}>

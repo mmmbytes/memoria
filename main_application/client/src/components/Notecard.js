@@ -1,4 +1,4 @@
-import './styles/NotePreview.css';
+import './styles/Notecard.css';
 
 import { useNavigate } from 'react-router-dom';
 

@@ -3,7 +3,7 @@ import './styles/NotesCollectionManager.css';
 import { useEffect, useState } from 'react';
 
 import { fetchAllNotes } from '../api/NoteApi';
-import Notecard from './NoteCard';
+import Notecard from './Notecard';
 
 function NotesCollectionManager() {
 	const [notesCollection, setNotesCollection] = useState([]);
