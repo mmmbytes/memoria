@@ -31,6 +31,28 @@
 	text-align: center;
 }
 
+@keyframes pulseAnimation {
+	0% {
+		background-color: #f3edff;
+		opacity: 1;
+	}
+	50% {
+		background-color: #d7cfe7;
+		box-shadow: -5px -5px 10px #eadfff76, 3px 3px 20px rgba(35, 24, 69, 0.454),
+			inset 1px 1px 2px #ffffff, inset -1px -1px 2px #bebebe,
+			inset 3px 3px 5px #8e8893, inset -3px -3px 5px #ffffff;
+		opacity: 0.65;
+	}
+	100% {
+		background-color: #f3edff;
+		opacity: 1;
+	}
+}
+
+.loading {
+	animation: pulseAnimation 1s infinite ease-in-out;
+}
+
 @media only screen and (min-width: 708px) {
 	.note-insights-intro {
 		padding: 70px;
