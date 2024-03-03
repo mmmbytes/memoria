@@ -1,8 +1,18 @@
 .note-insights-network {
-	display: grid;
+	display: flex;
+	flex-direction: column;
 	height: min(93vh, calc(100vh - 55px));
 	max-width: 100vw;
+	font-family: var(--primary-font);
+	color: var(--primary-text-color);
+	overflow: hidden;
+}
+
+.note-insights-network__svg-layout {
+	display: grid;
 	grid: 30px 1fr 1fr 30px / 30px 1fr 1fr 30px;
+	height: 100%;
+	width: 100%;
 	background-image: radial-gradient(
 		circle,
 		#ffffff,
@@ -18,17 +28,51 @@
 		#eae9ed,
 		#e7e6eb
 	);
-	font-family: var(--primary-font);
-	color: var(--primary-text-color);
-	overflow: hidden;
 }
 
-.note-insights-network__container {
+.note-insights-network__svg-layout--detailed-view {
+	display: grid;
+	grid: 10px 1fr 1fr 0px / 0px 1fr 1fr 0px;
+	height: 50%;
+	width: 100%;
+	background-image: radial-gradient(
+		circle,
+		#ffffff,
+		#fefefe,
+		#fcfdfc,
+		#fbfbfb,
+		#fafafa,
+		#f8f8f8,
+		#f6f5f7,
+		#f4f3f5,
+		#f1f0f2,
+		#eeecf0,
+		#eae9ed,
+		#e7e6eb
+	);
+}
+
+.note-insights-network__svg-container {
 	grid-area: 2/2/4/4;
 }
 
 @media screen and (min-width: 708px) {
+	.note-insights-network__svg-layout {
+		grid: 40px 1fr 1fr 40px / 50px 1fr 1fr 50px;
+	}
+	.note-insights-network__svg-layout--detailed-view {
+		grid: 8% 1fr 1fr 8% / 6% 1fr 1fr 6%;
+	}
+}
+
+@media screen and (min-width: 1025px) {
 	.note-insights-network {
-		grid: 40px 1fr 1fr 40px / 40px 1fr 1fr 40px;
+		flex-direction: row;
+	}
+
+	.note-insights-network__svg-layout--detailed-view {
+		grid: 40px 1fr 1fr 40px / 50px 1fr 1fr 50px;
+		width: 55%;
+		height: 100%;
 	}
 }

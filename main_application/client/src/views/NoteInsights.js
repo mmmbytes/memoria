@@ -1,34 +1,37 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-// import { getNoteInsights } from '../services/NoteInsights';
-// import { cacheIndexedDB, fetchIndexedDB } from '../utils/IndexedDB';
+import { getNoteInsights } from '../services/NoteInsights';
+import { cacheIndexedDB, fetchIndexedDB } from '../utils/IndexedDB';
 import NoteInsightsIntro from './NoteInsightsIntro';
 import NoteInsightsNetwork from './NoteInsightsNetwork';
 
 function NoteInsights() {
+	const [loading, setLoading] = useState(false);
 	const [view, setView] = useState('intro');
-	// const [notesData, setNotesData] = useState(null);
+	const [notesData, setNotesData] = useState(null);
 
-	// useEffect(() => {
-	// 	async function fetchCachedData() {
-	// 		// const cachedNotesData = await fetchIndexedDB(
-	// 		// 	'cachedData',
-	// 		// 	'notesData',
-	// 		// 	'latestData'
-	// 		// );
-	// 		// if (cachedNotesData) {
-	// 		// 	setNotesData(cachedNotesData);
-	// 			setView('network');
-	// 		}
-	// 	}
-	// 	fetchCachedData();
-	// }, []);
+	useEffect(() => {
+		async function fetchCachedData() {
+			const cachedNotesData = await fetchIndexedDB(
+				'cachedData',
+				'notesData',
+				'latestData'
+			);
+			if (cachedNotesData) {
+				setNotesData(cachedNotesData);
+				setView('network');
+			}
+		}
+		fetchCachedData();
+	}, []);
 
 	async function visualizeNotesData() {
+		setLoading(true);
 		try {
-			// const fetchedData = await getNoteInsights();
-			// setNotesData(fetchedData);
-			// cacheIndexedDB('cachedData', 'notesData', fetchedData);
+			const fetchedData = await getNoteInsights();
+			setNotesData(fetchedData);
+			cacheIndexedDB('cachedData', 'notesData', fetchedData);
+			setLoading(false);
 			setView('network');
 		} catch (error) {
 			console.error(error);
@@ -38,9 +41,12 @@ function NoteInsights() {
 	return (
 		<div>
 			{view === 'intro' ? (
-				<NoteInsightsIntro visualizeNotesData={visualizeNotesData} />
+				<NoteInsightsIntro
+					loading={loading}
+					visualizeNotesData={visualizeNotesData}
+				/>
 			) : (
-				<NoteInsightsNetwork />
+				<NoteInsightsNetwork notesData={notesData} />
 			)}
 		</div>
 	);
