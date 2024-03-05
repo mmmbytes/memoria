@@ -8,7 +8,7 @@ export function RevealInsightsButton({ className, onClick, loading }) {
 			onClick={onClick}
 			loading={loading}
 		>
-			{loading ? 'Loading Insights' : 'Reveal Insights'}
+			{loading ? 'Loading Insights...' : 'Reveal Insights'}
 		</button>
 	);
 }

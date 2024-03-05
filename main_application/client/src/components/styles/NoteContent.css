@@ -50,6 +50,7 @@
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	font-size: clamp(1.5rem, 3vw, 3.33rem);
+	font-weight: 600;
 }
 
 /* ----------------------------------------------------------------------------

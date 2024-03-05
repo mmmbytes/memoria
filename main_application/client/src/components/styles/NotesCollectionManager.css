@@ -8,7 +8,7 @@
 	max-width: 100vw;
 	min-height: min(93vh, calc(100vh - 55px));
 	padding: 30px 20px;
-	background: var(--primary--color);
+	background: var(--primary-bg-color);
 }
 
 /* ----------------------------------------------------------------------------

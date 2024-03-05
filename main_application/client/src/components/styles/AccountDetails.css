@@ -25,7 +25,7 @@
 	display: flex;
 	align-items: center;
 	font-size: clamp(2.15rem, 3.4vw, 3.68rem);
-	font-weight: 400;
+	font-weight: 600;
 }
 
 .account-details__username {

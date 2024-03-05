@@ -68,7 +68,7 @@
 	font-weight: 200;
 	text-align: center;
 	letter-spacing: 2px;
-	text-shadow: var(--secondary-text-shadow);
+	text-shadow: 0 0.125rem 0.25rem rgba(141, 141, 141, 0.377);
 	color: var(--link-icon-color);
 }
 
