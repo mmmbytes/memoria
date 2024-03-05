@@ -40,6 +40,8 @@
 	overflow: hidden;
 	height: 100%;
 	font-size: 0.75rem;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
 }
 
 .notecard__textbody::after {

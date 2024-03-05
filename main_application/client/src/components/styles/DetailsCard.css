@@ -46,6 +46,8 @@
 	height: 85%;
 	justify-self: center;
 	overflow-y: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
 }
 
 @media screen and (min-width: 708px) {

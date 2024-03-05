@@ -83,4 +83,6 @@
 .note__body {
 	font-size: 1rem;
 	resize: none;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
 }
