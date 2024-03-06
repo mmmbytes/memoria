@@ -26,12 +26,12 @@ def create_bedrock_client():
         raise
 
 
-def get_text_embedding(inputText, modelId):
+def get_text_embedding(input_text, model_id):
     client = create_bedrock_client()
-    body = json.dumps({"inputText": inputText})
+    body = json.dumps({"inputText": input_text})
     try:
         response = client.invoke_model(
-            body=body, modelId=modelId, accept="*/*", contentType="application/json"
+            body=body, modelId=model_id, accept="*/*", contentType="application/json"
         )
         response_body = json.loads(response.get("body").read())
         embedding = response_body["embedding"]
