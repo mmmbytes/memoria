@@ -8,18 +8,18 @@
 	padding: 40px;
 	background-image: radial-gradient(
 		circle,
-		#ffffff,
-		#fefefe,
-		#fcfdfc,
 		#fbfbfb,
-		#fafafa,
-		#f8f8f8,
-		#f6f5f7,
-		#f4f3f5,
-		#f1f0f2,
-		#eeecf0,
-		#eae9ed,
-		#e7e6eb
+		#f9f9f9,
+		#f6f6f7,
+		#f4f4f4,
+		#f2f1f2,
+		#edeced,
+		#e9e6e9,
+		#e4e1e4,
+		#dbd8dc,
+		#d2cfd5,
+		#c9c6ce,
+		#bfbdc7
 	);
 	font-family: var(--primary-font);
 	color: var(--primary-text-color);
@@ -33,18 +33,18 @@
 
 @keyframes pulseAnimation {
 	0% {
-		background-color: #f3edff;
+		background-color: #f3f2f4;
 		opacity: 1;
 	}
 	50% {
-		background-color: #d7cfe7;
+		background-color: #cdbfd3;
 		box-shadow: -5px -5px 10px #eadfff76, 3px 3px 20px rgba(35, 24, 69, 0.454),
-			inset 1px 1px 2px #ffffff, inset -1px -1px 2px #bebebe,
-			inset 3px 3px 5px #8e8893, inset -3px -3px 5px #ffffff;
-		opacity: 0.65;
+			inset 1px 1px 2px #d6cedf, inset -1px -1px 2px #bebebe,
+			inset 3px 3px 5px #8e8893, inset -3px -3px 5px #e8deea;
+		opacity: 0.5;
 	}
 	100% {
-		background-color: #f3edff;
+		background-color: #f3f2f4;
 		opacity: 1;
 	}
 }

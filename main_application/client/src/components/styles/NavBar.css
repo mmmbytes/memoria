@@ -49,7 +49,7 @@
 	list-style: none;
 	transform: translateX(-100%);
 	overflow: hidden;
-	transition: all 0.5s ease-out;
+	transition: all 0.3s ease-out;
 	height: 93%;
 	max-height: calc(100% - 55px);
 }
@@ -59,7 +59,7 @@
 	justify-content: center;
 	visibility: visible;
 	transform: translateX(0);
-	box-shadow: 15px 0 20px -10px #d9dee3;
+	box-shadow: 15px 0 20px -10px #ccc9cd;
 	border: 1px solid var(--border-color);
 	width: 85%;
 	height: 93%;

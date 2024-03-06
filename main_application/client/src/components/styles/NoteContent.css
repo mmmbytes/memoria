@@ -37,7 +37,7 @@
 
 .note__title::placeholder,
 .note__body::placeholder {
-	color: var(--secondary-text-color);
+	color: #b5adb4;
 }
 
 /* ----------------------------------------------------------------------------
