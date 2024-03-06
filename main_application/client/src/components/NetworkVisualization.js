@@ -34,9 +34,9 @@ function NetworkVisualization({ nodes, links, onNodeClick, dims }) {
 			.data(links)
 			.enter()
 			.append('line')
-			.attr('stroke', '#5b5463')
+			.attr('stroke', '#6b6671')
 			.attr('stroke-opacity', (d) => 20 / d.value)
-			.attr('stroke-width', (d) => d.value * 2);
+			.attr('stroke-width', (d) => d.value * 2.5);
 
 		const node = svg
 			.append('g')
@@ -47,7 +47,7 @@ function NetworkVisualization({ nodes, links, onNodeClick, dims }) {
 			.append('circle')
 			.attr('r', (d) => (lastClickedNodeId === d.id ? 10 : 6))
 			.attr('fill', (d) =>
-				lastClickedNodeId === d.id ? '#988ba6' : '#3f3a45'
+				lastClickedNodeId === d.id ? '#988ba6' : '#514f4e'
 			);
 
 		node
@@ -76,7 +76,7 @@ function NetworkVisualization({ nodes, links, onNodeClick, dims }) {
 
 		node.on('click', (event, d) => {
 			setLastClickedNodeId(d.id);
-			d3.selectAll('.nodes circle').attr('r', 6).attr('fill', '#3f3a45');
+			d3.selectAll('.nodes circle').attr('r', 6).attr('fill', '#514f4e');
 			d3.select(event.currentTarget).attr('r', 8).attr('fill', '#988ba6');
 			onNodeClick(d);
 		});
