@@ -9,6 +9,21 @@
 	height: 93vh;
 	max-height: calc(100vh - 55px);
 	padding: 30px 20px;
+	background-image: radial-gradient(
+		circle,
+		#ffffff,
+		#fefefe,
+		#fefefe,
+		#fdfdfd,
+		#fcfcfc,
+		#fafafa,
+		#f8f8f9,
+		#f6f6f7,
+		#f2f2f4,
+		#efeff1,
+		#ebebed,
+		#e8e7ea
+	);
 }
 
 /* ----------------------------------------------------------------------------
