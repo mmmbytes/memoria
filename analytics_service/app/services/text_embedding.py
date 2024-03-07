@@ -27,7 +27,7 @@ class TextEmbeddingGenerationError(Exception):
 
 
 def create_bedrock_client() -> BaseClient:
-     """Create and return a Bedrock client."""
+    """Create and return a Bedrock client."""
     config = Config(
         region_name=_AWS_REGION,
         signature_version="v4",
@@ -38,10 +38,10 @@ def create_bedrock_client() -> BaseClient:
         return bedrock_client
     except (BotoCoreError, ClientError) as e:
         logging.error(f"Error creating Bedrock client: {e}")
-        raise 
+        raise
     except Exception as e:
         logging.error(f"Unkown error while creating Bedrock client: {e}")
-        raise 
+        raise
 
 
 def get_text_embedding(
@@ -57,17 +57,17 @@ def get_text_embedding(
         return np.array(response_body["embedding"])
     except ClientError as e:
         logging.error(f"Error invoking Bedrock model: {e}")
-        raise 
+        raise
     except Exception as e:
         logging.error(f"Unknown error while invoking Bedrock model: {e}")
-        raise 
+        raise
 
 
 def generate_batch_note_embeddings(
     notes: List[Note],
     model_id: str = _EMBEDDING_TEXT_MODEL,
 ) -> List[Tuple[str, np.ndarray]]:
-     """Process embeddings for a list of notes using a specified LLM model in batches."""
+    """Process embeddings for a list of notes using a specified LLM model in batches."""
     client = create_bedrock_client()
     note_embeddings_list = []
 

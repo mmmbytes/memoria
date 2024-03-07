@@ -17,7 +17,7 @@ def find_note_similarities(
     notes: List[Note],
     similarity_func: Callable[[np.ndarray, np.ndarray], float] = cosine_similarity,
 ) -> List[Dict[str, Union[str, float]]]:
-     """Compute semantic similarities between notes using a specified similarity function to compare text embeddings."""
+    """Compute semantic similarities between notes using a specified similarity function to compare text embeddings."""
     note_embeddings_list = generate_batch_note_embeddings(notes)
     note_similarities = [
         {
