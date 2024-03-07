@@ -7,7 +7,6 @@ from app.schemas.note_schemas import Note
 
 
 def cosine_similarity(vec_a: np.ndarray, vec_b: np.ndarray) -> float:
-    """Calculate the cosine similarity between two vectors."""
     dot_product = np.dot(vec_a, vec_b)
     magnitude = np.linalg.norm(vec_a) * np.linalg.norm(vec_b)
     return dot_product / magnitude
@@ -17,7 +16,6 @@ def find_note_similarities(
     notes: List[Note],
     similarity_func: Callable[[np.ndarray, np.ndarray], float] = cosine_similarity,
 ) -> List[Dict[str, Union[str, float]]]:
-    """Compute semantic similarities between notes using a specified similarity function to compare text embeddings."""
     note_embeddings_list = generate_batch_note_embeddings(notes)
     note_similarities = [
         {
