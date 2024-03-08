@@ -14,7 +14,7 @@ Memoria is being developed using the MERN stack (MongoDB, Express, React, and No
 
 ### System Design
 
-![System Design Diagram](/client/src/images/memoria-system-design.png)
+![System Design Diagram](main_application/client/src/images/memoria-system-design.png)
 
 ## Contribute and Collaborate
 
