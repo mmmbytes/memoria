@@ -7,10 +7,10 @@ jobs:
       - checkout
       - run:
           name: Install Dependencies
-          command: cd server && npm install
+          command: cd main_application/server && npm install
       - run:
           name: Run Tests
-          command: cd server && npm test
+          command: cd main_application/server && npm test
 workflows:
   version: 2
   build-test:

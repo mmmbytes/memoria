@@ -1,0 +1,60 @@
+/* ----------------------------------------------------------------------------
+ * Notecards - Layout
+ * ------------------------------------------------------------------------- */
+
+.notecard {
+	display: flex;
+	flex-direction: column;
+	transition: all 0.3s ease-in-out;
+	box-shadow: 0 2px 4px rgba(21, 17, 57, 0.352);
+	border-radius: 8px;
+	width: 250px;
+	height: 275px;
+	padding: 15px;
+	background-color: var(--secondary-bg-color);
+	font-family: var(--primary-font);
+	color: var(--primary-text-color);
+}
+
+.notecard:hover {
+	transform: scale(1.03);
+	box-shadow: 0 0.5rem 1.5rem rgba(120, 121, 122, 0.531);
+	cursor: pointer;
+}
+
+/* ----------------------------------------------------------------------------
+ * Notecards - Title 
+ * ------------------------------------------------------------------------- */
+
+.notecard__title {
+	padding-bottom: 15px;
+	font-size: 1.2rem;
+}
+
+/* ----------------------------------------------------------------------------
+ * Notecards - Body
+ * ------------------------------------------------------------------------- */
+
+.notecard__textbody {
+	position: relative;
+	overflow: hidden;
+	height: 100%;
+	font-size: 0.75rem;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+.notecard__textbody::after {
+	content: '';
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 2rem;
+	background: linear-gradient(
+		to bottom,
+		rgba(255, 255, 255, 0),
+		rgba(251, 251, 251, 1)
+	);
+}

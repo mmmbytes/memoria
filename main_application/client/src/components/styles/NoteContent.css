@@ -1,0 +1,99 @@
+/* ----------------------------------------------------------------------------
+ * Note - Container
+ * ------------------------------------------------------------------------- */
+
+.note,
+.note__body-container,
+.note__body {
+	width: 100%;
+	height: 100%;
+}
+
+.note {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem;
+	padding-bottom: 0;
+}
+
+/* ----------------------------------------------------------------------------
+ * Note - Title and Body
+ * ------------------------------------------------------------------------- */
+.note__title,
+.note__body {
+	border: none;
+	padding: 1rem;
+	font-family: var(--primary-font);
+	color: var(--primary-text-color);
+	background-color: rgba(251, 251, 251, 0.019);
+}
+
+.note__title:focus,
+.note__body:focus {
+	box-shadow: 0 0 10px #84888a;
+	outline: none;
+}
+
+.note__title::placeholder,
+.note__body::placeholder {
+	color: #b5adb4;
+}
+
+/* ----------------------------------------------------------------------------
+ * Note - Title
+ * ------------------------------------------------------------------------- */
+.note__title {
+	width: 100%;
+	margin: 0.2rem;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: clamp(1.5rem, 3vw, 3.33rem);
+	font-weight: 600;
+}
+
+/* ----------------------------------------------------------------------------
+ * Note - Body Container
+ * ------------------------------------------------------------------------- */
+.note__body-container {
+	position: relative;
+	margin: 0.2rem;
+}
+
+.note__body-container::after {
+	content: '';
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: -2px;
+	width: 100%;
+	height: 2.25rem;
+	background: linear-gradient(
+		to bottom,
+		rgba(255, 255, 255, 0),
+		rgb(240, 240, 242, 1)
+	);
+	pointer-events: none;
+}
+
+/* ----------------------------------------------------------------------------
+ * Note - Body
+ * ------------------------------------------------------------------------- */
+.note__body {
+	font-size: 1rem;
+	resize: none;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+@media screen and (min-width: 1200px) {
+	.note__body-container::after {
+		background: linear-gradient(
+			to bottom,
+			rgba(255, 255, 255, 0),
+			rgb(251, 251, 251, 1)
+		);
+	}
+}

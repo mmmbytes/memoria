@@ -1,0 +1,51 @@
+{
+	"name": "client",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"-": "^0.0.1",
+		"@testing-library/jest-dom": "^5.16.5",
+		"@testing-library/react": "^13.4.0",
+		"@testing-library/user-event": "^13.5.0",
+		"body-parser": "^1.20.1",
+		"compression": "^1.7.4",
+		"connect-multiparty": "^2.2.0",
+		"d3": "^7.8.5",
+		"fs": "^0.0.1-security",
+		"http-proxy-middleware": "^2.0.6",
+		"lodash": "^4.17.21",
+		"react": "^18.2.0",
+		"react-cookie": "^4.1.1",
+		"react-dom": "^18.2.0",
+		"react-icons": "^4.7.1",
+		"react-router-dom": "^6.8.1",
+		"react-scripts": "^5.0.1",
+		"typescript": "^4.9.5",
+		"viewport-units-buggyfill": "^0.6.2",
+		"web-vitals": "^2.1.4"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "jest --verbose",
+		"eject": "react-scripts eject"
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"devDependencies": {
+		"eslint-config-prettier": "^8.8.0",
+		"eslint-plugin-prettier": "^4.2.1",
+		"eslint-plugin-simple-import-sort": "^10.0.0",
+		"prettier": "^2.8.8"
+	}
+}

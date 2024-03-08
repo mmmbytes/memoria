@@ -1,0 +1,29 @@
+/* ----------------------------------------------------------------------------
+ * Global Styles
+ * ------------------------------------------------------------------------- */
+
+:root {
+	--border-color: #ffffff;
+	--primary-bg-color: #ecebee;
+	--secondary-bg-color: #fbfbfb;
+	--tertiary-bg-color: #f3f2f4;
+	--frosted-bg-color: rgba(251, 251, 251, 0.84);
+	--primary-font: Cardo, serif;
+	--secondary-font: Lora, serif;
+	--primary-text-color: #514f4e;
+	--secondary-text-color: #786174;
+	--link-icon-color: #6b6671;
+	--primary-text-shadow: 0 0.125rem 0.25rem rgba(78, 63, 86, 0.3);
+	--secondary-text-shadow: 0rem 0.25rem 0.6rem rgba(78, 63, 86, 0.977);
+}
+
+* {
+	margin: 0;
+	box-sizing: border-box;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+	color: var(--link-icon-color);
+}

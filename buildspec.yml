@@ -12,21 +12,37 @@ phases:
       - echo "REACT_APP_LOGOUT_URL = $REACT_APP_LOGOUT_URL"
   build:
     commands:
-      - echo Build started on `date`
-      - echo Building the Docker image...
+      - echo "Build started on $(date)"
+
+      - echo "Building Docker image for Main Application..."
       - >
-        docker build --build-arg REACT_APP_LOGIN_URL=$REACT_APP_LOGIN_URL --build-arg REACT_APP_LOGOUT_URL=$REACT_APP_LOGOUT_URL -t memoria:latest .
-        || echo "Docker build failed"
+        docker build --build-arg REACT_APP_LOGIN_URL=$REACT_APP_LOGIN_URL --build-arg REACT_APP_LOGOUT_URL=$REACT_APP_LOGOUT_URL -t memoria-main-app:latest ./main_application
+        || echo "Docker build for Main Application failed"
       - >
-        docker tag memoria:latest
-        $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/memoria-docker-images:latest
+        docker tag memoria-main-app:latest
+        $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/memoria-docker-images:memoria-main-app-latest
         || echo "Docker tagging failed"
+
+      - echo "Building Docker image for Analytics Service..."
+      - >
+        docker build -t memoria-analytics-service:latest ./analytics_service
+        || echo "Docker build for Analytics Service failed"
+      - >
+        docker tag memoria-analytics-service:latest
+        $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/memoria-docker-images:memoria-analytics-service-latest 
+        || echo "Docker tagging failed"
+      - cd ..
   post_build:
     commands:
       - echo Build completed on `date`
-      - echo Pushing the Docker image...
+      - echo Pushing the Docker image for Main Application...
       - >
-        docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/memoria-docker-images:latest
+        docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/memoria-docker-images:memoria-main-app-latest
+        || echo "Docker push failed"
+
+      - echo Pushing the Docker image for Analytics Service...
+      - >
+        docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/memoria-docker-images:memoria-analytics-service-latest
         || echo "Docker push failed"
 artifacts:
   files:
