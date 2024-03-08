@@ -4,7 +4,7 @@ export function SignInButton({ className }) {
 	const handleLogin = () => {
 		const loginUrl = process.env.REACT_APP_LOGIN_URL;
 		console.log('loginUrl', loginUrl);
-		window.location.href = loginUrl;
+		// window.location.href = loginUrl;
 	};
 
 	return (
