@@ -12,9 +12,9 @@ Memoria's minimalist design philosophy ensures a clutter-free environment that a
 
 Memoria is being developed using the MERN stack (MongoDB, Express, React, and Node.js), ensuring a robust and scalable foundation. As Memoria continues to evolve, additional layers may be incorporated to enhance its capabilities. We welcome your suggestions and ideas for potential stacks that could further enrich this application.
 
-### System Design Diagram
+### System Design
 
-![System Design Diagram](/main_application/client/images/memoria-system-design.png)
+![System Design Diagram](/client/src/images/memoria-system-design.png)
 
 ## Contribute and Collaborate
 

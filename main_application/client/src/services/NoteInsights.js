@@ -1,4 +1,4 @@
-import { fetchNoteInsights } from '../src/api/NoteInsightsApi';
+import { fetchNoteInsights } from '../api/NoteInsightsApi';
 
 export const getNoteInsights = async () => {
 	try {
