@@ -114,23 +114,3 @@
 		height: auto;
 	}
 }
-
-@media only screen and (min-width: 1291px) {
-	.welcome {
-		background-image: radial-gradient(
-			circle,
-			#ffffff,
-			#ffffff,
-			#ffffff,
-			#ffffff,
-			#ffffff,
-			#ffffff,
-			#ffffff,
-			#f6f6f7,
-			#f2f2f4,
-			#efeff1,
-			#ebebed,
-			#e8e7ea
-		);
-	}
-}
