@@ -3,9 +3,9 @@ import '../styles/DeleteAccountModal.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { deleteAccount } from '../../api/AccountApi';
-import btnMod from '../../sharedStyles/button.module.css';
-import { deleteAuthCookie } from '../../utils/AccountUtils';
+import { deleteAccount } from '../api/AccountApi';
+import btnMod from '../sharedStyles/button.module.css';
+import { deleteAuthCookie } from '../utils/AccountUtils';
 
 export function DeleteAccountButton({ className, id }) {
 	const [modalOpen, setModalOpen] = useState(false);
