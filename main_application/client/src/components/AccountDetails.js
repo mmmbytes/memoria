@@ -2,7 +2,7 @@ import './styles/AccountDetails.css';
 
 import { useEffect, useState } from 'react';
 
-import { getUserDetails } from '../services/Account';
+import { getUserDetails } from '../src/services/Account';
 
 function AccountDetails() {
 	const [userDetails, setUserDetails] = useState({
