@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { getNoteInsights } from '../src/services/NoteInsights';
+import { getNoteInsights } from '../services/NoteInsights';
 import { cacheIndexedDB, fetchIndexedDB } from '../utils/IndexedDB';
 import NoteInsightsIntro from './NoteInsightsIntro';
 import NoteInsightsNetwork from './NoteInsightsNetwork';
