@@ -1,8 +1,8 @@
 import './styles/DetailsCard.css';
 
-import { CloseDetailsButton } from '../components/buttons/NoteInsightsButtons';
-import { NoteBody, NoteTitle } from '../components/Note';
 import btnMod from '../sharedStyles/button.module.css';
+import { CloseDetailsButton } from './buttons/NoteInsightsButtons';
+import { NoteBody, NoteTitle } from './Note';
 
 function DetailsCard({ currentNote, dismissCard }) {
 	return (

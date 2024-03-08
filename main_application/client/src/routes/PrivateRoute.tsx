@@ -2,8 +2,8 @@ import { ComponentType, FC } from 'react';
 import { useCookies } from 'react-cookie';
 import { Navigate } from 'react-router-dom';
 
-import NavBar from '../../components/NavBar';
-import { AUTH_COOKIE_NAME } from '../../constants/constants';
+import NavBar from '../components/NavBar';
+import { AUTH_COOKIE_NAME } from '../constants/constants';
 
 interface PrivateRouteProps {
 	component: ComponentType;
