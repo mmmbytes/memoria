@@ -26,10 +26,11 @@ function NoteInsights() {
 	// }, []);
 
 	async function visualizeNotesData() {
-		setLoading(true);
 		try {
+			setLoading(true);
 			const fetchedData = await getNoteInsights();
 			setNotesData(fetchedData);
+			console.log(fetchedData);
 			// cacheIndexedDB('cachedData', 'notesData', fetchedData);
 			setLoading(false);
 			setView('network');
