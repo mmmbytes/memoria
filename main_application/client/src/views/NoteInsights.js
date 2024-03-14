@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { getNoteInsights } from '../services/NoteInsights';
 // import { cacheIndexedDB, fetchIndexedDB } from '../utils/IndexedDB';
@@ -10,27 +10,27 @@ function NoteInsights() {
 	const [view, setView] = useState('intro');
 	const [notesData, setNotesData] = useState(null);
 
-	// useEffect(() => {
-	// 	async function fetchCachedData() {
-	// 		const cachedNotesData = await fetchIndexedDB(
-	// 			'cachedData',
-	// 			'notesData',
-	// 			'latestData'
-	// 		);
-	// 		if (cachedNotesData) {
-	// 			setNotesData(cachedNotesData);
-	// 			setView('network');
-	// 		}
-	// 	}
-	// 	fetchCachedData();
-	// }, []);
+	useEffect(() => {
+		async function fetchCachedData() {
+			// const cachedNotesData = await fetchIndexedDB(
+			// 	'cachedData',
+			// 	'notesData',
+			// 	'latestData'
+			// );
+			// if (cachedNotesData) {
+			// 	setNotesData(cachedNotesData);
+			// 	setView('network');
+			// }
+			console.log('fetchCachedData placeholder');
+		}
+		fetchCachedData();
+	}, []);
 
 	async function visualizeNotesData() {
+		setLoading(true);
 		try {
-			setLoading(true);
 			const fetchedData = await getNoteInsights();
 			setNotesData(fetchedData);
-			console.log(fetchedData);
 			// cacheIndexedDB('cachedData', 'notesData', fetchedData);
 			setLoading(false);
 			setView('network');
